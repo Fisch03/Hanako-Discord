@@ -1,4 +1,0 @@
-- Adding a Github Command
-- More Fun Commands
-- In the far Future: English translation
-- Not really much to say here for now
