@@ -151,6 +151,10 @@ self.on("message", message => {
           })
         
       break;
+        
+      case "github":
+        message.channel.send("GitHub Link: https://github.com/Fisch03/FischisDiscordBot");
+      break;
     }
   }
 });
