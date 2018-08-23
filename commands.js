@@ -38,7 +38,7 @@ module.exports = {
     break;  
         
     case "lenny":
-      channel.send("( ͡° ͜ʖ ͡°)");
+      channel.send("lenny");
     break; 
         
     case "rlenny":
@@ -48,6 +48,14 @@ module.exports = {
       var value = Math.floor(Math.random() * (lennyarr.length + 1));
       channel.send(lennyarr[value]);
     break;
+        
+    case "stein":
+      var steinarr = ["Stein","Papier","Schere"];
+      var value = Math.floor(Math.random() * 3);
+      
+      channel.send("Deine Form: " + args[0] + "\nMeine Form: " + steinarr[value]);
+    break;
+        
         
     /**
     REDDIT

@@ -3,7 +3,7 @@ A small Discord Bot using [Node](https://nodejs.org/) and the [Discord.js](https
 
 #### WARNING: This Project is my first Node project and also my first Discord Bot, so expect Spaghetti Code and more!
 
-##### ALSO WARNING: This bot is German, but we plan to add English in the far Future.
+##### ALSO WARNING: This bot is in German, but we plan to add English in the far Future.
 
 Its current features are:
 1. Getting Hot Subreddit Posts

@@ -11,12 +11,11 @@ self.on('ready', () => {
 });
 
 self.on("message", message => {
-  var lowmsg = message.content.toLoweCase
-  if(lowmsg === "bad bot"){
+  if(message.content === "Bad Bot"){
      message.channel.send("Bad Human");
   };
 
-  if(lowmsg.startsWith("ich bin")) {
+  if(message.content.startsWith("Ich bin")) {
     var name = message.content.split("Ich bin");
     message.channel.send("Hallo " + name[1] + ", ich bin ein Bot");
   }
