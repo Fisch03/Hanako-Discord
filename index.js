@@ -11,13 +11,18 @@ self.on('ready', () => {
 });
 
 self.on("message", message => {
-  if(message.content === "Bad Bot"){
+  if(message.content === "Böser Bot" || message.content === "Böser bot" || message.content === "böser bot"){
      message.channel.send("Bad Human");
   };
 
-  if(message.content.startsWith("Ich bin")) {
+  if(message.content.startsWith("Ich bin") || message.content.startsWith("ich bin") || message.content.startsWith("Ich Bin")) {
     var name = message.content.split("Ich bin");
     message.channel.send("Hallo " + name[1] + ", ich bin ein Bot");
+  }
+  
+  var patt = new RegExp("nani");
+  if (patt.test(message.content.toLowerCase)) {
+    message.channel.send("Omae wa mou shindeiru");
   }
 
   if (message.content.startsWith(prefix) && message.author.username != self.user.username) {

@@ -80,8 +80,7 @@ module.exports = {
         
       channel.send(msg);
     break;
-        
-        
+                      
     /**
     REDDIT
     **/  
