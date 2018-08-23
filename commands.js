@@ -82,6 +82,13 @@ module.exports = {
     break;
         
         
+      case "nani":
+        var naniarr = ["Omae Wa Mou Shindeiru"]
+        var value = Math.floor(Math.random() * 1);
+        channel.send(steinarr[value]);
+        break;
+                             
+        
     /**
     REDDIT
     **/  
