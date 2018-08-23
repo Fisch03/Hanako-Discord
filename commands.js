@@ -50,9 +50,10 @@ module.exports = {
     break;
         
       case "stein":
+         var steinarr = ["Stein","Papier","Schere"];
          var value = Math.floor(Math.random() * 3);
       channel.send(steinarr[value]);
-        var steinarr = ["Stein","Papier","Schere"];
+        break;
         
         
     /**
