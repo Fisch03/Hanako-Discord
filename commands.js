@@ -49,10 +49,9 @@ module.exports = {
       channel.send(lennyarr[value]);
     break;
         
-    case "stein":
+    case "rps":
       var steinarr = ["Stein","Papier","Schere"];
       var value = Math.floor(Math.random() * 3);
-      
       channel.send("Deine Form: " + args[0] + "\nMeine Form: " + steinarr[value]);
     break;
         
@@ -143,7 +142,7 @@ module.exports = {
       DEV
       **/        
       case "restart":
-        channel.send("Bot wird neugestartet...");
+        channel.send("Bot wird neugefahren...");
         console.log("Bot restarting");
         setTimeout(function() {process.exit(1);}, 1000);
       break;             
