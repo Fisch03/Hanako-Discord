@@ -41,6 +41,14 @@ module.exports = {
       channel.send("( ͡° ͜ʖ ͡°)");
     break; 
         
+    case "rlenny":
+      var lennyarr = ["( ͡° ͜ʖ ͡°)","(づ ◔ ͜ʖ ◔ )づ","(╭☞ ・ ͜つ ・ )╭☞","( ◕ ᗜ ◕ )","⤜( ʘ _ ʘ )⤏","ಠ _ ಠ","( ⌐■ _ ■ )","ʢ ◉ ᴥ ◉ ʡ",
+                      "(ᴗ ͜ʖ ᴗ)","(⟃ ͜ʖ ⟄)","( ‾ ʖ̫ ‾)","(͠≖ ͜ʖ͠≖)","( ͡° ʖ̯ ͡°)","ʕ ͡° ʖ̯ ͡°ʔ","( ͡° ل͜ ͡°)","( ͠° ͟ʖ ͡°)","( ͠° ͟ʖ ͠°)","( ͡~ ͜ʖ ͡°)",
+                      "( ͡o ͜ʖ ͡o)","( ͡◉ ͜ʖ ͡◉)","( ͡☉ ͜ʖ ͡☉)","( ͡° ͜V ͡°)","ʕ ͡° ͜ʖ ͡°ʔ","( ͡ᵔ ͜ʖ ͡ᵔ )","( ͡° ͜ʖ ͡ °)","(☭ ͜ʖ ☭)","(=^-ω-^=)"];
+      var value = Math.floor(Math.random() * (lennyarr.length + 1));
+      channel.send(lennyarr[value]);
+    break;
+        
     /**
     REDDIT
     **/  
@@ -84,7 +92,7 @@ module.exports = {
           .setTitle("__Hilfe__")
           .setColor(0x7289DA)
           .setDescription("**Eine Auflistung aller Befehle des Bots**")
-          .addField("Fun", "howgay [name], ratewaifu [name], ping, catgirl")
+          .addField("Fun", "howgay [name], ratewaifu [name], ping, catgirl, lenny, rlenny")
           .addField("Reddit", "sub [Name] [Anzahl der Posts], rsub [Anzahl der Posts]")
           .addField("Hilfe", "help")
           .addField("Botinfo", "code [dateiname], github")
