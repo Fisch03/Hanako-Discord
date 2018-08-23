@@ -52,7 +52,33 @@ module.exports = {
     case "rps":
       var steinarr = ["Stein","Papier","Schere"];
       var value = Math.floor(Math.random() * 3);
-      channel.send("Deine Form: " + args[0] + "\nMeine Form: " + steinarr[value]);
+      var bchoice = steinarr[value].toLowerCase();
+      var pchoice = args[0].toLowerCase();
+      
+      var msg = "Deine Form: " + args[0] + "\nMeine Form: " + steinarr[value] +  "\n";
+        
+      console.log(bchoice, pchoice);
+      
+      if (bchoice === pchoice)
+        msg += "Unentschieden!";
+      if(bchoice == "stein") {
+        if(pchoice == "papier")
+          msg += "Du gewinnst!";
+        if(pchoice == "schere")
+          msg += "Du verlierst!";
+      } else if(bchoice == "papier") {
+        if(pchoice == "schere")
+          msg += "Du gewinnst!";
+        if(pchoice == "stein")
+          msg += "Du verlierst!";
+      } else {
+        if(pchoice == "stein")
+          msg += "Du gewinnst!";
+        if(pchoice == "papier")
+          msg += "Du verlierst!";
+      } 
+        
+      channel.send(msg);
     break;
         
         
