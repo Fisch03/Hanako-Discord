@@ -49,6 +49,13 @@ module.exports = {
       channel.send(lennyarr[value]);
     break;
         
+    case "stein":
+      var steinarr = ["Stein","Papier","Schere"];
+      var value = Math.floor(Math.random() * 3);
+      channel.send(steinarr[value]);
+      break;
+        
+        
     /**
     REDDIT
     **/  
@@ -135,7 +142,7 @@ module.exports = {
       DEV
       **/        
       case "restart":
-        channel.send("Bot wird neugestartet...");
+        channel.send("Bot wird neugefahren...");
         console.log("Bot restarting");
         setTimeout(function() {process.exit(1);}, 1000);
       break;             
