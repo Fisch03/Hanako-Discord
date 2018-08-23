@@ -1,7 +1,6 @@
 const { RichEmbed } = require('discord.js');
 
-module.exports = {
-  RedditEmbed:function(subname, content, number) { //Embed for Subreddit listings 
+  module.exports.RedditEmbed = function(subname, content, number) { { //Embed for Subreddit listings 
     var rawcontent = content.split("\n");
     var newcontent = "";
     var postnmbr = 0;
@@ -27,4 +26,13 @@ module.exports = {
       .setFooter("Daten empfangen:");
     return embed;
   }
+}
+  
+module.exports.CatgirlEmbed = function(link) {
+  const embed = new RichEmbed()
+      .setTitle("Catgirl")
+      .setColor(0xFF00E5)
+      .setImage(link)
+      .setDescription("Zufälliges Catgirl von [Nekos.Life](https://nekos.life/)")
+  return embed;
 }
