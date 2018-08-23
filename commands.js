@@ -38,7 +38,7 @@ module.exports = {
     break;  
         
     case "lenny":
-      channel.send("( ͡° ͜ʖ ͡°)");
+      channel.send("lenny");
     break; 
         
     case "rlenny":
