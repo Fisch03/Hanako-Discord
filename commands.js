@@ -33,6 +33,10 @@ module.exports = {
       channel.send(name + " ist ein " + value + "/10 waifu");
     break; 
         
+    case "catgirl":
+      
+    break;  
+        
     /**
     REDDIT
     **/  
@@ -76,7 +80,7 @@ module.exports = {
           .setTitle("__Hilfe__")
           .setColor(0x7289DA)
           .setDescription("**Eine Auflistung aller Befehle des Bots**")
-          .addField("Fun", "howgay [name], ratewaifu [name], ping")
+          .addField("Fun", "howgay [name], ratewaifu [name], ping, catgirl")
           .addField("Reddit", "sub [Name] [Anzahl der Posts], rsub [Anzahl der Posts]")
           .addField("Hilfe", "help")
           .addField("Botinfo", "code [dateiname], github")
