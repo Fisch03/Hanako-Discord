@@ -142,7 +142,7 @@ module.exports = {
       DEV
       **/        
       case "restart":
-        channel.send("Bot wird neugefahren...");
+        channel.send("Bot wird neugestartet...");
         console.log("Bot restarting");
         setTimeout(function() {process.exit(1);}, 1000);
       break;             
