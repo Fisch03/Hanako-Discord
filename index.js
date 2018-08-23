@@ -32,4 +32,8 @@ self.on("message", message => {
   }
 });
 
+module.exports.sendMsg = function(content, channel) {
+  channel.send(content);
+}
+
 self.login(process.env.TOKEN);

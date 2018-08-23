@@ -34,8 +34,12 @@ module.exports = {
     break; 
         
     case "catgirl":
-      
+      jsonhandler.getCatgirl(channel);
     break;  
+        
+    case "lenny":
+      channel.send("( ͡° ͜ʖ ͡°)");
+    break; 
         
     /**
     REDDIT
@@ -121,8 +125,7 @@ module.exports = {
         
        /**
       DEV
-      **/
-        
+      **/        
       case "restart":
         channel.send("Bot wird neugestartet...");
         console.log("Bot restarting");
