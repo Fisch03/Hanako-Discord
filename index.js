@@ -16,7 +16,8 @@ self.on("message", message => {
   };
 
   if(message.content.startsWith("Ich bin") || message.content.startsWith("ich bin") || message.content.startsWith("Ich Bin")) {
-    var name = message.content.split("Ich bin");
+    var msg = message.content.toLowerCase();
+    var name = msg.split("ich bin ");
     message.channel.send("Hallo " + name[1] + ", ich bin ein Bot");
   }
   
