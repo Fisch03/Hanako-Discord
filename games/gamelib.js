@@ -27,8 +27,10 @@ module.exports.Matrix = function(channel) {
           content += ":white_large_square:";
         } else if (this.pixels[row][pixel] == 1) {
           content += ":black_large_square:";
-        } else {
+        } else if (this.pixels[row][pixel] == 2) {
           content += ":red_circle:";
+        } else {
+          content += ":cat:";
         }
       }
       content += "\n";
