@@ -11,8 +11,8 @@ var pastebin = new PastebinAPI(process.env.PASTEBINKEY);
 const { fetchSubreddit, fetchRandomSubredditName } = require('fetch-subreddit');
 
 module.exports = {
-  sendMsgByCommand:function(cmd, args, channel) {  
-    
+  sendMsgByCommand:function(cmd, args, channel) {
+
     /**
     FUN
     **/
@@ -20,27 +20,27 @@ module.exports = {
       case "ping":
         channel.send("Pong!");
     break;
-        
+
     case "howgay":
       var value = Math.floor(Math.random() * 101);
       var name = args[0];
       channel.send(name + " ist " + value + "% gay :gay_pride_flag: ");
     break;
-          
+
     case "ratewaifu":
       var value = Math.floor(Math.random() * 11);
       var name = args[0];
       channel.send(name + " ist ein " + value + "/10 waifu");
-    break; 
-        
+    break;
+
     case "catgirl":
       jsonhandler.getCatgirl(channel);
-    break;  
-        
+    break;
+
     case "lenny":
-      channel.send("lenny");
-    break; 
-        
+      channel.send("( ͡° ͜ʖ ͡°)");
+    break;
+
     case "rlenny":
       var lennyarr = ["( ͡° ͜ʖ ͡°)","(づ ◔ ͜ʖ ◔ )づ","(╭☞ ・ ͜つ ・ )╭☞","( ◕ ᗜ ◕ )","⤜( ʘ _ ʘ )⤏","ಠ _ ಠ","( ⌐■ _ ■ )","ʢ ◉ ᴥ ◉ ʡ",
                       "(ᴗ ͜ʖ ᴗ)","(⟃ ͜ʖ ⟄)","( ‾ ʖ̫ ‾)","(͠≖ ͜ʖ͠≖)","( ͡° ʖ̯ ͡°)","ʕ ͡° ʖ̯ ͡°ʔ","( ͡° ل͜ ͡°)","( ͠° ͟ʖ ͡°)","( ͠° ͟ʖ ͠°)","( ͡~ ͜ʖ ͡°)",
@@ -48,17 +48,17 @@ module.exports = {
       var value = Math.floor(Math.random() * (lennyarr.length + 1));
       channel.send(lennyarr[value]);
     break;
-        
+
     case "rps":
       var steinarr = ["Stein","Papier","Schere"];
       var value = Math.floor(Math.random() * 3);
       var bchoice = steinarr[value].toLowerCase();
       var pchoice = args[0].toLowerCase();
-      
+
       var msg = "Deine Form: " + args[0] + "\nMeine Form: " + steinarr[value] +  "\n";
-        
+
       console.log(bchoice, pchoice);
-      
+
       if (bchoice === pchoice)
         msg += "Unentschieden!";
       if(bchoice == "stein") {
@@ -76,16 +76,16 @@ module.exports = {
           msg += "Du gewinnst!";
         if(pchoice == "papier")
           msg += "Du verlierst!";
-      } 
-        
+      }
+
       channel.send(msg);
     break;
 
     /**
     REDDIT
-    **/  
+    **/
     case "sub":
-      var content = ""; 
+      var content = "";
       fetchSubreddit(args[0].toLowerCase())
         .then(function (urls) {
           content = jsonhandler.RedditJSON(urls, args[1]);
@@ -93,7 +93,7 @@ module.exports = {
         })
         .catch((err) => console.error(err));
     break;
-        
+
     case "rsub":
       var subnamestr;
       var subname = "";
@@ -113,12 +113,12 @@ module.exports = {
           })
           .catch((err) => console.error(err))
         .catch((err) => console.error(err));
-        })        
+        })
       break;
-        
+
       /**
       HELP
-      **/ 
+      **/
       case "help":
         const embed = new RichEmbed()
           .setTitle("__Hilfe__")
@@ -132,7 +132,7 @@ module.exports = {
           .setFooter("Text in eckigen Klammern kann durch Parameter ersetzt werden");
         channel.send(embed);
       break;
-        
+
       /**
       INFORMATION
       **/
@@ -158,19 +158,19 @@ module.exports = {
             console.log(err);
           })
       break;
-        
+
       case "github":
         channel.send("GitHub Link: https://github.com/Fisch03/FischisDiscordBot");
       break;
-        
+
        /**
       DEV
-      **/        
+      **/
       case "restart":
         channel.send("Bot wird neugestartet...");
         console.log("Bot restarting");
         setTimeout(function() {process.exit(1);}, 1000);
-      break;             
+      break;
     }
   }
 }
