@@ -85,7 +85,7 @@ module.exports = {
       channel.send(msg);
     break;
 
-    case "start":
+      case "start":
       games.init(args, channel);
       main.gameRunning = true;
     break;
