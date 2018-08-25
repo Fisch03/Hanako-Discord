@@ -1,5 +1,6 @@
 const main = require('./index.js');
 const embeds = require('./embeds.js');
+const games = require('./games/gamemanager.js');
 const jsonhandler = require('./json-handler.js');
 
 const { RichEmbed } = require('discord.js');
@@ -11,7 +12,7 @@ var pastebin = new PastebinAPI(process.env.PASTEBINKEY);
 const { fetchSubreddit, fetchRandomSubredditName } = require('fetch-subreddit');
 
 module.exports = {
-  sendMsgByCommand:function(cmd, args, channel) {
+  getActionByCommand:function(cmd, args, channel) {
 
     /**
     FUN
@@ -19,7 +20,7 @@ module.exports = {
     switch(cmd) {
       case "ping":
         channel.send("Pong!");
-    break;
+        break;
 
     case "howgay":
       var value = Math.floor(Math.random() * 101);
@@ -49,6 +50,9 @@ module.exports = {
       channel.send(lennyarr[value]);
     break;
 
+    /**
+    GAMES
+    **/
     case "rps":
       var steinarr = ["Stein","Papier","Schere"];
       var value = Math.floor(Math.random() * 3);
@@ -80,7 +84,12 @@ module.exports = {
 
       channel.send(msg);
     break;
-                      
+
+      case "start":
+      games.init(args, channel);
+      main.gameRunning = true;
+    break;
+
     /**
     REDDIT
     **/
@@ -120,17 +129,7 @@ module.exports = {
       HELP
       **/
       case "help":
-        const embed = new RichEmbed()
-          .setTitle("__Hilfe__")
-          .setColor(0x7289DA)
-          .setDescription("**Eine Auflistung aller Befehle des Bots**")
-          .addField("Fun", "howgay [name], ratewaifu [name], ping, catgirl, lenny, rlenny")
-          .addField("Reddit", "sub [Name] [Anzahl der Posts], rsub [Anzahl der Posts]")
-          .addField("Hilfe", "help")
-          .addField("Botinfo", "code [dateiname], github")
-          .addField("Dev", "restart")
-          .setFooter("Text in eckigen Klammern kann durch Parameter ersetzt werden");
-        channel.send(embed);
+        channel.send(embeds.HelpEmbed());
       break;
 
       /**
@@ -146,13 +145,7 @@ module.exports = {
             expiration: '1H'
           })
           .then(function (data) {
-            const embed = new RichEmbed()
-              .setTitle("Code")
-              .setColor(0x00F6FF)
-              .setDescription("Hier ist der aktuelle Code des Bots: " + data)
-              .setTimestamp()
-              .setFooter("Dieser Link läuft nach 1 Stunde ab");
-            channel.send(embed);
+            channel.send(embeds.PastebinEmbed(data));
           })
           .fail(function (err) {
             console.log(err);
@@ -169,7 +162,7 @@ module.exports = {
       case "restart":
         channel.send("Bot wird neugestartet...");
         console.log("Bot restarting");
-        setTimeout(function() {process.exit(1);}, 1000);
+        setTimeout(function() {process.exit(1).catch((err) => console.error(err));}, 1000);
       break;
     }
   }
