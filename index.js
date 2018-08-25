@@ -2,8 +2,7 @@ const { Client, RichEmbed } = require('discord.js');
 const self = new Client();
 
 const commands = require('./commands.js');
-
-const prefix = "?"
+const gmanager = require('./games/gamemanager.js');
 
 var secrets;
 
@@ -12,6 +11,9 @@ try {
 } catch (ex) {
   handleErr(ex);
 }
+
+const prefix = "?";
+module.exports.gameRunning = false;
 
 self.on('ready', () => {
   console.log('Bot Online');
@@ -40,9 +42,23 @@ self.on("message", message => {
     var args = msg.split(" ");
     var cmd = args.shift();
 
-    commands.sendMsgByCommand(cmd, args, message.channel);
+    if(!this.gameRunning) {
+      commands.getActionByCommand(cmd, args, message.channel);
+    } else if(cmd === "stop") {
+      this.gameRunning = false;
+      gmanager.kill();
+      message.channel.send("Spiel gestoppt.");
+    }
 
   }
+});
+
+self.on('messageReactionAdd', (reaction, user) => {
+    if(user.username != self.user.username) {
+      if(this.gameRunning) {
+        gmanager.handlereact(reaction, user)
+      }
+    }
 });
 
 module.exports.sendMsg = function(content, channel) {
