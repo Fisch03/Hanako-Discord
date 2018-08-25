@@ -2,8 +2,18 @@ const { Client, RichEmbed } = require('discord.js');
 const self = new Client();
 
 const commands = require('./commands.js');
+const gmanager = require('./games/gamemanager.js');
 
-const prefix = "?"
+var secrets;
+
+try {
+  secrets = require('./secrets.js');
+} catch (ex) {
+  console.log(ex);
+}
+
+const prefix = "?";
+module.exports.gameRunning = false;
 
 self.on('ready', () => {
   console.log('Bot Online');
@@ -20,26 +30,44 @@ self.on("message", message => {
     var name = msg.split("ich bin ");
     message.channel.send("Hallo " + name[1] + ", ich bin ein Bot");
   }
-  
+
   var patt = new RegExp("nani");
   if (patt.test(message.content.toLowerCase)) {
     message.channel.send("Omae wa mou shindeiru");
   }
 
   if (message.content.startsWith(prefix) && message.author.username != self.user.username) {
- 
+
     var msgarr = message.content.split(prefix);
     var msg = msgarr[1];
     var args = msg.split(" ");
-    var cmd = args.shift();        
-    
-    commands.sendMsgByCommand(cmd, args, message.channel); 
-  
+    var cmd = args.shift();
+
+    if(!this.gameRunning) {
+      commands.getActionByCommand(cmd, args, message.channel);
+    } else if(cmd === "stop") {
+      this.gameRunning = false;
+      gmanager.kill();
+      message.channel.send("Spiel gestoppt.");
+    }
+
   }
+});
+
+self.on('messageReactionAdd', (reaction, user) => {
+    if(user.username != self.user.username) {
+      if(this.gameRunning) {
+        gmanager.handlereact(reaction, user)
+      }
+    }
 });
 
 module.exports.sendMsg = function(content, channel) {
   channel.send(content);
 }
 
-self.login(process.env.TOKEN);
+if (process.env.TOKEN != null) {
+  self.login(process.env.TOKEN);
+} else {
+  self.login(secrets.getToken());
+}

@@ -1,5 +1,6 @@
 const main = require('./index.js');
 const embeds = require('./embeds.js');
+const games = require('./games/gamemanager.js');
 const jsonhandler = require('./json-handler.js');
 
 const { RichEmbed } = require('discord.js');
@@ -11,36 +12,36 @@ var pastebin = new PastebinAPI(process.env.PASTEBINKEY);
 const { fetchSubreddit, fetchRandomSubredditName } = require('fetch-subreddit');
 
 module.exports = {
-  sendMsgByCommand:function(cmd, args, channel) {  
-    
+  getActionByCommand:function(cmd, args, channel) {
+
     /**
     FUN
     **/
     switch(cmd) {
       case "ping":
         channel.send("Pong!");
-    break;
-        
+        break;
+
     case "howgay":
       var value = Math.floor(Math.random() * 101);
       var name = args[0];
       channel.send(name + " ist " + value + "% gay :gay_pride_flag: ");
     break;
-          
+
     case "ratewaifu":
       var value = Math.floor(Math.random() * 11);
       var name = args[0];
       channel.send(name + " ist ein " + value + "/10 waifu");
-    break; 
-        
+    break;
+
     case "catgirl":
       jsonhandler.getCatgirl(channel);
-    break;  
-        
+    break;
+
     case "lenny":
-      channel.send("lenny");
-    break; 
-        
+      channel.send("( ͡° ͜ʖ ͡°)");
+    break;
+
     case "rlenny":
       var lennyarr = ["( ͡° ͜ʖ ͡°)","(づ ◔ ͜ʖ ◔ )づ","(╭☞ ・ ͜つ ・ )╭☞","( ◕ ᗜ ◕ )","⤜( ʘ _ ʘ )⤏","ಠ _ ಠ","( ⌐■ _ ■ )","ʢ ◉ ᴥ ◉ ʡ",
                       "(ᴗ ͜ʖ ᴗ)","(⟃ ͜ʖ ⟄)","( ‾ ʖ̫ ‾)","(͠≖ ͜ʖ͠≖)","( ͡° ʖ̯ ͡°)","ʕ ͡° ʖ̯ ͡°ʔ","( ͡° ل͜ ͡°)","( ͠° ͟ʖ ͡°)","( ͠° ͟ʖ ͠°)","( ͡~ ͜ʖ ͡°)",
@@ -48,17 +49,20 @@ module.exports = {
       var value = Math.floor(Math.random() * (lennyarr.length + 1));
       channel.send(lennyarr[value]);
     break;
-        
+
+    /**
+    GAMES
+    **/
     case "rps":
       var steinarr = ["Stein","Papier","Schere"];
       var value = Math.floor(Math.random() * 3);
       var bchoice = steinarr[value].toLowerCase();
       var pchoice = args[0].toLowerCase();
-      
+
       var msg = "Deine Form: " + args[0] + "\nMeine Form: " + steinarr[value] +  "\n";
-        
+
       console.log(bchoice, pchoice);
-      
+
       if (bchoice === pchoice)
         msg += "Unentschieden!";
       if(bchoice == "stein") {
@@ -76,16 +80,21 @@ module.exports = {
           msg += "Du gewinnst!";
         if(pchoice == "papier")
           msg += "Du verlierst!";
-      } 
-        
+      }
+
       channel.send(msg);
     break;
-                      
+
+      case "start":
+      games.init(args, channel);
+      main.gameRunning = true;
+    break;
+
     /**
     REDDIT
-    **/  
+    **/
     case "sub":
-      var content = ""; 
+      var content = "";
       fetchSubreddit(args[0].toLowerCase())
         .then(function (urls) {
           content = jsonhandler.RedditJSON(urls, args[1]);
@@ -93,7 +102,7 @@ module.exports = {
         })
         .catch((err) => console.error(err));
     break;
-        
+
     case "rsub":
       var subnamestr;
       var subname = "";
@@ -113,26 +122,16 @@ module.exports = {
           })
           .catch((err) => console.error(err))
         .catch((err) => console.error(err));
-        })        
+        })
       break;
-        
+
       /**
       HELP
-      **/ 
+      **/
       case "help":
-        const embed = new RichEmbed()
-          .setTitle("__Hilfe__")
-          .setColor(0x7289DA)
-          .setDescription("**Eine Auflistung aller Befehle des Bots**")
-          .addField("Fun", "howgay [name], ratewaifu [name], ping, catgirl, lenny, rlenny")
-          .addField("Reddit", "sub [Name] [Anzahl der Posts], rsub [Anzahl der Posts]")
-          .addField("Hilfe", "help")
-          .addField("Botinfo", "code [dateiname], github")
-          .addField("Dev", "restart")
-          .setFooter("Text in eckigen Klammern kann durch Parameter ersetzt werden");
-        channel.send(embed);
+        channel.send(embeds.HelpEmbed());
       break;
-        
+
       /**
       INFORMATION
       **/
@@ -146,31 +145,25 @@ module.exports = {
             expiration: '1H'
           })
           .then(function (data) {
-            const embed = new RichEmbed()
-              .setTitle("Code")
-              .setColor(0x00F6FF)
-              .setDescription("Hier ist der aktuelle Code des Bots: " + data)
-              .setTimestamp()
-              .setFooter("Dieser Link läuft nach 1 Stunde ab");
-            channel.send(embed);
+            channel.send(embeds.PastebinEmbed(data));
           })
           .fail(function (err) {
             console.log(err);
           })
       break;
-        
+
       case "github":
         channel.send("GitHub Link: https://github.com/Fisch03/FischisDiscordBot");
       break;
-        
+
        /**
       DEV
-      **/        
+      **/
       case "restart":
         channel.send("Bot wird neugestartet...");
         console.log("Bot restarting");
-        setTimeout(function() {process.exit(1);}, 1000);
-      break;             
+        setTimeout(function() {process.exit(1).catch((err) => console.error(err));}, 1000);
+      break;
     }
   }
 }
