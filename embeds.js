@@ -56,7 +56,7 @@ module.exports.GamehelpEmbed = function() {
   const embed = new RichEmbed()
     .setTitle("__Spiel Hilfe__")
     .setColor(0x7289DA)
-    .setDescription("**Spiele werden mit start [Spielname] [Spielart] gestartet.\nFolgende Spiele sind verfügbar:**")
+    .setDescription("**Spiele werden mit start [Spielname] [Spielart] gestartet und mit ?stop gestoppt.\nFolgende Spiele sind verfügbar:**")
     .addField("labyrinth", "Navigiere mit Reactions durch die Level. Ohne angegebene Spielart spielst du nur ein Level. Spielarten:\ncont: Spiele durch alle Level in zufälliger Reihenfolge\ncat: Am Ende des Levels erwartet dich ein Catgirl")
     .setFooter("Beispiel: ?start labyrinth cont");
   return embed;
