@@ -24,12 +24,13 @@
     "node": "8.11.4"
   },
   "repository": {
-    "url": "https://glitch.com/edit/#!/hello-express"
+    "url": "https://github.com/Fisch03/FischisDiscordBot"
   },
   "license": "MIT",
   "keywords": [
     "node",
     "glitch",
-    "express"
+    "discord",
+    "bot"
   ]
 }
