@@ -1,10 +1,7 @@
 {
-  "//1": "describes your app and its dependencies",
-  "//2": "https://docs.npmjs.com/files/package.json",
-  "//3": "updating this file will download and update your packages",
-  "name": "hello-express",
-  "version": "0.2.1",
-  "description": "A simple Node app built on Express, instantly up and running.",
+  "name": "fischisdiscordbot",
+  "version": "0.5.4",
+  "description": "A small Discord Bot using Node and the Discord.js library.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -24,12 +21,13 @@
     "node": "8.11.4"
   },
   "repository": {
-    "url": "https://glitch.com/edit/#!/hello-express"
+    "url": "https://github.com/Fisch03/FischisDiscordBot"
   },
   "license": "MIT",
   "keywords": [
     "node",
     "glitch",
-    "express"
+    "discord",
+    "bot"
   ]
 }

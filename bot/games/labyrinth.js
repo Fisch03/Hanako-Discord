@@ -1,5 +1,5 @@
 const gamelib = require('./gamelib.js');
-const main = require('../index.js');
+const main = require('../../index.js');
 const jsonhandler = require('../json-handler.js');
 
 const skin = [":white_large_square:", ":black_large_square:", ":red_circle:", ":large_blue_circle:", ":cat:", ":large_blue_diamond:"];

@@ -9,7 +9,6 @@ var secrets;
 try {
   secrets = require('./secrets.js');
 } catch (ex) {
-  console.log(ex);
 }
 
 const prefix = "?";

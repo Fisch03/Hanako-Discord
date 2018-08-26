@@ -1,7 +1,7 @@
 'use strict';
 var request = require('request');
 
-const main = require('./index.js');
+const main = require('../index.js');
 const embeds = require('./embeds.js');
 
 module.exports.RedditJSON = function(obj, len){
