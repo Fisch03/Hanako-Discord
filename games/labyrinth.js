@@ -2,8 +2,35 @@ const gamelib = require('./gamelib.js');
 const main = require('../index.js');
 const jsonhandler = require('../json-handler.js');
 
+const skin = [":white_large_square:", ":black_large_square:", ":red_circle:", ":large_blue_circle:", ":cat:", ":large_blue_diamond:"];
+const levels = [
+  //LEVEL 1
+  [
+    [
+      [0, 1, 0, 0, 0],
+      [0, 1, 0, 1, 0],
+      [0, 1, 0, 1, 0],
+      [0, 1, 0, 1, 0],
+      [0, 0, 0, 1, 0]
+    ], [0, 0, 4, 4]
+  ],
+  //LEVEL 2
+  [
+    [
+      [0, 1, 1, 0, 0],
+      [0, 0, 0, 0, 1],
+      [0, 0, 1, 0, 0],
+      [0, 1, 0, 1, 0],
+      [0, 0, 0, 0, 0]
+    ], [0, 2, 4, 2]
+  ]
+];
+var level;
+var excludedlvls = [];
+
 var running = false;
 var gMatrix;
+var gType = 0;
 
 var pX = 2;
 var pY = 2;
@@ -11,26 +38,46 @@ var pY = 2;
 var cX = 2;
 var cY = 2;
 
-module.exports.init = function(channel) {
-  gMatrix = new gamelib.Matrix(channel);
+module.exports.init = function(channel, type, excluded) {
+  gMatrix = new gamelib.Matrix(channel, skin);
+  if(type == "cat") {
+    gType = 1;
+  } else if(type == "cont" || type == 2) {
+    gType = 2;
+  } else {
+    gType = 0;
+  }
+
   running = true;
-  pX = Math.floor(Math.random() * 5);
-  pY = Math.floor(Math.random() * 5);
-  console.log(pX, pY);
+
+  level = Math.floor(Math.random() * levels.length);
+
+  pX = levels[level][1][0];
+  pY = levels[level][1][1];
+  cX = levels[level][1][2];
+  cY = levels[level][1][3];
+
+  gMatrix.init(start);
+}
+
+function reinit() {
+  running = true;
 
   var found = false;
 
   while (!found) {
-    cX = Math.floor(Math.random() * 5);
-    cY = Math.floor(Math.random() * 5);
-    console.log(cX, cY);
-
-    if(cX != pX && cY != pY) {
+    level = Math.floor(Math.random() * levels.length);
+    if (!excludedlvls.includes(level)) {
       found = true;
     }
   }
 
-  gMatrix.init(start);
+  pX = levels[level][1][0];
+  pY = levels[level][1][1];
+  cX = levels[level][1][2];
+  cY = levels[level][1][3];
+
+  loop();
 }
 
 function start() {
@@ -50,35 +97,52 @@ function start() {
 }
 
 module.exports.react = function(reaction) {
-  if(reaction.emoji.name == "⏫" && pY > 0) {
+  if(reaction.emoji.name == "⏫" && pY > 0 && levels[level][0][pY-1][pX] != 1) {
     pY--;
   }
 
-  if(reaction.emoji.name == "⏬" && pY < 5) {
+  if(reaction.emoji.name == "⏬" && pY < 4 && levels[level][0][pY+1][pX] != 1) {
     pY++;
   }
 
-  if(reaction.emoji.name == "⏩" && pX < 5) {
+  if(reaction.emoji.name == "⏩" && pX < 4 && levels[level][0][pY][pX+1] != 1) {
     pX++;
   }
 
-  if(reaction.emoji.name == "⏪" && pX > 0) {
+  if(reaction.emoji.name == "⏪" && pX > 0 && levels[level][0][pY][pX-1] != 1) {
     pX--;
   }
 }
 
 function loop() {
-  gMatrix.fill(0);
+  for (row in levels[level][0]) {
+    for (pixel in levels[level][0][row]) {
+      gMatrix.setPixel(row, pixel, levels[level][0][pixel][row]);
+    }
+  }
+
   if(pX == cX && pY == cY) {
     running = false;
     main.gameRunning = false;
-    jsonhandler.getCatgirl(gMatrix.channel);
+    if(gType == 0) {
+      gMatrix.channel.send("You Won!");
+    } else if(gType == 1) {
+      jsonhandler.getCatgirl(gMatrix.channel);
+    } else {
+      excludedlvls.push(level);
+      if(excludedlvls.length >= levels.length) {
+        gMatrix.channel.send("You Won!");
+      } else {
+        main.gameRunning = true;
+        reinit();
+      }
+    }
   }
   gMatrix.setPixel(pX, pY, 2);
-  gMatrix.setPixel(cX, cY, 3);
+  gMatrix.setPixel(cX, cY, gType + 3);
   gMatrix.update();
   if(running)
-    setTimeout(loop, 1500);
+    setTimeout(loop, 1750);
 }
 
 module.exports.kill = function() {
