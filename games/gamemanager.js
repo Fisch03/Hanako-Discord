@@ -12,7 +12,7 @@ module.exports.init = function(args, channel) {
   switch(game.toLowerCase()) {
     case "labyrinth":
       gameID = 1;
-      labyrinth.init(channel);
+      labyrinth.init(channel, args[1]);
     break;
   }
 }

@@ -43,12 +43,22 @@ module.exports.HelpEmbed = function() {
     .setColor(0x7289DA)
     .setDescription("**Eine Auflistung aller Befehle des Bots**")
     .addField("Fun", "howgay [name], ratewaifu [name], ping, catgirl, lenny, rlenny")
-    .addField("Games", "rps [Schere/Stein/Papier]")
+    .addField("Games", "rps [Schere/Stein/Papier], start [Spielname] [Spielart]")
     .addField("Reddit", "sub [Name] [Anzahl der Posts], rsub [Anzahl der Posts]")
-    .addField("Hilfe", "help")
+    .addField("Hilfe", "help, gamehelp")
     .addField("Botinfo", "code [dateiname], github")
     .addField("Dev", "restart")
     .setFooter("Text in eckigen Klammern kann durch Parameter ersetzt werden");
+  return embed;
+}
+
+module.exports.GamehelpEmbed = function() {
+  const embed = new RichEmbed()
+    .setTitle("__Spiel Hilfe__")
+    .setColor(0x7289DA)
+    .setDescription("**Spiele werden mit start [Spielname] [Spielart] gestartet.\nFolgende Spiele sind verfügbar:**")
+    .addField("labyrinth", "Navigiere mit Reactions durch die Level. Ohne angegebene Spielart spielst du nur ein Level. Spielarten:\ncont: Spiele durch alle Level in zufälliger Reihenfolge\ncat: Am Ende des Levels erwartet dich ein Catgirl")
+    .setFooter("Beispiel: ?start labyrinth cont");
   return embed;
 }
 

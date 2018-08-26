@@ -1,5 +1,7 @@
-module.exports.Matrix = function(channel) {
+module.exports.Matrix = function(channel, skin) {
   this.channel = channel;
+  this.skin = skin;
+
   this.msg;
   this.pixels = [];
 
@@ -23,15 +25,7 @@ module.exports.Matrix = function(channel) {
     var content = "";
     for (row in this.pixels) {
       for (pixel in this.pixels[row]) {
-        if (this.pixels[row][pixel] == 0) {
-          content += ":white_large_square:";
-        } else if (this.pixels[row][pixel] == 1) {
-          content += ":black_large_square:";
-        } else if (this.pixels[row][pixel] == 2) {
-          content += ":red_circle:";
-        } else {
-          content += ":cat:";
-        }
+        content += skin[this.pixels[row][pixel]];
       }
       content += "\n";
     }
