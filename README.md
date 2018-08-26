@@ -15,4 +15,4 @@ Inspired me to do this thing!
 
 ## LICENSE
 
-This Project is Licensed under the do What The Fuck You Want To Public License. You can Read more in the 'LICENSE.md' File of this Repository
+This Project is Licensed under the [Do What The Fuck You Want To Public License](http://www.wtfpl.net/). You can Read more in the 'LICENSE.md' File of this Repository
