@@ -12,3 +12,7 @@ Inspired me to do this thing!
 1. Fun Commands: Commands like howgay, lenny and catgirl
 2. Games: Rock-Paper-Scissors and a labyrinth Game
 3. Reddit: Get top posts from a specific Subreddit or a Random Subreddit
+
+## LICENSE
+
+This Project is Licensed under the do What The Fuck You Want To Public License. You can Read more in the 'LICENSE.md' File of this Repository
