@@ -1,10 +1,10 @@
 const gamelib = require('./gamelib.js');
-const main = require('../index.js');
+const main = require('../../index.js');
 const jsonhandler = require('../json-handler.js');
 
 const skin = [":white_large_square:", ":black_large_square:", ":red_circle:", ":large_blue_circle:", ":cat:", ":large_blue_diamond:"];
 const levels = [
-  //LEVEL 1
+  //LEVEL 0
   [
     [
       [0, 1, 0, 0, 0],
@@ -14,7 +14,7 @@ const levels = [
       [0, 0, 0, 1, 0]
     ], [0, 0, 4, 4]
   ],
-  //LEVEL 2
+  //LEVEL 1
   [
     [
       [0, 1, 1, 0, 0],
@@ -23,6 +23,46 @@ const levels = [
       [0, 1, 0, 1, 0],
       [0, 0, 0, 0, 0]
     ], [0, 2, 4, 2]
+  ],
+  //LEVEL 2
+  [
+    [
+      [0, 1, 0, 1, 0],
+      [0, 0, 0, 0, 0],
+      [0, 1, 0, 0, 1],
+      [1, 0, 0, 1, 0],
+      [0, 0, 0, 0, 0]
+    ], [4, 4, 0, 0]
+  ],
+  //LEVEL 3
+  [
+    [
+      [1, 0, 1, 0, 1],
+      [0, 0, 0, 0, 0],
+      [0, 1, 1, 1, 0],
+      [0, 1, 0, 1, 0],
+      [1, 0, 0, 0, 0]
+    ], [0, 3, 1, 4]
+  ],
+  //LEVEL 4
+  [
+    [
+      [0, 0, 0, 0, 0],
+      [0, 1, 1, 1, 0],
+      [0, 1, 0, 1, 0],
+      [0, 1, 0, 1, 0],
+      [0, 1, 0, 0, 0]
+    ], [2, 2, 0, 4]
+  ],
+  //LEVEL 5
+  [
+    [
+      [0, 0, 0, 0, 0],
+      [1, 0, 1, 1, 1],
+      [0, 0, 0, 0, 0],
+      [1, 1, 1, 1, 0],
+      [0, 0, 0, 0, 0]
+    ], [4, 0, 0, 4]
   ]
 ];
 var level;
@@ -142,7 +182,7 @@ function loop() {
   gMatrix.setPixel(cX, cY, gType + 3);
   gMatrix.update();
   if(running)
-    setTimeout(loop, 1750);
+    setTimeout(loop, 2000);
 }
 
 module.exports.kill = function() {

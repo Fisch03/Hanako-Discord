@@ -1,4 +1,4 @@
-const main = require('./index.js');
+const main = require('./../index.js');
 const embeds = require('./embeds.js');
 const games = require('./games/gamemanager.js');
 const jsonhandler = require('./json-handler.js');
