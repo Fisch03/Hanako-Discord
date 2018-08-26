@@ -1,8 +1,8 @@
 const { Client, RichEmbed } = require('discord.js');
 const self = new Client();
 
-const commands = require('./commands.js');
-const gmanager = require('./games/gamemanager.js');
+const commands = require('./bot/commands.js');
+const gmanager = require('./bot/games/gamemanager.js');
 
 var secrets;
 
