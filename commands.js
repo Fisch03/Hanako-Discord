@@ -132,6 +132,9 @@ module.exports = {
         channel.send(embeds.HelpEmbed());
       break;
 
+      case "gamehelp":
+        channel.send(embeds.GamehelpEmbed());
+      break;
       /**
       INFORMATION
       **/
