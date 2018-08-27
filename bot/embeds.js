@@ -42,7 +42,7 @@ module.exports.HelpEmbed = function() {
     .setTitle("__Hilfe__")
     .setColor(0x7289DA)
     .setDescription("**Eine Auflistung aller Befehle des Bots**")
-    .addField("Fun", "howgay [name], ratewaifu [name], ping, catgirl, lenny, rlenny")
+    .addField("Fun", "howgay [name],?WeebLv [name], ratewaifu [name], ping, catgirl, lenny, rlenny")
     .addField("Games", "rps [Schere/Stein/Papier], start [Spielname] [Spielart]")
     .addField("Reddit", "sub [Name] [Anzahl der Posts], rsub [Anzahl der Posts]")
     .addField("Hilfe", "help, gamehelp")
