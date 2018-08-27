@@ -32,7 +32,7 @@ module.exports = {
         case "WeebLv":
       var value = Math.floor(Math.random() * 101);
       var name = args[0];
-      channel.send(name + " ist " + value + "https://i.pinimg.com/originals/05/a3/08/05a308db9740a2606ac8b167b8dc9a7d.jpg");
+      channel.send(embeds.lvlEmbed(name, value));
     break;
         
     case "ratewaifu":
