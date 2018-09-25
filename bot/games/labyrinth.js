@@ -79,6 +79,9 @@ var cX = 2;
 var cY = 2;
 
 module.exports.init = function(channel, type, excluded) {
+
+  excludedlvls = [];
+  
   gMatrix = new gamelib.Matrix(channel, skin);
   if(type == "cat") {
     gType = 1;
