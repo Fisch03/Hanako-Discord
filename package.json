@@ -15,7 +15,6 @@
     "moment": "^2.18.1",
     "moment-duration-format": "^1.3.0",
     "pastebin-js": "*",
-    "random-anime-wallpapers": "^1.1.0",
     "request": "^2.88.0"
   },
   "engines": {

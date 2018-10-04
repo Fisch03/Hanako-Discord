@@ -42,7 +42,7 @@ module.exports.HelpEmbed = function() {
     .setTitle("__Hilfe__")
     .setColor(0x7289DA)
     .setDescription("**Eine Auflistung aller Befehle des Bots**")
-    .addField("Fun", "howgay [name], weeblvl [name], ratewaifu [name], ping, catgirl, lenny, rlenny")
+    .addField("Fun", "howgay [name],?WeebLv [name], ratewaifu [name], ping, catgirl, lenny, rlenny")
     .addField("Games", "rps [Schere/Stein/Papier], start [Spielname] [Spielart]")
     .addField("Reddit", "sub [Name] [Anzahl der Posts], rsub [Anzahl der Posts]")
     .addField("Hilfe", "help, gamehelp")
@@ -74,11 +74,12 @@ module.exports.PastebinEmbed = function(data) {
 
 //https://i.pinimg.com/originals/05/a3/08/05a308db9740a2606ac8b167b8dc9a7d.jpg
 
-module.exports.lvlEmbed = function(name, lvl, link) {
+module.exports.lvlEmbed = function(name, lvl) {
   const embed = new RichEmbed()
     .setTitle("WeebLVL")
     .setColor(0xF442E8)
     .setDescription("Das Weeb Level von " + name + " beträgt " + lvl)
-    .setImage(link)
+    .setImage("https://i.pinimg.com/originals/05/a3/08/05a308db9740a2606ac8b167b8dc9a7d.jpg")
+    .setFooter("Dieser Link läuft nach 1 Stunde ab");
   return embed;
 }

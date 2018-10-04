@@ -158,8 +158,8 @@ module.exports.react = function(reaction) {
 }
 
 function loop() {
-  for (var row in levels[level][0]) {
-    for (var pixel in levels[level][0][row]) {
+  for (row in levels[level][0]) {
+    for (pixel in levels[level][0][row]) {
       gMatrix.setPixel(row, pixel, levels[level][0][pixel][row]);
     }
   }

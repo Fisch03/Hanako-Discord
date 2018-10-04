@@ -12,8 +12,6 @@ var pastebin = new PastebinAPI(process.env.PASTEBINKEY);
 
 const { fetchSubreddit, fetchRandomSubredditName } = require('fetch-subreddit');
 
-const randomAnimeWallpapers = require('random-anime-wallpapers');
-
 module.exports = {
   getActionByCommand:function(cmd, args, channel) {
 
@@ -23,7 +21,6 @@ module.exports = {
     switch(cmd) {
       case "ping":
         channel.send("Pong!");
-        console.log("Ping received");
         break;
         
       case "Marco":
@@ -40,14 +37,10 @@ module.exports = {
       channel.send(name + " ist " + value + "% gay :gay_pride_flag: ");
     break;
     
-    case "weeblvl":
+        case "weeblv":
       var value = Math.floor(Math.random() * 101);
-      randomAnimeWallpapers()
-        .then(images => {
-        var image = jsonhandler.getAnimeWallpaper(Math.floor(Math.random() * 6), images);
-        console.log(image);
-        channel.send(embeds.lvlEmbed(args[0], value, images));
-      })
+      var name = args[0];
+      channel.send(embeds.lvlEmbed(name, value));
     break;
         
     case "ratewaifu":
