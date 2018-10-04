@@ -22,6 +22,14 @@ module.exports = {
       case "ping":
         channel.send("Pong!");
         break;
+        
+      case "Marco":
+        channel.send("Polo");
+        break;
+     
+      case "Polo":
+        channel.send("Marco");
+        break;
 
     case "howgay":
       var value = Math.floor(Math.random() * 101);
