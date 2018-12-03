@@ -4,11 +4,15 @@ const self = new Client();
 const commands = require('./bot/commands.js');
 const gmanager = require('./bot/games/gamemanager.js');
 
+const express = require('express');
+const app = express();
+
 var secrets;
 
 try {
   secrets = require('./secrets.js');
 } catch (ex) {
+  console.log("secrets.js wurde nicht gefunden, nutze process.env")
 }
 
 const prefix = "?";
@@ -70,3 +74,13 @@ if (process.env.TOKEN != null) {
 } else {
   self.login(secrets.getToken());
 }
+
+//Actually show the Webpage
+app.use(express.static('public'));
+app.get('/', function(request, response) {
+  response.sendFile(__dirname + '/views/index.html');
+});
+
+const listener = app.listen(process.env.PORT, function() {
+  console.log('Your app is listening on port ' + listener.address().port);
+});

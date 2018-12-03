@@ -2,3 +2,4 @@ secrets.js
 node_modules
 .glitch-assets
 watch.json
+/views/index.html

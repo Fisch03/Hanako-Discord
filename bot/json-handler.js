@@ -31,3 +31,17 @@ module.exports.getCatgirl = function(channel) {
     main.sendMsg(msg, channel);
   });
 }
+
+module.exports.getLewdCatgirl = function(channel) {
+  request('https://nekos.life/api/lewd/neko', function (error, response, body) {
+    var msgstring = body.split('"');
+    var msg = "";
+    if (error)
+      console.error(error);
+    if (response.statusCode != 200)
+      console.error(response.statusCode);
+    msg = msgstring[3];
+    msg = embeds.CatgirlEmbed(msg);
+    main.sendMsg(msg, channel);
+  });
+}

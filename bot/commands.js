@@ -52,6 +52,14 @@ module.exports = {
     case "catgirl":
       jsonhandler.getCatgirl(channel);
     break;
+        
+    case "lewdcatgirl":
+    if (channel.nsfw) {
+      jsonhandler.getLewdCatgirl(channel);
+    } else {
+      channel.send(":warning: Kanal muss als NSFW markiert sein");
+    }
+    break;
 
     case "lenny":
       channel.send("( ͡° ͜ʖ ͡°)");
