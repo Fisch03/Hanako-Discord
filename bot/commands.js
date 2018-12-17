@@ -76,6 +76,7 @@ module.exports = {
                       "( ͡o ͜ʖ ͡o)","( ͡◉ ͜ʖ ͡◉)","( ͡☉ ͜ʖ ͡☉)","( ͡° ͜V ͡°)","ʕ ͡° ͜ʖ ͡°ʔ","( ͡ᵔ ͜ʖ ͡ᵔ )","( ͡° ͜ʖ ͡ °)","(☭ ͜ʖ ☭)","(=^-ω-^=)"];
       var value = Math.floor(Math.random() * (lennyarr.length + 1));
       channel.send(lennyarr[value]);
+      channel.send("Justin stinkt!");
     break;
 
     /**
