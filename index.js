@@ -23,6 +23,10 @@ self.on("message", message => {
   if(message.content === "Böser Bot" || message.content === "Böser bot" || message.content === "böser bot"){
      message.channel.send("Bad Human");
   };
+  
+  if(message.content.startsWith("Tschau") || message.content.startsWith("Tschüss") || message.content.startsWith("Bye") || message.content.startsWith("Bis später"){
+     message.channel.send("Tschüss");
+     }
 
   if(message.content.startsWith("Ich bin") || message.content.startsWith("ich bin") || message.content.startsWith("Ich Bin")) {
     var msg = message.content.toLowerCase();
