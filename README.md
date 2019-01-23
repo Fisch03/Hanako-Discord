@@ -1,6 +1,8 @@
 # FischisDiscordBot
 A small Discord Bot using [Node](https://nodejs.org/) and the [Discord.js](https://discord.js.org) library.
 
+[License](https://img.shields.io/github/license/Fisch03/FischisDiscordBot.svg)
+
 #### WARNING: This Project is my first Node project and also my first Discord Bot, so expect Spaghetti Code and more!
 
 ##### ALSO WARNING: This bot is in German, but we plan to add English in the far Future.
