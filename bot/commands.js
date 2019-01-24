@@ -1,4 +1,4 @@
-const main = require('../index.js');
+﻿const main = require('../index.js');
 
 const embeds = require('./embeds.js');
 const games = require('./games/gamemanager.js');
@@ -22,6 +22,11 @@ module.exports = {
       case "ping":
         channel.send("Pong!");
         break;
+   
+      case "Flo":
+        channel.send("Fab!");
+      break;
+        
         
       case "Marco":
         channel.send("Polo");
