@@ -28,7 +28,7 @@ self.on("message", message => {
      message.channel.send("Bad Human");
   };
   
-  if(message.content.startsWith("Tschau") || message.content.startsWith("Tschüss") || message.content.startsWith("Bye") || message.content.startsWith("Bis später"){
+  if(message.content.startsWith("Tschau") || message.content.startsWith("Bye") || message.content.startsWith("Bis später")) {
      message.channel.send("Tschüss");
      }
 
