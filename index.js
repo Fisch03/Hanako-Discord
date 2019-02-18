@@ -31,6 +31,9 @@ self.on("message", message => {
   if(message.content.startsWith("Tschau") || message.content.startsWith("Bye") || message.content.startsWith("Bis später")) {
      message.channel.send("Tschüss");
      }
+  if (message.content.startsWith("owo")) {
+    message.channel.send("uwu");
+  }
 
   if(message.content.startsWith("Ich bin") || message.content.startsWith("ich bin") || message.content.startsWith("Ich Bin")) {
     var msg = message.content.toLowerCase();
