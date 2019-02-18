@@ -35,6 +35,15 @@ module.exports = {
       case "Polo":
         channel.send("Marco");
         break;
+      case "OwO":
+        channel.send("UwU");
+        break;
+      case "UwU":
+        channel.send("OwO");
+        break;
+      case "birb":
+        channel.send("BIIIIIIIRB");
+        break;
 
     case "howgay":
       var value = Math.floor(Math.random() * 101);
