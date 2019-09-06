@@ -1,3 +1,5 @@
+//SERIOUS WARNING: This JSON Parser is pure Garbage and i know that. It will probably be fixed soon
+
 'use strict';
 var request = require('request');
 
