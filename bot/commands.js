@@ -36,14 +36,6 @@ module.exports = {
         channel.send("Marco");
         break;
         
-      case "Creeper":
-        channel.send("Aww Man");
-        break;
-      
-      case "So we back in the mine":
-        channel.send("Got our pickaxe swinging from side to side");
-        break;
-
     case "howgay":
       var value = Math.floor(Math.random() * 101);
       var name = args[0];

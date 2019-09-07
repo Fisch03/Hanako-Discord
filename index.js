@@ -37,11 +37,10 @@ self.on("message", message => {
     var name = msg.split("ich bin ");
     message.channel.send("Hallo " + name[1] + ", ich bin ein Bot");
   }
-
-  var patt = new RegExp("nani");
-  if (patt.test(message.content.toLowerCase)) {
-    message.channel.send("Omae wa mou shindeiru");
-  }
+  
+  if(message.content.startsWith("Creeper") || message.content.startsWith("creeper")) {
+    message.channel.send("Aww Man");    
+  } 
 
   if (message.content.startsWith(prefix) && message.author.username != self.user.username) {
 
