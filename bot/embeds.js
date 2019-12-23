@@ -46,12 +46,13 @@ module.exports.CatEmbed = function(link) {
   return embed;
 }
 
+
 module.exports.HelpEmbed = function() {
   const embed = new RichEmbed()
     .setTitle("__Hilfe__")
     .setColor(0x7289DA)
     .setDescription("**Eine Auflistung aller Befehle des Bots**")
-    .addField("Fun", "howgay [name],?WeebLv [name], ratewaifu [name], ping, catgirl, lenny, rlenny")
+    .addField("Fun", "howgay [name],?WeebLv [name], ratewaifu [name], ping, catgirl, lenny, rlenny, cat")
     .addField("Games", "rps [Schere/Stein/Papier], start [Spielname] [Spielart]")
     .addField("Reddit", "sub [Name] [Anzahl der Posts], rsub [Anzahl der Posts]")
     .addField("Hilfe", "help, gamehelp")
