@@ -65,6 +65,10 @@ module.exports = {
       channel.send(":warning: Kanal muss als NSFW markiert sein");
     }
     break;
+	
+	case "cat":
+	  jsonhandler.getCat(channel);
+	break;
 
     case "lenny":
       channel.send("( ͡° ͜ʖ ͡°)");
