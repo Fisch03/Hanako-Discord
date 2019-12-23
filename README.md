@@ -3,7 +3,7 @@ Hanako is small Discord Bot using [Node](https://nodejs.org/) and the [Discord.j
 
 [![License](https://img.shields.io/github/license/Fisch03/FischisDiscordBot.svg)](https://github.com/Fisch03/FischisDiscordBot/blob/master/LICENSE.md)
 
-#### WARNING: This Project is my first Node project and also my first Discord Bot, so expect Spaghetti Code and more!
+###### WARNING: This Project is my first Node project and also my first Discord Bot, so expect Spaghetti Code and more!
 
 ##### ALSO WARNING: This bot is in German, but we plan to add English in the far Future.
 
