@@ -44,6 +44,8 @@ module.exports.CatEmbed = function(link) {
 	  .setImage(link)
 	  .setDescription("Zufällige Katze von [random.cat](httpss://random.cat)")
   return embed;
+}
+
 
 module.exports.HelpEmbed = function() {
   const embed = new RichEmbed()

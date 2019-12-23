@@ -49,13 +49,14 @@ module.exports.getLewdCatgirl = function(channel) {
 module.exports.getCat = function(channel) {
   request('http://aws.random.cat/meow', function (error, response, body) {
     var json = JSON.parse(body);
-	var msg = "";
-	if (error)
-	  console.error(error);
+    var msg = "";
+    if (error)
+      console.error(error);
     if (response.statusCode != 200)
-	  console.error(response.statusCode);
+      console.error(response.statusCode);
     msg = json.file;
-	msg = embeds.CatEmbed(msg);
-	main.sendMsg(msg, channel);
+    msg = msg.replace(/\\/g, "");
+    msg = embeds.CatEmbed(msg);
+    main.sendMsg(msg, channel);
   }
 }
