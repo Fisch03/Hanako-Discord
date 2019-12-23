@@ -37,6 +37,14 @@ module.exports.CatgirlEmbed = function(link) {
   return embed;
 }
 
+module.exports.CatEmbed = function(link) {
+  const embed = new RichEmbed()
+      .setTitle("Cat")
+	  .setColor(0x4C4CAD)
+	  .setImage(link)
+	  .setDescription("Zufällige Katze von [random.cat](httpss://random.cat)")
+  return embed;
+
 module.exports.HelpEmbed = function() {
   const embed = new RichEmbed()
     .setTitle("__Hilfe__")
