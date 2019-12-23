@@ -1,5 +1,3 @@
-//SERIOUS WARNING: This JSON Parser is pure Garbage and i know that. It will probably be fixed soon
-
 'use strict';
 var request = require('request');
 
@@ -22,13 +20,13 @@ module.exports.RedditJSON = function(obj, len){
 
 module.exports.getCatgirl = function(channel) {
   request('https://nekos.life/api/neko', function (error, response, body) {
-    var msgstring = body.split('"');
+	var json = JSON.parse(body);
     var msg = "";
     if (error)
       console.error(error);
     if (response.statusCode != 200)
       console.error(response.statusCode);
-    msg = msgstring[3];
+    msg = json.neko;
     msg = embeds.CatgirlEmbed(msg);
     main.sendMsg(msg, channel);
   });
@@ -36,13 +34,13 @@ module.exports.getCatgirl = function(channel) {
 
 module.exports.getLewdCatgirl = function(channel) {
   request('https://nekos.life/api/lewd/neko', function (error, response, body) {
-    var msgstring = body.split('"');
+    var json = JSON.parse(body);
     var msg = "";
     if (error)
       console.error(error);
     if (response.statusCode != 200)
       console.error(response.statusCode);
-    msg = msgstring[3];
+    msg = json.neko;
     msg = embeds.CatgirlEmbed(msg);
     main.sendMsg(msg, channel);
   });
@@ -50,13 +48,13 @@ module.exports.getLewdCatgirl = function(channel) {
 
 module.exports.getCat = function(channel) {
   request('http://aws.random.cat/meow', function (error, response, body) {
-    var msgstring = body.split('"');
+    var json = JSON.parse(body);
 	var msg = "";
 	if (error)
 	  console.error(error);
     if (response.statusCode != 200)
 	  console.error(response.statusCode);
-    msg = msgstring[3];
+    msg = json.file;
 	msg = embeds.CatEmbed(msg);
 	main.sendMsg(msg, channel);
   }
