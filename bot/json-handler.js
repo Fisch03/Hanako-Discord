@@ -47,3 +47,18 @@ module.exports.getLewdCatgirl = function(channel) {
     main.sendMsg(msg, channel);
   });
 }
+
+module.exports.getCat = function(channel) {
+  request('http://aws.random.cat/meow', function (error, response, body) {
+  var msgstring = body.split('"');
+	var msg = "";
+	if (error)
+	  console.error(error);
+  if (response.statusCode != 200)
+	  console.error(response.statusCode);
+  msg = msgstring[3];
+  msg = msg.replace(/\\/g, "");
+	msg = embeds.CatEmbed(msg);
+	main.sendMsg(msg, channel);
+  });
+}
