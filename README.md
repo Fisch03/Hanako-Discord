@@ -7,7 +7,7 @@ Hanako is small Discord Bot using [Node](https://nodejs.org/) and the [Discord.j
 
 ##### ALSO WARNING: This bot is in German, but we plan to add English in the far Future.
 
-This Bot is Currently hosted on [Glitch](https://glitch.com/). If you want to learn more about this you can use [this](https://anidiotsguide_old.gitbooks.io/discord-js-bot-guide/content/other-guides/hosting-on-glitchcom.html) awesome Tutorial, which 
+This Bot is Currently hosted on [Glitch](https://glitch.com/). If you want to learn more about this you can use [this](https://anidiots.guide/other-guides/hosting-on-glitch) awesome Tutorial, which 
 Inspired me to do this thing!
 
 ## FEATURES
