@@ -1,22 +1,21 @@
 # Hanako-Discord
-Hanako is small Discord Bot using [Node](https://nodejs.org/) and the [Discord.js](https://discord.js.org) library.
+Hanako is small Discord Bot made with [Node](https://nodejs.org/) and [Discord.js](https://discord.js.org).
 
 [![License](https://img.shields.io/github/license/Fisch03/FischisDiscordBot.svg)](https://github.com/Fisch03/FischisDiscordBot/blob/master/LICENSE.md)
 
-###### WARNING: This Project is my first Node project and also my first Discord Bot, so expect Spaghetti Code and more!
+###### WARNING: This project is my first Node project and also my first Discord Bot, so expect Spaghetti Code and more!
 
 ##### ALSO WARNING: This bot is in English, but we plan to add German in the Future.
 
-This Bot is Currently hosted on [Glitch](https://glitch.com/). If you want to learn more about this you can use [this](https://anidiots.guide/other-guides/hosting-on-glitch) awesome Tutorial, which 
-Inspired me to do this thing!
+This bot is currently hosted on [Glitch](https://glitch.com/). If you want to learn more about this you can use [this](https://anidiots.guide/other-guides/hosting-on-glitch) awesome tutorial, which inspired me to do this thing!
 
 ## FEATURES
-Hanako can do many thing, including
+Hanako can do many things, including
 1. Fun Commands: Commands like howgay, lenny and catgirl
-2. Games: Rock-Paper-Scissors and a labyrinth Game
-3. Reddit: Get top posts from a specific Subreddit or a Random Subreddit
+2. Games: Rock-Paper-Scissors and a labyrinth game
+3. Reddit: Get top posts from a specific Subreddit or a random Subreddit
 4. NSFW: Lewdcatgirl
 
 ## LICENSE
 
-This Project is Licensed under the '[Do What The Fuck You Want To Public License](http://www.wtfpl.net/)'. You can read more in the 'LICENSE.md' File of this Repository
+This project is licensed under the '[Do What The Fuck You Want To Public License](http://www.wtfpl.net/)'. You can read more in the 'LICENSE.md' file of this repository
