@@ -58,5 +58,5 @@ module.exports.getCat = function(channel) {
     msg = msg.replace(/\\/g, "");
     msg = embeds.CatEmbed(msg);
     main.sendMsg(msg, channel);
-  }
+  });
 }
