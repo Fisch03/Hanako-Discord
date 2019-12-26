@@ -22,7 +22,7 @@ module.exports = {
       case "howgay":
         var value = Math.floor(Math.random() * 101);
         var name = args[0];
-        channel.send(name + " ist " + value + "% gay :gay_pride_flag: ");
+        channel.send(name + " is " + value + "% gay :gay_pride_flag: ");
         break;
 
       case "weeblv":
@@ -34,24 +34,31 @@ module.exports = {
       case "ratewaifu":
         var value = Math.floor(Math.random() * 11);
         var name = args[0];
-        channel.send(name + " ist ein " + value + "/10 waifu");
+        channel.send("I give " + name + " a waifu rating of " + value + "/10");
         break;
 
-        jsonhandler.getCatgirl(channel);
       case "catgirl":
+	    jsonhandler.getCatgirl(channel);
         break;
 
       case "lewdcatgirl":
       if (channel.nsfw) {
         jsonhandler.getLewdCatgirl(channel);
       } else {
-        channel.send(":warning: Kanal muss als NSFW markiert sein");
+        channel.send(":warning: Channel must be an NSFW channel");
       }
       break;
 
   	  case "cat":
   	    jsonhandler.getCat(channel);
   	    break;
+	  case "catbomb":
+	    jsonhandler.getCat(channel);
+		jsonhandler.getCat(channel);
+		jsonhandler.getCat(channel);
+		jsonhandler.getCat(channel);
+		jsonhandler.getCat(channel);
+		break;
 
       case "lenny":
         channel.send("( ͡° ͜ʖ ͡°)");
@@ -69,32 +76,32 @@ module.exports = {
       GAMES
       **/
       case "rps":
-        var steinarr = ["Stein","Papier","Schere"];
+        var steinarr = ["Stone","Paper","Scissors"];
         var value = Math.floor(Math.random() * 3);
         var bchoice = steinarr[value].toLowerCase();
         var pchoice = args[0].toLowerCase();
 
-        var msg = "Deine Form: " + args[0] + "\nMeine Form: " + steinarr[value] +  "\n";
+        var msg = "Yours: " + args[0] + "\nMine: " + steinarr[value] +  "\n";
 
         console.log(bchoice, pchoice);
 
         if (bchoice === pchoice)
-          msg += "Unentschieden!";
-        if(bchoice == "stein") {
-          if(pchoice == "papier")
-            msg += "Du gewinnst!";
-          if(pchoice == "schere")
-            msg += "Du verlierst!";
-        } else if(bchoice == "papier") {
-          if(pchoice == "schere")
-            msg += "Du gewinnst!";
-          if(pchoice == "stein")
-            msg += "Du verlierst!";
+          msg += "Draw!";
+        if(bchoice == "stone") {
+          if(pchoice == "paper")
+            msg += "You win!";
+          if(pchoice == "scissors")
+            msg += "You lost!";
+        } else if(bchoice == "paper") {
+          if(pchoice == "scissors")
+            msg += "You win!";
+          if(pchoice == "stone")
+            msg += "You lost!";
         } else {
-          if(pchoice == "stein")
-            msg += "Du gewinnst!";
-          if(pchoice == "papier")
-            msg += "Du verlierst!";
+          if(pchoice == "stone")
+            msg += "You win!";
+          if(pchoice == "paper")
+            msg += "You lost!";
         }
 
         channel.send(msg);
@@ -155,15 +162,15 @@ module.exports = {
       INFORMATION
       **/
       case "github":
-        channel.send("GitHub Link: https://github.com/Fisch03/FischisDiscordBot");
+        channel.send("GitHub Link: https://github.com/Fisch03/Hanako-Discord");
       break;
 
        /**
       DEV
       **/
       case "restart":
-        channel.send("Bot wird neugestartet...");
-        console.log("Bot restarting");
+        channel.send("Bot is being restarted...");
+        console.log("Bot is restarting");
         setTimeout(function() {process.exit(1).catch((err) => console.error(err));}, 1000);
       break;
     }
