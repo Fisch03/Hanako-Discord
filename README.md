@@ -5,7 +5,7 @@ Hanako is small Discord Bot using [Node](https://nodejs.org/) and the [Discord.j
 
 ###### WARNING: This Project is my first Node project and also my first Discord Bot, so expect Spaghetti Code and more!
 
-##### ALSO WARNING: This bot is in German, but we plan to add English in the far Future.
+##### ALSO WARNING: This bot is in English, but we plan to add German in the Future.
 
 This Bot is Currently hosted on [Glitch](https://glitch.com/). If you want to learn more about this you can use [this](https://anidiots.guide/other-guides/hosting-on-glitch) awesome Tutorial, which 
 Inspired me to do this thing!
