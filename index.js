@@ -12,15 +12,15 @@ var secrets;
 try {
   secrets = require('./secrets.js');
 } catch (ex) {
-  console.log("secrets.js wurde nicht gefunden, nutze process.env")
+  console.log("secrets.js could not be found, using process.env")
 }
 
 const prefix = "?";
 module.exports.gameRunning = false;
 
 self.on('ready', () => {
-  console.log('Bot Online');
-  self.user.setActivity('random Games', { type: 'PLAYING' })
+  console.log('Bot is now online');
+  self.user.setActivity('random games', { type: 'PLAYING' })
 });
 
 self.on("message", message => {
@@ -28,10 +28,15 @@ self.on("message", message => {
   if(message.author.bot)
     return;
 
-  if(message.content.startsWith("Ich bin") || message.content.startsWith("ich bin") || message.content.startsWith("Ich Bin")) {
+  if(message.content.toLowerCase().startsWith("ich bin") || message.content.toLowerCase().startsWith("i am")) {
     var msg = message.content.toLowerCase();
-    var name = msg.split("ich bin ");
-    message.channel.send("Hallo " + name[1] + ", ich bin Hanako ><"); 
+	var name = "";
+	if (message.content.toLowerCase().startsWith("ich bin")){
+		name = msg.split("ich bin ");
+	else if (message.content.toLowerCase().startsWith("i am")){
+		var name = msg.split("i am ");
+	}
+    message.channel.send("Hi " + name[1] + ", I am Hanako ><"); 
   }
 
   if (message.content.startsWith(prefix)) {
@@ -44,7 +49,7 @@ self.on("message", message => {
     } else if(cmd === "stop") {
       this.gameRunning = false;
       gmanager.kill();
-      message.channel.send("Spiel gestoppt.");
+      message.channel.send("Game stopped.");
     }
   }
 });
