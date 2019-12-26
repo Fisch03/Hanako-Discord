@@ -56,7 +56,7 @@ module.exports.HelpEmbed = function() {
     .addField("Games", "rps [Schere/Stein/Papier], start [Spielname] [Spielart]")
     .addField("Reddit", "sub [Name] [Anzahl der Posts], rsub [Anzahl der Posts]")
     .addField("Hilfe", "help, gamehelp")
-    .addField("Botinfo", "code [dateiname], github")
+    .addField("Botinfo", "github")
     .addField("Dev", "restart")
     .setFooter("Text in eckigen Klammern kann durch Parameter ersetzt werden");
   return embed;
@@ -69,16 +69,6 @@ module.exports.GamehelpEmbed = function() {
     .setDescription("**Spiele werden mit start [Spielname] [Spielart] gestartet und mit ?stop gestoppt.\nFolgende Spiele sind verfügbar:**")
     .addField("labyrinth", "Navigiere mit Reactions durch die Level. Ohne angegebene Spielart spielst du nur ein Level. Spielarten:\ncont: Spiele durch alle Level in zufälliger Reihenfolge\ncat: Am Ende des Levels erwartet dich ein Catgirl")
     .setFooter("Beispiel: ?start labyrinth cont");
-  return embed;
-}
-
-module.exports.PastebinEmbed = function(data) {
-  const embed = new RichEmbed()
-    .setTitle("Code")
-    .setColor(0x00F6FF)
-    .setDescription("Hier ist der aktuelle Code des Bots: " + data)
-    .setTimestamp()
-    .setFooter("Dieser Link läuft nach 1 Stunde ab");
   return embed;
 }
 

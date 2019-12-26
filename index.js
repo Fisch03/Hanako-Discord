@@ -24,28 +24,18 @@ self.on('ready', () => {
 });
 
 self.on("message", message => {
-  if(message.content === "Böser Bot" || message.content === "Böser bot" || message.content === "böser bot"){
-     message.channel.send("Bad Human");
-  };
-  
-  if(message.content.startsWith("Tschau") || message.content.startsWith("Bye") || message.content.startsWith("Bis später")) {
-     message.channel.send("Tschüss");
-     }
+
+  if(message.author.bot)
+    return;
 
   if(message.content.startsWith("Ich bin") || message.content.startsWith("ich bin") || message.content.startsWith("Ich Bin")) {
     var msg = message.content.toLowerCase();
     var name = msg.split("ich bin ");
-    message.channel.send("Hallo " + name[1] + ", ich bin ein Bot");
+    message.channel.send("Hallo " + name[1] + ", ich bin Hanako ><"); 
   }
-  
-  if(message.content.startsWith("Creeper") || message.content.startsWith("creeper")) {
-    message.channel.send("Aww Man");    
-  } 
 
-  if (message.content.startsWith(prefix) && message.author.username != self.user.username) {
-
-    var msgarr = message.content.split(prefix);
-    var msg = msgarr[1];
+  if (message.content.startsWith(prefix)) {
+    var msg = msg.content.substring(1);
     var args = msg.split(" ");
     var cmd = args.shift();
 
@@ -56,16 +46,16 @@ self.on("message", message => {
       gmanager.kill();
       message.channel.send("Spiel gestoppt.");
     }
-
   }
 });
 
 self.on('messageReactionAdd', (reaction, user) => {
-    if(user.username != self.user.username) {
-      if(this.gameRunning) {
-        gmanager.handlereact(reaction, user)
-      }
-    }
+  if(message.author.bot)
+    return;
+
+  if(this.gameRunning) {
+    gmanager.handlereact(reaction, user)
+  }
 });
 
 module.exports.sendMsg = function(content, channel) {

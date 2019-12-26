@@ -4,9 +4,9 @@ var request = require('request');
 const main = require('../index.js');
 const embeds = require('./embeds.js');
 
-module.exports.RedditJSON = function(obj, len){
+module.exports.RedditJSON = function(obj, len) {
     var cstring;
-    var content = ""; 
+    var content = "";
     cstring = JSON.stringify(obj, null, 2);
     cstring = cstring.split("[");
     cstring = cstring[2].split("]");
