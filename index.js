@@ -28,31 +28,24 @@ self.on("message", message => {
   if(message.author.bot)
     return;
 
-  if(message.content.startsWith("Ich bin") || message.content.startsWith("ich bin") || message.content.startsWith("Ich Bin")) {
-    var msg = message.content.toLowerCase();
-    var name = msg.split("ich bin ");
-    message.channel.send("Hallo " + name[1] + ", ich bin Hanako ><"); 
-  }
-
   if (message.content.startsWith(prefix)) {
-    var msg = msg.content.substring(1);
+    var msg = message.content.substring(1);
     var args = msg.split(" ");
     var cmd = args.shift();
 
     if(!this.gameRunning) {
-      commands.getActionByCommand(cmd, args, message.channel);
+      if(commands.commands[cmd]) {
+          commands.commands[cmd].onCall(message, args)
+      }
     } else if(cmd === "stop") {
       this.gameRunning = false;
       gmanager.kill();
-      message.channel.send("Spiel gestoppt.");
+      message.channel.send("Game has been stopped.");
     }
   }
 });
 
 self.on('messageReactionAdd', (reaction, user) => {
-  if(message.author.bot)
-    return;
-
   if(this.gameRunning) {
     gmanager.handlereact(reaction, user)
   }
@@ -62,7 +55,7 @@ module.exports.sendMsg = function(content, channel) {
   channel.send(content);
 }
 
-if (process.env.TOKEN != null) {
+if (process.env.TOKEN) {
   self.login(process.env.TOKEN);
 } else {
   self.login(secrets.getToken());

@@ -71,15 +71,3 @@ module.exports.GamehelpEmbed = function() {
     .setFooter("Beispiel: ?start labyrinth cont");
   return embed;
 }
-
-//https://i.pinimg.com/originals/05/a3/08/05a308db9740a2606ac8b167b8dc9a7d.jpg
-
-module.exports.lvlEmbed = function(name, lvl) {
-  const embed = new RichEmbed()
-    .setTitle("WeebLVL")
-    .setColor(0xF442E8)
-    .setDescription("Das Weeb Level von " + name + " beträgt " + lvl)
-    .setImage("https://i.pinimg.com/originals/05/a3/08/05a308db9740a2606ac8b167b8dc9a7d.jpg")
-    .setFooter("Dieser Link läuft nach 1 Stunde ab");
-  return embed;
-}
