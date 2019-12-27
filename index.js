@@ -12,15 +12,15 @@ var secrets;
 try {
   secrets = require('./secrets.js');
 } catch (ex) {
-  console.log("secrets.js wurde nicht gefunden, nutze process.env")
+  console.log("secrets.js could not be found, using process.env")
 }
 
 const prefix = "?";
 module.exports.gameRunning = false;
 
 self.on('ready', () => {
-  console.log('Bot Online');
-  self.user.setActivity('random Games', { type: 'PLAYING' })
+  console.log('Bot is now online');
+  self.user.setActivity('random games', { type: 'PLAYING' })
 });
 
 self.on("message", message => {
@@ -40,7 +40,7 @@ self.on("message", message => {
     } else if(cmd === "stop") {
       this.gameRunning = false;
       gmanager.kill();
-      message.channel.send("Game has been stopped.");
+      message.channel.send("Game stopped.");
     }
   }
 });
