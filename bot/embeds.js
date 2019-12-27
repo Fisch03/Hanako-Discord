@@ -45,29 +45,3 @@ module.exports.CatEmbed = function(link) {
 	  .setDescription("Random cat from [random.cat](httpss://random.cat)")
   return embed;
 }
-
-
-module.exports.HelpEmbed = function() {
-  const embed = new RichEmbed()
-    .setTitle("__Help__")
-    .setColor(0x7289DA)
-    .setDescription("**All bot commands**")
-    .addField("Fun", "howgay [name],?WeebLv [name], ratewaifu [name], ping, catgirl, lenny, rlenny, cat")
-    .addField("Games", "rps [Scissors/Stone/Paper], start [Gamename] [Gametype]")
-    .addField("Reddit", "sub [name] [Amount of posts], rsub [Amount of posts]")
-    .addField("Help", "help, gamehelp")
-    .addField("Botinfo", "github")
-    .addField("Dev", "restart")
-    .setFooter("Text in brackets can be replaced by arguments.");
-  return embed;
-}
-
-module.exports.GamehelpEmbed = function() {
-  const embed = new RichEmbed()
-    .setTitle("__Game Help__")
-    .setColor(0x7289DA)
-    .setDescription("**Games are started with start [Gamename] [Gametype] and stopped with ?stop .\nThe following games are avalible:**")
-    .addField("labyrinth", "Navigate through the level with reactions. Without a gametype, you only play one level. Gametypes:\ncont: Play through every single level randomly\ncat: At the end of the level a catgirl waits for you.")
-    .setFooter("Example: ?start labyrinth cont");
-  return embed;
-}
