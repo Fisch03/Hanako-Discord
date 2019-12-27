@@ -4,9 +4,9 @@ var request = require('request');
 const main = require('../index.js');
 const embeds = require('./embeds.js');
 
-module.exports.RedditJSON = function(obj, len){
+module.exports.RedditJSON = function(obj, len) {
     var cstring;
-    var content = ""; 
+    var content = "";
     cstring = JSON.stringify(obj, null, 2);
     cstring = cstring.split("[");
     cstring = cstring[2].split("]");
@@ -18,7 +18,7 @@ module.exports.RedditJSON = function(obj, len){
     return content;
 }
 
-module.exports.getCatgirl = function(channel) {
+module.exports.getCatgirl = function() {
   request('https://nekos.life/api/neko', function (error, response, body) {
 	var json = JSON.parse(body);
     var msg = "";
@@ -28,11 +28,11 @@ module.exports.getCatgirl = function(channel) {
       console.error(response.statusCode);
     msg = json.neko;
     msg = embeds.CatgirlEmbed(msg);
-    main.sendMsg(msg, channel);
+    return msg;
   });
 }
 
-module.exports.getLewdCatgirl = function(channel) {
+module.exports.getLewdCatgirl = function() {
   request('https://nekos.life/api/lewd/neko', function (error, response, body) {
     var json = JSON.parse(body);
     var msg = "";
@@ -42,11 +42,11 @@ module.exports.getLewdCatgirl = function(channel) {
       console.error(response.statusCode);
     msg = json.neko;
     msg = embeds.CatgirlEmbed(msg);
-    main.sendMsg(msg, channel);
+    return msg;
   });
 }
 
-module.exports.getCat = function(channel) {
+module.exports.getCat = function() {
   request('http://aws.random.cat/meow', function (error, response, body) {
     var json = JSON.parse(body);
     var msg = "";
@@ -57,6 +57,6 @@ module.exports.getCat = function(channel) {
     msg = json.file;
     msg = msg.replace(/\\/g, "");
     msg = embeds.CatEmbed(msg);
-    main.sendMsg(msg, channel);
+    return msg;
   });
 }

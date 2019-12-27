@@ -12,67 +12,50 @@ var secrets;
 try {
   secrets = require('./secrets.js');
 } catch (ex) {
-  console.log("secrets.js wurde nicht gefunden, nutze process.env")
+  console.log("secrets.js could not be found, using process.env")
 }
 
 const prefix = "?";
 module.exports.gameRunning = false;
 
 self.on('ready', () => {
-  console.log('Bot Online');
-  self.user.setActivity('random Games', { type: 'PLAYING' })
+  console.log('Bot is now online');
+  self.user.setActivity('random games', { type: 'PLAYING' })
 });
 
 self.on("message", message => {
-  if(message.content === "Böser Bot" || message.content === "Böser bot" || message.content === "böser bot"){
-     message.channel.send("Bad Human");
-  };
-  
-  if(message.content.startsWith("Tschau") || message.content.startsWith("Bye") || message.content.startsWith("Bis später")) {
-     message.channel.send("Tschüss");
-     }
 
-  if(message.content.startsWith("Ich bin") || message.content.startsWith("ich bin") || message.content.startsWith("Ich Bin")) {
-    var msg = message.content.toLowerCase();
-    var name = msg.split("ich bin ");
-    message.channel.send("Hallo " + name[1] + ", ich bin ein Bot");
-  }
-  
-  if(message.content.startsWith("Creeper") || message.content.startsWith("creeper")) {
-    message.channel.send("Aww Man");    
-  } 
+  if(message.author.bot)
+    return;
 
-  if (message.content.startsWith(prefix) && message.author.username != self.user.username) {
-
-    var msgarr = message.content.split(prefix);
-    var msg = msgarr[1];
+  if (message.content.startsWith(prefix)) {
+    var msg = message.content.substring(1);
     var args = msg.split(" ");
     var cmd = args.shift();
 
     if(!this.gameRunning) {
-      commands.getActionByCommand(cmd, args, message.channel);
+      if(commands.commands[cmd]) {
+          commands.commands[cmd].onCall(message, args)
+      }
     } else if(cmd === "stop") {
       this.gameRunning = false;
       gmanager.kill();
-      message.channel.send("Spiel gestoppt.");
+      message.channel.send("Game stopped.");
     }
-
   }
 });
 
 self.on('messageReactionAdd', (reaction, user) => {
-    if(user.username != self.user.username) {
-      if(this.gameRunning) {
-        gmanager.handlereact(reaction, user)
-      }
-    }
+  if(this.gameRunning) {
+    gmanager.handlereact(reaction, user)
+  }
 });
 
 module.exports.sendMsg = function(content, channel) {
   channel.send(content);
 }
 
-if (process.env.TOKEN != null) {
+if (process.env.TOKEN) {
   self.login(process.env.TOKEN);
 } else {
   self.login(secrets.getToken());

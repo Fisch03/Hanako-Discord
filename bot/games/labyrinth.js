@@ -2,7 +2,7 @@ const gamelib = require('./gamelib.js');
 const main = require('../../index.js');
 const jsonhandler = require('../json-handler.js');
 
-const skin = [":white_large_square:", ":black_large_square:", ":red_circle:", ":large_blue_circle:", ":cat:", ":large_blue_diamond:"];
+const skin = [":white_large_square:", ":black_large_square:", ":red_circle:", ":blue_circle:", ":cat:", ":large_blue_diamond:"];
 const levels = [
   //LEVEL 0
   [
@@ -12,7 +12,7 @@ const levels = [
       [0, 1, 0, 1, 0],
       [0, 1, 0, 1, 0],
       [0, 0, 0, 1, 0]
-    ], [0, 0, 4, 4]
+    ],  [0,0, 4,4]
   ],
   //LEVEL 1
   [
@@ -22,7 +22,7 @@ const levels = [
       [0, 0, 1, 0, 0],
       [0, 1, 0, 1, 0],
       [0, 0, 0, 0, 0]
-    ], [0, 2, 4, 2]
+    ],  [0,2, 4,2]
   ],
   //LEVEL 2
   [
@@ -32,7 +32,7 @@ const levels = [
       [0, 1, 0, 0, 1],
       [1, 0, 0, 1, 0],
       [0, 0, 0, 0, 0]
-    ], [4, 4, 0, 0]
+    ],  [4,4, 0,0]
   ],
   //LEVEL 3
   [
@@ -42,7 +42,7 @@ const levels = [
       [0, 1, 1, 1, 0],
       [0, 1, 0, 1, 0],
       [1, 0, 0, 0, 0]
-    ], [0, 3, 1, 4]
+    ],  [0,3, 1,4]
   ],
   //LEVEL 4
   [
@@ -52,7 +52,7 @@ const levels = [
       [0, 1, 0, 1, 0],
       [0, 1, 0, 1, 0],
       [0, 1, 0, 0, 0]
-    ], [2, 2, 0, 4]
+    ],  [2,2, 0,4]
   ],
   //LEVEL 5
   [
@@ -62,7 +62,7 @@ const levels = [
       [0, 0, 0, 0, 0],
       [1, 1, 1, 1, 0],
       [0, 0, 0, 0, 0]
-    ], [4, 0, 0, 4]
+    ],  [4,0, 0,4]
   ]
 ];
 var level;
@@ -81,7 +81,7 @@ var cY = 2;
 module.exports.init = function(channel, type, excluded) {
 
   excludedlvls = [];
-  
+
   gMatrix = new gamelib.Matrix(channel, skin);
   if(type == "cat") {
     gType = 1;

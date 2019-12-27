@@ -20,10 +20,10 @@ const { RichEmbed } = require('discord.js');
       .setTitle("r/" + subname)
       .setThumbnail("https://images-eu.ssl-images-amazon.com/images/I/418PuxYS63L.png")
       .setColor(0xFF4500)
-      .setDescription("Hier sind die heißesten " + number + " Posts von r/" + subname + ": \n" + newcontent)
-      .addField("Mehr Info:", "[Subreddit Homepage](https://www.reddit.com/r/" + subname + ")")
+      .setDescription("Here are the hottest " + number + " posts from r/" + subname + ": \n" + newcontent)
+      .addField("More info:", "[Subreddit Homepage](https://www.reddit.com/r/" + subname + ")")
       .setTimestamp()
-      .setFooter("Daten empfangen:");
+      .setFooter("Data recieved:");
     return embed;
   }
 }
@@ -33,7 +33,7 @@ module.exports.CatgirlEmbed = function(link) {
       .setTitle("Catgirl")
       .setColor(0xFF00E5)
       .setImage(link)
-      .setDescription("Zufälliges Catgirl von [Nekos.Life](https://nekos.life/)")
+      .setDescription("Random catgirl from [Nekos.Life](https://nekos.life/)")
   return embed;
 }
 
@@ -42,54 +42,32 @@ module.exports.CatEmbed = function(link) {
       .setTitle("Cat")
 	  .setColor(0x4C4CAD)
 	  .setImage(link)
-	  .setDescription("Zufällige Katze von [random.cat](httpss://random.cat)")
+	  .setDescription("Random cat from [random.cat](httpss://random.cat)")
   return embed;
 }
 
 
 module.exports.HelpEmbed = function() {
   const embed = new RichEmbed()
-    .setTitle("__Hilfe__")
+    .setTitle("__Help__")
     .setColor(0x7289DA)
-    .setDescription("**Eine Auflistung aller Befehle des Bots**")
+    .setDescription("**All bot commands**")
     .addField("Fun", "howgay [name],?WeebLv [name], ratewaifu [name], ping, catgirl, lenny, rlenny, cat")
-    .addField("Games", "rps [Schere/Stein/Papier], start [Spielname] [Spielart]")
-    .addField("Reddit", "sub [Name] [Anzahl der Posts], rsub [Anzahl der Posts]")
-    .addField("Hilfe", "help, gamehelp")
-    .addField("Botinfo", "code [dateiname], github")
+    .addField("Games", "rps [Scissors/Stone/Paper], start [Gamename] [Gametype]")
+    .addField("Reddit", "sub [name] [Amount of posts], rsub [Amount of posts]")
+    .addField("Help", "help, gamehelp")
+    .addField("Botinfo", "github")
     .addField("Dev", "restart")
-    .setFooter("Text in eckigen Klammern kann durch Parameter ersetzt werden");
+    .setFooter("Text in brackets can be replaced by arguments.");
   return embed;
 }
 
 module.exports.GamehelpEmbed = function() {
   const embed = new RichEmbed()
-    .setTitle("__Spiel Hilfe__")
+    .setTitle("__Game Help__")
     .setColor(0x7289DA)
-    .setDescription("**Spiele werden mit start [Spielname] [Spielart] gestartet und mit ?stop gestoppt.\nFolgende Spiele sind verfügbar:**")
-    .addField("labyrinth", "Navigiere mit Reactions durch die Level. Ohne angegebene Spielart spielst du nur ein Level. Spielarten:\ncont: Spiele durch alle Level in zufälliger Reihenfolge\ncat: Am Ende des Levels erwartet dich ein Catgirl")
-    .setFooter("Beispiel: ?start labyrinth cont");
-  return embed;
-}
-
-module.exports.PastebinEmbed = function(data) {
-  const embed = new RichEmbed()
-    .setTitle("Code")
-    .setColor(0x00F6FF)
-    .setDescription("Hier ist der aktuelle Code des Bots: " + data)
-    .setTimestamp()
-    .setFooter("Dieser Link läuft nach 1 Stunde ab");
-  return embed;
-}
-
-//https://i.pinimg.com/originals/05/a3/08/05a308db9740a2606ac8b167b8dc9a7d.jpg
-
-module.exports.lvlEmbed = function(name, lvl) {
-  const embed = new RichEmbed()
-    .setTitle("WeebLVL")
-    .setColor(0xF442E8)
-    .setDescription("Das Weeb Level von " + name + " beträgt " + lvl)
-    .setImage("https://i.pinimg.com/originals/05/a3/08/05a308db9740a2606ac8b167b8dc9a7d.jpg")
-    .setFooter("Dieser Link läuft nach 1 Stunde ab");
+    .setDescription("**Games are started with start [Gamename] [Gametype] and stopped with ?stop .\nThe following games are avalible:**")
+    .addField("labyrinth", "Navigate through the level with reactions. Without a gametype, you only play one level. Gametypes:\ncont: Play through every single level randomly\ncat: At the end of the level a catgirl waits for you.")
+    .setFooter("Example: ?start labyrinth cont");
   return embed;
 }
