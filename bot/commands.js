@@ -79,6 +79,14 @@ module.exports.commands = {
       msg.channel.send("( ͡° ͜ʖ ͡°)")
     }
   },
+  "discord": {
+    type:"Info",
+	usage:"discord",
+	description:"Sends the invite link for the official Hanako Discord server.",
+	onCall: function(msg) {
+	  msg.channel.send("https://discord.gg/8fGVDAs");
+	}
+  },
   "rlenny": {
     type:"Fun",
     usage:"rlenny",
