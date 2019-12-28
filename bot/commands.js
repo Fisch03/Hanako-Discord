@@ -151,8 +151,8 @@ module.exports.commands = {
       var content = "";
       fetchSubreddit(args[0].toLowerCase())
         .then(function (urls) {
-          content = jsonhandler.RedditJSON(urls, args[1]);
-          msg.channel.send(embeds.RedditEmbed(args[0], content, args[1]));
+          content = jsonhandler.RedditJSON(urls[0], args[1]); //We use "urls[0]" because fetchSubreddit returns the JSON object within an 1-element-array
+          msg.channel.send(content);
         })
         .catch((err) => console.error(err));
     }
@@ -175,7 +175,7 @@ module.exports.commands = {
         .then(function() {
           fetchSubreddit(subname.toLowerCase())
             .then(function (urls) {
-              content = jsonhandler.RedditJSON(urls, args[0]);
+              content = jsonhandler.RedditJSON(urls[0], args[0]); //We use "urls[0]" because fetchSubreddit returns the JSON object within an 1-element-array
               msg.channel.send(embeds.RedditEmbed(subname, content, args[0]));
             })
           .catch((err) => console.error(err))
