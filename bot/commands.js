@@ -46,8 +46,7 @@ module.exports.commands = {
     usage:"catgirl",
     description:"Fetch a random Catgirl Image from nekos.life",
     onCall: function(msg) {
-      var embed = jsonhandler.getCatgirl();
-      msg.channel.send(embed)
+      jsonhandler.getCatgirl(msg.channel, main.sendMsg);
     }
   },
   "lewdcatgirl": {
@@ -56,7 +55,7 @@ module.exports.commands = {
     description:"Fetch a random LewdCatgirl Image from nekos.life (NSFW, obviously)",
     onCall: function(msg) {
       if (msg.channel.nsfw) {
-        jsonhandler.getLewdCatgirl(channel);
+        jsonhandler.getLewdCatgirl(msg.channel, main.sendMsg);
       } else {
         msg.channel.send(":warning: Channel must be marked as NSFW");
       }
@@ -67,8 +66,7 @@ module.exports.commands = {
     usage:"cat",
     description:"Fetch a random Cat Image from aws.random.cat",
     onCall: function(msg) {
-      var embed = jsonhandler.getCatgirl();
-      msg.channel.send(embed)
+      jsonhandler.getCat(msg.channel, main.sendMsg);
     }
   },
   "lenny": {
