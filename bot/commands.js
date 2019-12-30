@@ -64,11 +64,25 @@ module.exports.commands = {
   "cat": {
     type:"Fun",
     usage:"cat",
-    description:"Fetch a random Cat Image from aws.random.cat",
+    description:"Fetch a random Cat Image from random.cat",
     onCall: function(msg) {
       jsonhandler.getCat(msg.channel, main.sendMsg);
     }
   },
+  "catbomb": {
+    type:"Fun",
+    usage:"catbomb",
+    description:"Fetch 5 random Cat Images from random.cat",
+    onCall: function(msg) {
+      jsonhandler.getCat(msg.channel, main.sendMsg);
+      jsonhandler.getCat(msg.channel, main.sendMsg);
+      jsonhandler.getCat(msg.channel, main.sendMsg);
+      jsonhandler.getCat(msg.channel, main.sendMsg);
+      jsonhandler.getCat(msg.channel, main.sendMsg);
+	    
+    }
+  },
+	
   "lenny": {
     type:"Fun",
     usage:"lenny",
