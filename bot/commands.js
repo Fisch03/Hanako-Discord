@@ -68,21 +68,7 @@ module.exports.commands = {
     onCall: function(msg) {
       jsonhandler.getCat(msg.channel, main.sendMsg);
     }
-  },
-  "catbomb": {
-    type:"Fun",
-    usage:"catbomb",
-    description:"Fetch 5 random Cat Images from random.cat",
-    onCall: function(msg) {
-      jsonhandler.getCat(msg.channel, main.sendMsg);
-      jsonhandler.getCat(msg.channel, main.sendMsg);
-      jsonhandler.getCat(msg.channel, main.sendMsg);
-      jsonhandler.getCat(msg.channel, main.sendMsg);
-      jsonhandler.getCat(msg.channel, main.sendMsg);
-	    
-    }
-  },
-	
+  },	
   "lenny": {
     type:"Fun",
     usage:"lenny",
