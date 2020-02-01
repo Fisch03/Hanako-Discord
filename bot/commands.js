@@ -30,6 +30,9 @@ module.exports.commands = {
       var name = args[0];
       if (name = "@Hanako" || name == "Hanako") {
 	msg.channel.send('${name} is 0% gay :gay_pride_flag:');
+      else if (name = "Lars" || name == "Fisch03") {
+        msg.channel.send('${name} is 100% gay :gay_pride_flag:');
+      }
       else {
       	msg.channel.send(`${name} is ${value}% gay :gay_pride_flag:`);
       }
