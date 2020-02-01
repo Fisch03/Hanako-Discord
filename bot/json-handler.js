@@ -4,23 +4,15 @@ var request = require('request');
 const main = require('../index.js');
 const embeds = require('./embeds.js');
 
-module.exports.RedditJSON = function(obj, len){
-    var cstring;
-    var content = ""; 
-    cstring = JSON.stringify(obj, null, 2);
-    cstring = cstring.split("[");
-    cstring = cstring[2].split("]");
-    cstring = cstring[0].split('"');
-    for (var i = 1; i <= len; i++) {
-      content += cstring[i*2+1];
-      content += "\n";
-    }
-    return content;
+module.exports.RedditJSON = function(obj, len = 5) {
+  obj.urls.length = len;
+  var msg = embeds.RedditEmbed(obj.subreddit, obj.urls);
+  return msg;
 }
 
-module.exports.getCatgirl = function(channel) {
+module.exports.getCatgirl = function(channel, callback) {
   request('https://nekos.life/api/neko', function (error, response, body) {
-	var json = JSON.parse(body);
+	  var json = JSON.parse(body);
     var msg = "";
     if (error)
       console.error(error);
@@ -28,11 +20,11 @@ module.exports.getCatgirl = function(channel) {
       console.error(response.statusCode);
     msg = json.neko;
     msg = embeds.CatgirlEmbed(msg);
-    main.sendMsg(msg, channel);
+    callback(msg, channel);
   });
 }
 
-module.exports.getLewdCatgirl = function(channel) {
+module.exports.getLewdCatgirl = function(channel, callback) {
   request('https://nekos.life/api/lewd/neko', function (error, response, body) {
     var json = JSON.parse(body);
     var msg = "";
@@ -42,11 +34,11 @@ module.exports.getLewdCatgirl = function(channel) {
       console.error(response.statusCode);
     msg = json.neko;
     msg = embeds.CatgirlEmbed(msg);
-    main.sendMsg(msg, channel);
+    callback(msg, channel);
   });
 }
 
-module.exports.getCat = function(channel) {
+module.exports.getCat = function(channel, callback) {
   request('http://aws.random.cat/meow', function (error, response, body) {
     var json = JSON.parse(body);
     var msg = "";
@@ -57,6 +49,6 @@ module.exports.getCat = function(channel) {
     msg = json.file;
     msg = msg.replace(/\\/g, "");
     msg = embeds.CatEmbed(msg);
-    main.sendMsg(msg, channel);
+    callback(msg, channel)
   });
 }
