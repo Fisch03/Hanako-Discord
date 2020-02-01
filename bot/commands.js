@@ -28,13 +28,12 @@ module.exports.commands = {
     onCall: function(msg, args) {
       var value = Math.floor(Math.random() * 101);
       var name = args[0];
-      if (args[0] == "@Hanako" || args[0] == "Hanako") {
-	msg.channel.send(args[0] + ' is 0% gay :gay_pride_flag:');
-      } else if (args[0] == "Lars" || args[0] == "Fisch03") {
-        msg.channel.send(args[0] + ' is 100% gay :gay_pride_flag:');
-      } else {
-      	msg.channel.send(`${name} is ${value}% gay :gay_pride_flag:`);
+      if (name == "@Hanako" || name == "Hanako") {
+	value = 0;
+      } else if (name == "Fisch03" || name == "@Fisch03" || name == "@Samyocord" || name == "Samyocord") {
+	value = 100;
       }
+      msg.channel.send(`${name} is ${value}% gay :gay_pride_flag:`);
     }
   },
   "ratewaifu": {
