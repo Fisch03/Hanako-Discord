@@ -94,6 +94,27 @@ module.exports.commands = {
       msg.channel.send(lennyarr[value]);
     }
   },
+  "ask": {
+    type:"Fun",
+    usage:"ask",
+    description:"Get an answer to your question",
+    onCall: function(msg) {
+      if(msg.content.indexOf("ask") + 3 === msg.content.length) {
+        msg.channel.send("Usage: ?ask [question]");
+        return;
+      }
+      var responses = ['Yes',
+                       'No',
+                       'Why?',
+                       'Not sure',
+                       'Ask me later',
+                       'Shutting down',
+                       'You are funny',
+                       'Shut up!']
+      var value = Math.floor(Math.random() * (responses.length + 1));
+      msg.channel.send(responses[value]);
+    }
+  },
 
   /**
   GAMES
