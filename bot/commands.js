@@ -36,6 +36,27 @@ module.exports.commands = {
       msg.channel.send(`${name} is ${value}% gay :gay_pride_flag:`);
     }
   },
+  "furry": {
+    type:"Fun",
+    usage:"furry [name]",
+    description: "Determine if the user is a furry.",
+    onCall: function(msg, args) {
+      var value = Math.floor(Math.random() * 2);
+      var name = args[0];
+      if (name == "@Hanako" || name == "Hanako") {
+	      value = 1;
+      } else if (name == "Fisch03" || name == "@Fisch03") {
+	      value = 1;
+      } else if (name == "@Samyocord" || name == "Samyocord") {
+	      value = 2;
+      }
+      if (value == 1) {
+      	msg.channel.send(`${name} is not a furry.`);
+      } else {
+        msg.channel.send(`${name} is a furry.`);
+      }
+    }
+  },
   "ratewaifu": {
     type:"Fun",
     usage:"ratewaifu [name]",
@@ -44,6 +65,14 @@ module.exports.commands = {
       var value = Math.floor(Math.random() * 11);
       var name = args[0];
       msg.channel.send(`${name} is a ${value}/10 Waifu`)
+    }
+  },
+  "githubrepos": {
+    type:"Social",
+    usage:"githubrepos [username]",
+    description:"List all GitHub Repos a user has",
+    onCall: function(msg, args) {
+      jsonhandler.getGitHubRepos(msg.channel, main.sendMsg, args[0]);
     }
   },
   "catgirl": {
@@ -92,6 +121,27 @@ module.exports.commands = {
                       "( ͡o ͜ʖ ͡o)","( ͡◉ ͜ʖ ͡◉)","( ͡☉ ͜ʖ ͡☉)","( ͡° ͜V ͡°)","ʕ ͡° ͜ʖ ͡°ʔ","( ͡ᵔ ͜ʖ ͡ᵔ )","( ͡° ͜ʖ ͡ °)","(☭ ͜ʖ ☭)","(=^-ω-^=)"];
       var value = Math.floor(Math.random() * (lennyarr.length + 1));
       msg.channel.send(lennyarr[value]);
+    }
+  },
+  "ask": {
+    type:"Fun",
+    usage:"ask [yes/no question]",
+    description:"Get an answer to your question",
+    onCall: function(msg, args) {
+      if(!args[0] || args[0] == "") {
+        msg.channel.send("You have to ask something!");
+      } else {
+        var responses = ['Yes',
+                         'No',
+                         'Why?',
+                         'Not sure',
+                         'Ask me later',
+                         'Shutting down',
+                         'You are funny',
+                         'Shut up!']
+        var value = Math.floor(Math.random() * (responses.length));
+        msg.channel.send(responses[value]);
+      }
     }
   },
 
