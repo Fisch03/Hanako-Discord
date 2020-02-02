@@ -36,6 +36,26 @@ module.exports.commands = {
       msg.channel.send(`${name} is ${value}% gay :gay_pride_flag:`);
     }
   },
+  "furry": {
+    type:"Fun",
+    usage:"furry [name]",
+    description: "Determine if the user is a furry.",
+    onCall: function(msg, args) {
+      var value = Math.floor(Math.random() * 2);
+      var name = args[0];
+      if (name == "@Hanako" || name == "Hanako") {
+	      value = 1;
+      } else if (name == "Fisch03" || name == "@Fisch03") {
+	      value = 1;
+      } else if (name == "@Samyocord" || name == "Samyocord") {
+	      value = 2;
+      if (value == 1) {
+      	msg.channel.send(`${name} is not a furry.`);
+      } else if (value == 2){
+        msg.channel.send(`${name} is a furry.`);
+      }
+    }
+  },
   "ratewaifu": {
     type:"Fun",
     usage:"ratewaifu [name]",
