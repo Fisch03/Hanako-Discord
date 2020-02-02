@@ -29,9 +29,9 @@ module.exports.commands = {
       var value = Math.floor(Math.random() * 101);
       var name = args[0];
       if (name == "@Hanako" || name == "Hanako") {
-	value = 0;
+	      value = 0;
       } else if (name == "Fisch03" || name == "@Fisch03" || name == "@Samyocord" || name == "Samyocord") {
-	value = 100;
+	      value = 100;
       }
       msg.channel.send(`${name} is ${value}% gay :gay_pride_flag:`);
     }
