@@ -259,4 +259,4 @@ module.exports.commands = {
 	  msg.channel.send("https://discord.gg/8fGVDAs");
 	}
   },
-}
+}}
