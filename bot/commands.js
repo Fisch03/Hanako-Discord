@@ -49,9 +49,10 @@ module.exports.commands = {
 	      value = 1;
       } else if (name == "@Samyocord" || name == "Samyocord") {
 	      value = 2;
+      }
       if (value == 1) {
       	msg.channel.send(`${name} is not a furry.`);
-      } else if (value == 2){
+      } else {
         msg.channel.send(`${name} is a furry.`);
       }
     }
@@ -64,6 +65,14 @@ module.exports.commands = {
       var value = Math.floor(Math.random() * 11);
       var name = args[0];
       msg.channel.send(`${name} is a ${value}/10 Waifu`)
+    }
+  },
+  "githubrepos": {
+    type:"Social",
+    usage:"githubrepos [username]",
+    description:"List all GitHub Repos a user has",
+    onCall: function(msg, args) {
+      jsonhandler.getGitHubRepos(msg.channel, main.sendMsg, args[0]);
     }
   },
   "catgirl": {
@@ -116,23 +125,23 @@ module.exports.commands = {
   },
   "ask": {
     type:"Fun",
-    usage:"ask",
+    usage:"ask [yes/no question]",
     description:"Get an answer to your question",
-    onCall: function(msg) {
-      if(msg.content.indexOf("ask") + 3 === msg.content.length) {
-        msg.channel.send("Usage: ?ask [question]");
-        return;
+    onCall: function(msg, args) {
+      if(!args[0] || args[0] == "") {
+        msg.channel.send("You have to ask something!");
+      } else {
+        var responses = ['Yes',
+                         'No',
+                         'Why?',
+                         'Not sure',
+                         'Ask me later',
+                         'Shutting down',
+                         'You are funny',
+                         'Shut up!']
+        var value = Math.floor(Math.random() * (responses.length));
+        msg.channel.send(responses[value]);
       }
-      var responses = ['Yes',
-                       'No',
-                       'Why?',
-                       'Not sure',
-                       'Ask me later',
-                       'Shutting down',
-                       'You are funny',
-                       'Shut up!']
-      var value = Math.floor(Math.random() * (responses.length + 1));
-      msg.channel.send(responses[value]);
     }
   },
 
