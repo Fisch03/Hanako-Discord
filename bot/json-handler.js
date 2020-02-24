@@ -60,6 +60,7 @@ module.exports.getGitHubRepos = function(channel, callback, username) {
   cRequest('https://api.github.com/users/' + username + '/repos', function (error, response, body) {
     var json = JSON.parse(body);
     var msg = "";
+    var avatarurl = json[0].owner.avatar_url;
     if (error)
       console.error(error);
     if (response.statusCode != 200)
@@ -68,6 +69,7 @@ module.exports.getGitHubRepos = function(channel, callback, username) {
     for (var i=0;i<json.length;i++){
         msg = msg + json[i].full_name + "\n";
     }
+    msg = embeds.RepoEmbed(username, msg, avatarurl);
     callback(msg, channel);
   });
 }

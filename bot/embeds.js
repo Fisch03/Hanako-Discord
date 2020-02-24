@@ -37,3 +37,14 @@ module.exports.CatEmbed = function(link) {
 	  .setDescription("Random cat from [random.cat](httpss://random.cat)")
   return embed;
 }
+
+module.exports.RepoEmbed = function(username, repomsg, avatarurl) {
+  var octocats = ["https://octodex.github.com/images/total-eclipse-of-the-octocat.jpg", "https://octodex.github.com/images/original.png", "https://octodex.github.com/images/class-act.png", "https://octodex.github.com/images/octobiwan.jpg", "https://octodex.github.com/images/drupalcat.jpg", "https://octodex.github.com/images/forktocat.jpg", "https://octodex.github.com/images/repo.png", "https://octodex.github.com/images/setuptocat.jpg"];
+  var octocat = Math.floor(Math.random() * octocats.length);
+  const embed = new RichEmbed()
+    .setAuthor(username, avatarurl)
+    .setColor(0x000000)
+    .setThumbnail(octocats[octocat])
+    .setDescription(repomsg);
+  return embed;
+}
