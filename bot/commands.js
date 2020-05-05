@@ -39,21 +39,6 @@ module.exports.commands = {
       msg.channel.send(`${name} is ${value}% gay :gay_pride_flag:`);
     }
   },
-  "furry": {
-    type:"Fun",
-    usage:"furry [name]",
-    description: "Determine if the user is a furry.",
-    onCall: function(msg, args) {
-      var value = Math.floor(Math.random() * 2);
-      var name = args[0];
-      if (value == 1) {
-      	msg.channel.send(`${name} is not a furry.`);
-      } else {
-        msg.channel.send(`${name} is a furry.`);
-      }
-    }
-  },
-  "ratewaifu": {
     type:"Fun",
     usage:"ratewaifu [name]",
     description:"Get a random rating for how much of a Waifu the User is",
@@ -61,14 +46,6 @@ module.exports.commands = {
       var value = Math.floor(Math.random() * 11);
       var name = args[0];
       msg.channel.send(`${name} is a ${value}/10 Waifu`);
-    }
-  },
-  githubrepos: {
-    type: "Social",
-    usage: "githubrepos [username]",
-    description: "List all GitHub Repos a user has",
-    onCall: function(msg, args) {
-      jsonhandler.getGitHubRepos(msg.channel, main.sendMsg, args[0]);
     }
   },
   catgirl: {
@@ -332,7 +309,7 @@ module.exports.commands = {
   },
 
   /**
-  REDDIT
+  SOCIAL
   **/
   sub: {
     type: "Social",
@@ -372,6 +349,14 @@ module.exports.commands = {
             .catch(err => console.error(err))
             .catch(err => console.error(err));
         });
+    }
+  },
+  githubrepos: {
+    type: "Social",
+    usage: "githubrepos [username]",
+    description: "List all GitHub Repos a user has",
+    onCall: function(msg, args) {
+      jsonhandler.getGitHubRepos(msg.channel, main.sendMsg, args[0]);
     }
   },
 
