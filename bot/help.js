@@ -1,6 +1,6 @@
 const commands = require('./commands.js')
 
-const { RichEmbed } = require('discord.js');
+const { MessageEmbed } = require('discord.js');
 
 module.exports.help = function(msg, args) {
   if(args[0] != undefined) {
@@ -28,7 +28,7 @@ module.exports.help = function(msg, args) {
     }
 
     allcategories = Object.keys(allcommands)
-    var embed = new RichEmbed()
+    var embed = new MessageEmbed()
       .setTitle("__Help__")
       .setColor(0x7289DA)
       .setDescription(`**A list of all the commands**`)

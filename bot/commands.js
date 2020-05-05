@@ -4,11 +4,16 @@ const help = require("./help.js");
 const embeds = require("./embeds.js");
 const games = require("./games/gamemanager.js");
 const jsonhandler = require("./json-handler.js");
+const owo = require("./commands.js");
 const ytdl = require("ytdl-core");
 
 const { RichEmbed } = require("discord.js");
 
 const { fetchSubreddit, fetchRandomSubredditName } = require("fetch-subreddit");
+
+const request = require("request");
+
+var customHeaderRequest = request.defaults({});
 
 var playing = false;
 
@@ -31,44 +36,27 @@ module.exports.commands = {
     onCall: function(msg, args) {
       var value = Math.floor(Math.random() * 101);
       var name = args[0];
-      if (name == "@Hanako" || name == "Hanako") {
-        value = 0;
-      } else if (
-        name == "Fisch03" ||
-        name == "@Fisch03" ||
-        name == "@Samyocord" ||
-        name == "Samyocord"
-      ) {
-        value = 100;
-      }
       msg.channel.send(`${name} is ${value}% gay :gay_pride_flag:`);
     }
   },
-  furry: {
-    type: "Fun",
-    usage: "furry [name]",
+  "furry": {
+    type:"Fun",
+    usage:"furry [name]",
     description: "Determine if the user is a furry.",
     onCall: function(msg, args) {
       var value = Math.floor(Math.random() * 2);
       var name = args[0];
-      if (name == "@Hanako" || name == "Hanako") {
-        value = 1;
-      } else if (name == "Fisch03" || name == "@Fisch03") {
-        value = 1;
-      } else if (name == "@Samyocord" || name == "Samyocord") {
-        value = 2;
-      }
       if (value == 1) {
-        msg.channel.send(`${name} is not a furry.`);
+      	msg.channel.send(`${name} is not a furry.`);
       } else {
         msg.channel.send(`${name} is a furry.`);
       }
     }
   },
-  ratewaifu: {
-    type: "Fun",
-    usage: "ratewaifu [name]",
-    description: "Get a random rating for how much of a Waifu the User is",
+  "ratewaifu": {
+    type:"Fun",
+    usage:"ratewaifu [name]",
+    description:"Get a random rating for how much of a Waifu the User is",
     onCall: function(msg, args) {
       var value = Math.floor(Math.random() * 11);
       var name = args[0];
@@ -106,7 +94,7 @@ module.exports.commands = {
   },
   playsong: {
     type: "Music",
-    usage: "playsong <youtube url>",
+    usage: "playsong [youtube url]",
     description:
       "Play a song in the voice channel you are currently in. (HIGHLY EXPERIMENTAL!)",
     onCall: function(msg, args) {
@@ -126,30 +114,43 @@ module.exports.commands = {
           });
         })
         .catch(err => msg.channel.send(err));*/
-      if (!playing){
-      msg.member.voiceChannel
-        .join()
-        .then(connection => {
-          msg.channel.send("playing song now owo")
-          playing = true;
+              var chan = msg.channel;
+
+      if (!playing) {
+        playing = true;
+
+        msg.member.voiceChannel.join().then(connection => {
+          chan.send("Playing song now! *happy uwu*");
 
           connection
-            .playStream(ytdl(args[0], {quality:'highestaudio'}))
+            .playStream(ytdl(args[0], { quality: "highestaudio", volume: 600 }))
             // When no packets left to send, leave the channel.
             .on("end", () => {
-              msg.channel.send("song ended *sad uwu*");
-              connection.channel.leave();
               playing = false;
-            })
-            // Handle error without crashing the app.
-            .catch(console.error);
-        })
-        .catch(console.error);
+              chan.send("song ended *sad uwu*");
+              connection.channel.leave();
+              owo.commands["sral"].onChannel(msg);
+            });
+          // Handle error without crashing the app.
+          //.catch(console.error);
+        });
+        //.catch(console.error);
       } else {
-        msg.channel.send("Samyo-senpai says no");
-        var msg = msg.channel.send("@Fisch03");
-        msg.delete();
+        chan.send("Samyo-senpai says no");
+        chan.send(embeds.SralEmbed());
+        //msg.delete();
       }
+    }
+  },
+  sral: {
+    type: "Music",
+    usage: "sral",
+    description: "Song ended sad uwu",
+    onCall: function(msg) {
+      owo.commands["playsong"].onCall(msg, [
+        "https://www.youtube.com/watch?v=P8kVauBznTI"
+      ]);
+      //this.commands.playsong.onCall(msg, ["https://www.youtube.com/watch?v=P8kVauBznTI"]);
     }
   },
   leavechannel: {
@@ -158,6 +159,7 @@ module.exports.commands = {
     description: "LEAVE THE FUCKING VOICE CHANNEL HANAKO",
     onCall: function(msg) {
       msg.member.voiceChannel.leave();
+      playing = false;
     }
   },
   cat: {
@@ -174,6 +176,41 @@ module.exports.commands = {
     description: "Send a Lenny Face back",
     onCall: function(msg) {
       msg.channel.send("( ͡° ͜ʖ ͡°)");
+    }
+  },
+  samyoproxy: {
+    type: "Fun",
+    usage: "samyoproxy [URL]",
+    description: "hide a link",
+    onCall: function(msg, args) {
+      var url = args[0];
+      customHeaderRequest.post(
+        "https://proxy.samyo.wtf/expanddong",
+        { json: { longurl: url } },
+        function(error, response, body) {
+          if (!error && response.statusCode == 200) {
+            msg.channel.send(body);
+          } else {
+            msg.channel.send(
+              "I'm sorry, but an error occured. Please try again!"
+            );
+            console.log(
+              "Error: " + error + "\nResponse: " + response + "\nBody: " + body
+            );
+            msg.channel.send(
+              "Error: " + error + "\nResponse: " + response + "\nBody: " + body
+            );
+          }
+        }
+      );
+    }
+  },
+  hello: {
+    type: "Fun",
+    usage: "hello",
+    description: "Hello",
+    onCall: function(msg) {
+      msg.channel.send("Hello! How are you?");
     }
   },
   rlenny: {
@@ -233,8 +270,22 @@ module.exports.commands = {
           "Shut up!"
         ];
         var value = Math.floor(Math.random() * responses.length);
-        msg.channel.send(responses[value]);
+        if (args[0] == "ban" && args[1] == "fisch03") {
+          msg.channel.send("Yes");
+        } else if (args[0] == "ban" && args[1] == "@everyone") {
+          msg.channel.send("Yes");
+        } else {
+          msg.channel.send(responses[value]);
+        }
       }
+    }
+  },
+  quote: {
+    type: "Fun",
+    usage: "quote",
+    description: "Generate an inspirational quote. Powered by InspiroBot",
+    onCall: function(msg, args) {
+      jsonhandler.getQuote(msg.channel, main.sendMsg);
     }
   },
 
