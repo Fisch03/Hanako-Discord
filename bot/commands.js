@@ -36,23 +36,27 @@ module.exports.commands = {
     onCall: function(msg, args) {
       var value = Math.floor(Math.random() * 101);
       var name = args[0];
-      if (name == "@Hanako" || name == "Hanako") {
-        value = 0;
-      } else if (
-        name == "Fisch03" ||
-        name == "@Fisch03" ||
-        name == "@Samyocord" ||
-        name == "Samyocord"
-      ) {
-        value = 100;
-      }
       msg.channel.send(`${name} is ${value}% gay :gay_pride_flag:`);
     }
   },
-  ratewaifu: {
-    type: "Fun",
-    usage: "ratewaifu [name]",
-    description: "Get a random rating for how much of a Waifu the User is",
+  "furry": {
+    type:"Fun",
+    usage:"furry [name]",
+    description: "Determine if the user is a furry.",
+    onCall: function(msg, args) {
+      var value = Math.floor(Math.random() * 2);
+      var name = args[0];
+      if (value == 1) {
+      	msg.channel.send(`${name} is not a furry.`);
+      } else {
+        msg.channel.send(`${name} is a furry.`);
+      }
+    }
+  },
+  "ratewaifu": {
+    type:"Fun",
+    usage:"ratewaifu [name]",
+    description:"Get a random rating for how much of a Waifu the User is",
     onCall: function(msg, args) {
       var value = Math.floor(Math.random() * 11);
       var name = args[0];
@@ -90,7 +94,7 @@ module.exports.commands = {
   },
   playsong: {
     type: "Music",
-    usage: "playsong <youtube url>",
+    usage: "playsong [youtube url]",
     description:
       "Play a song in the voice channel you are currently in. (HIGHLY EXPERIMENTAL!)",
     onCall: function(msg, args) {

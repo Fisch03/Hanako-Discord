@@ -42,7 +42,6 @@ module.exports.getCat = function(channel, callback) {
     if (response.statusCode != 200) console.error(response.statusCode);
     msg = json.file;
     msg = msg.replace(/\\/g, "");
-    msg = embeds.CatEmbed(msg);
     callback(msg, channel);
   });
 };
