@@ -39,7 +39,6 @@ module.exports.commands = {
       msg.channel.send(`${name} is ${value}% gay :gay_pride_flag:`);
     }
   },
-  ratewaifu: {
     type:"Fun",
     usage:"ratewaifu [name]",
     description:"Get a random rating for how much of a Waifu the User is",
