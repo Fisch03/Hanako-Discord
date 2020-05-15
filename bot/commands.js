@@ -39,6 +39,7 @@ module.exports.commands = {
       msg.channel.send(`${name} is ${value}% gay :gay_pride_flag:`);
     }
   },
+  ratewaifu: {
     type:"Fun",
     usage:"ratewaifu [name]",
     description:"Get a random rating for how much of a Waifu the User is",
@@ -96,11 +97,11 @@ module.exports.commands = {
       if (!playing) {
         playing = true;
 
-        msg.member.voiceChannel.join().then(connection => {
+        msg.member.voice.channel.join().then(connection => {
           chan.send("Playing song now! *happy uwu*");
 
           connection
-            .playStream(ytdl(args[0], { quality: "highestaudio", volume: 600 }))
+            .play(ytdl(args[0], { quality: "highestaudio", volume: 600 }))
             // When no packets left to send, leave the channel.
             .on("end", () => {
               playing = false;
@@ -135,7 +136,7 @@ module.exports.commands = {
     usage: "leavechannel",
     description: "LEAVE THE FUCKING VOICE CHANNEL HANAKO",
     onCall: function(msg) {
-      msg.member.voiceChannel.leave();
+      msg.member.voice.channel.leave();
       playing = false;
     }
   },
