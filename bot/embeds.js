@@ -39,7 +39,7 @@ module.exports.CatgirlEmbed = function(link) {
 
 module.exports.QuoteEmbed = function(link) {
   const embed = new MessageEmbed()
-    .setTitle("Inspirational Quote")
+    .setTitle("Inspirational Quote from [Inspirobot](https://inspirobot.me/)")
     .setColor(0x000000)
     .setImage(link);
   return embed;
@@ -50,7 +50,7 @@ module.exports.CatEmbed = function(link) {
     .setTitle("Cat")
     .setColor(0x4c4cad)
     .setImage(link)
-    .setDescription("Random cat from [random.cat](httpss://random.cat)");
+    .setDescription("Random cat from [random.cat](https://random.cat)");
   return embed;
 };
 
@@ -74,29 +74,3 @@ module.exports.RepoEmbed = function(username, repomsg, avatarurl) {
   return embed;
 };
 
-module.exports.SralEmbed = function() {
-  var srals = [
-    "https://cdn.glitch.com/e3d2abb0-c73f-4de3-b777-ec2a6f8ae218%2Fimage0.jpg?v=1582835240348",
-    "https://cdn.glitch.com/e3d2abb0-c73f-4de3-b777-ec2a6f8ae218%2Fimage1.jpg?v=1582835247820",
-    "https://cdn.glitch.com/e3d2abb0-c73f-4de3-b777-ec2a6f8ae218%2FIMG_20191113_201513.jpg?v=1582835253565",
-    "https://cdn.glitch.com/e3d2abb0-c73f-4de3-b777-ec2a6f8ae218%2FIMG_5517.jpg?v=1582835255105",
-    "https://cdn.glitch.com/e3d2abb0-c73f-4de3-b777-ec2a6f8ae218%2Fimage3.jpg?v=1582835255455",
-    "https://cdn.glitch.com/e3d2abb0-c73f-4de3-b777-ec2a6f8ae218%2Fimage2.jpg?v=1582835255646",
-    "https://cdn.glitch.com/e3d2abb0-c73f-4de3-b777-ec2a6f8ae218%2FIMG-20190930-WA0004.jpg?v=1582835255953",
-    "https://cdn.glitch.com/e3d2abb0-c73f-4de3-b777-ec2a6f8ae218%2FLars_Iphone_11_ProMax_Flex2.jpg?v=1582835256053",
-    "https://cdn.glitch.com/e3d2abb0-c73f-4de3-b777-ec2a6f8ae218%2FLars_Iphone_11_ProMax_Flex.jpg?v=1582835256175",
-    "https://cdn.glitch.com/e3d2abb0-c73f-4de3-b777-ec2a6f8ae218%2FIMG_20200108_141857_0.jpg?v=1582835267086",
-    "https://cdn.glitch.com/e3d2abb0-c73f-4de3-b777-ec2a6f8ae218%2Fsralcoin.png?v=1582835267170",
-    "https://cdn.glitch.com/e3d2abb0-c73f-4de3-b777-ec2a6f8ae218%2Fsral.jpg?v=1582835268063",
-    "https://cdn.glitch.com/e3d2abb0-c73f-4de3-b777-ec2a6f8ae218%2Fsral_hatsunemiku.png?v=1582835272908",
-    "https://cdn.glitch.com/e3d2abb0-c73f-4de3-b777-ec2a6f8ae218%2FObamaSral.png?v=1582835282251",
-    "https://cdn.glitch.com/e3d2abb0-c73f-4de3-b777-ec2a6f8ae218%2Fsral1_transparent.png?v=1582835288688"
-  ];
-  var sral = Math.floor(Math.random() * srals.length);
-  const embed = new MessageEmbed()
-    .setImage(srals[sral])
-    .setTitle("Hier ist ein SRAL damit du dich zufrieden gibst.")
-    .setTimestamp()
-    .setURL("https://bit.ly/2T5b4i7");
-  return embed;
-};
