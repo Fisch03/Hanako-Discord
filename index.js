@@ -25,30 +25,10 @@ module.exports.gameRunning = false;
 
 self.on("ready", () => {
   console.log("Bot is now online");
-  self.user.setActivity("my Reddit feed", { type: "WATCHING" });
-   //console.log(self.emojis);
-  //701169359099265095 - message id / 453989193106849807 - channel id / 453989193106849805 - server id / 454608856631345155 - emoji id
-  /*customHeaderRequest.post(
-        'https://verylegit.link/sketchify',
-        { json: { long_url: 'https://www.duckduckgo.com' } },
-        function (error, response, body) {
-          if (!error && response.statusCode == 200) {
-              //msg.channel.send(body);
-              console.log(body);
-          } else {
-              //msg.channel.send("I'm sorry, but an error occured. Please try again!");
-              console.log("Error: " + error + "\nResponse: " + response + "\nBody: " + body);
-          }
-        }
-      );*/
+  self.user.setActivity("you again~", { type: "LISTENING" });
 });
 
 self.on("message", message => {
-  //message.react("487661051513667585");
-  //message.channel.send("<:sral:690281826090090546>");
-
-
-    
   if (message.author.bot) return;
 
   if (message.content.startsWith(prefix)) {

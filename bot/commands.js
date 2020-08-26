@@ -4,14 +4,11 @@ const help = require("./help.js");
 const embeds = require("./embeds.js");
 const games = require("./games/gamemanager.js");
 const jsonhandler = require("./json-handler.js");
-const owo = require("./commands.js");
-const ytdl = require("ytdl-core");
 
 const { RichEmbed } = require("discord.js");
-
 const { fetchSubreddit, fetchRandomSubredditName } = require("fetch-subreddit");
-
 const request = require("request");
+const ytdl = require("ytdl-core");
 
 var customHeaderRequest = request.defaults({});
 
@@ -98,37 +95,23 @@ module.exports.commands = {
         playing = true;
 
         msg.member.voice.channel.join().then(connection => {
-          chan.send("Playing song now! *happy uwu*");
+          chan.send("Playing song now! *UwU*");
 
           connection
             .play(ytdl(args[0], { quality: "highestaudio", volume: 600 }))
             // When no packets left to send, leave the channel.
             .on("end", () => {
               playing = false;
-              chan.send("song ended *sad uwu*");
+              chan.send("song ended *sad UwU*");
               connection.channel.leave();
-              owo.commands["sral"].onChannel(msg);
             });
           // Handle error without crashing the app.
           //.catch(console.error);
         });
         //.catch(console.error);
       } else {
-        chan.send("Samyo-senpai says no");
-        chan.send(embeds.SralEmbed());
-        //msg.delete();
+        chan.send("Sorry, I can only play in one channel at a time!");
       }
-    }
-  },
-  sral: {
-    type: "Music",
-    usage: "sral",
-    description: "Song ended sad uwu",
-    onCall: function(msg) {
-      owo.commands["playsong"].onCall(msg, [
-        "https://www.youtube.com/watch?v=P8kVauBznTI"
-      ]);
-      //this.commands.playsong.onCall(msg, ["https://www.youtube.com/watch?v=P8kVauBznTI"]);
     }
   },
   leavechannel: {
@@ -156,33 +139,6 @@ module.exports.commands = {
       msg.channel.send("( ͡° ͜ʖ ͡°)");
     }
   },
-  samyoproxy: {
-    type: "Fun",
-    usage: "samyoproxy [URL]",
-    description: "hide a link",
-    onCall: function(msg, args) {
-      var url = args[0];
-      customHeaderRequest.post(
-        "https://proxy.samyo.wtf/expanddong",
-        { json: { longurl: url } },
-        function(error, response, body) {
-          if (!error && response.statusCode == 200) {
-            msg.channel.send(body);
-          } else {
-            msg.channel.send(
-              "I'm sorry, but an error occured. Please try again!"
-            );
-            console.log(
-              "Error: " + error + "\nResponse: " + response + "\nBody: " + body
-            );
-            msg.channel.send(
-              "Error: " + error + "\nResponse: " + response + "\nBody: " + body
-            );
-          }
-        }
-      );
-    }
-  },
   hello: {
     type: "Fun",
     usage: "hello",
@@ -194,7 +150,7 @@ module.exports.commands = {
   rlenny: {
     type: "Fun",
     usage: "rlenny",
-    description: "Send a random Lenny Face back",
+    description: "Send a random Lenny Face / Kaomoji back",
     onCall: function(msg) {
       var lennyarr = [
         "( ͡° ͜ʖ ͡°)",
