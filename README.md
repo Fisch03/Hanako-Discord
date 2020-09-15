@@ -7,8 +7,6 @@ Hanako is small Discord Bot made with [Node](https://nodejs.org/) and [Discord.j
 
 ##### ALSO WARNING: This bot is in English, but we plan to add German in the Future.
 
-This bot is currently hosted on [Glitch](https://glitch.com/). If you want to learn more about this you can use [this](https://anidiots.guide/other-guides/hosting-on-glitch) awesome tutorial, which inspired me to do this thing!
-
 ## FEATURES
 Hanako can do many things, including
 1. Fun Commands: Commands like howgay, lenny and catgirl
