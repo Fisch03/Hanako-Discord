@@ -7,7 +7,6 @@ const { getRequest, getJSON } = require("./web-handler.js");
 
 const ytdl = require("ytdl-core");
 
-
 let playing = false;
 
 module.exports.commands = {
@@ -358,6 +357,15 @@ module.exports.commands = {
       "Sends the invite link for the official Hanako Discord server.",
     onCall: function(msg) {
       msg.channel.send("https://discord.gg/8fGVDAs");
+    }
+  },
+  version: {
+    type: "Botinfo",
+    usage: "version",
+    description:
+      "Get the current Hanako version",
+    onCall: function(msg) {
+      msg.channel.send(`Hanako is running version ${process.env.npm_package_version}.`);
     }
   }
 };
