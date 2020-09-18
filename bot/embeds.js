@@ -1,6 +1,22 @@
 const { MessageEmbed } = require("discord.js");
 
-module.exports.RedditEmbed = function(subname, content) {
+module.exports.embeds = {
+  catgirlEmbed: new MessageEmbed()
+    .setColor(0xff00e5)
+    .setDescription("Random catgirl from [Nekos.Life](https://nekos.life/)"),
+  catEmbed: new MessageEmbed()
+    .setColor(0x4c4cad)
+    .setDescription("Random cat from [random.cat](https://random.cat)"),
+  quoteEmbed: new MessageEmbed()
+    .setDescription("Inspirational Quote from [Inspirobot](https://inspirobot.me/)")
+    .setColor(0x000000),
+  githubEmbed: new MessageEmbed()
+    .setThumbnail("https://octodex.github.com/images/original.png")
+    .setColor(0x000000)
+}
+
+/* DEPRECATED! FOR REFERENCE USE ONLY
+export function RedditEmbed(subname, content) {
   {
     //Embed for Subreddit listings
     var contentstring = "";
@@ -26,51 +42,5 @@ module.exports.RedditEmbed = function(subname, content) {
       .setFooter("Data recieved:");
     return embed;
   }
-};
-
-module.exports.CatgirlEmbed = function(link) {
-  const embed = new MessageEmbed()
-    .setTitle("Catgirl")
-    .setColor(0xff00e5)
-    .setImage(link)
-    .setDescription("Random catgirl from [Nekos.Life](https://nekos.life/)");
-  return embed;
-};
-
-module.exports.QuoteEmbed = function(link) {
-  const embed = new MessageEmbed()
-    .setTitle("Inspirational Quote from [Inspirobot](https://inspirobot.me/)")
-    .setColor(0x000000)
-    .setImage(link);
-  return embed;
-};
-
-module.exports.CatEmbed = function(link) {
-  const embed = new MessageEmbed()
-    .setTitle("Cat")
-    .setColor(0x4c4cad)
-    .setImage(link)
-    .setDescription("Random cat from [random.cat](https://random.cat)");
-  return embed;
-};
-
-module.exports.RepoEmbed = function(username, repomsg, avatarurl) {
-  var octocats = [
-    "https://octodex.github.com/images/total-eclipse-of-the-octocat.jpg",
-    "https://octodex.github.com/images/original.png",
-    "https://octodex.github.com/images/class-act.png",
-    "https://octodex.github.com/images/octobiwan.jpg",
-    "https://octodex.github.com/images/drupalcat.jpg",
-    "https://octodex.github.com/images/forktocat.jpg",
-    "https://octodex.github.com/images/repo.png",
-    "https://octodex.github.com/images/setuptocat.jpg"
-  ];
-  var octocat = Math.floor(Math.random() * octocats.length);
-  const embed = new MessageEmbed()
-    .setAuthor(username, avatarurl)
-    .setColor(0x000000)
-    .setThumbnail(octocats[octocat])
-    .setDescription(repomsg);
-  return embed;
-};
-
+}
+*/

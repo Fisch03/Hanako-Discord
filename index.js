@@ -5,11 +5,7 @@ const commands = require("./bot/commands.js");
 const gmanager = require("./bot/games/gamemanager.js");
 
 const express = require("express");
-const request = require('request');
 
-var customHeaderRequest = request.defaults({
-    headers: {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:76.0) Gecko/20100101 Firefox/76.0'}
-})
 const app = express();
 
 var secrets;

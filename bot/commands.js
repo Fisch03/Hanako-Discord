@@ -1,16 +1,12 @@
 ﻿const main = require("../index.js");
 
 const help = require("./help.js");
-const embeds = require("./embeds.js");
+const { embeds } = require("./embeds.js");
 const games = require("./games/gamemanager.js");
-const jsonhandler = require("./json-handler.js");
+const { getRequest, getJSON } = require("./web-handler.js");
 
-const { RichEmbed } = require("discord.js");
-const { fetchSubreddit, fetchRandomSubredditName } = require("fetch-subreddit");
-const request = require("request");
 const ytdl = require("ytdl-core");
 
-var customHeaderRequest = request.defaults({});
 
 var playing = false;
 
@@ -51,7 +47,13 @@ module.exports.commands = {
     usage: "catgirl",
     description: "Fetch a random Catgirl Image from nekos.life",
     onCall: function(msg) {
-      jsonhandler.getCatgirl(msg.channel, main.sendMsg);
+      getRequest("https://nekos.life/api/neko")
+        .then((json) => {
+          let embed = embeds.catgirlEmbed;
+          embed.setImage(json.neko);
+          msg.channel.send(embed);
+        })
+        .catch((error) => {console.error(error)})
     }
   },
   lewdcatgirl: {
@@ -61,7 +63,13 @@ module.exports.commands = {
       "Fetch a random LewdCatgirl Image from nekos.life (NSFW, obviously)",
     onCall: function(msg) {
       if (msg.channel.nsfw) {
-        jsonhandler.getLewdCatgirl(msg.channel, main.sendMsg);
+        getRequest("https://nekos.life/api/lewd/neko")
+        .then((json) => {
+          let embed = embeds.catgirlEmbed;
+          embed.setImage(json.neko);
+          msg.channel.send(embed);
+        })
+        .catch((error) => {console.error(error)})
       } else {
         msg.channel.send(":warning: Channel must be marked as NSFW");
       }
@@ -128,7 +136,13 @@ module.exports.commands = {
     usage: "cat",
     description: "Fetch a random Cat Image from random.cat",
     onCall: function(msg) {
-      jsonhandler.getCat(msg.channel, main.sendMsg);
+      getRequest("http://aws.random.cat/meow")
+        .then((json) => {
+          let embed = embeds.catEmbed;
+          embed.setImage(json.file.replace(/\\/g, ""));
+          msg.channel.send(embed);
+        })
+        .catch((error) => {console.error(error)})
     }
   },
   lenny: {
@@ -219,7 +233,12 @@ module.exports.commands = {
     usage: "quote",
     description: "Generate an inspirational quote. Powered by InspiroBot",
     onCall: function(msg, args) {
-      jsonhandler.getQuote(msg.channel, main.sendMsg);
+      getRequest("https://inspirobot.me/api?generate=true")
+        .then((body) => {
+          let embed = embeds.quoteEmbed;
+          embed.setImage(body);
+          msg.channel.send(embed);
+        })
     }
   },
 
@@ -260,8 +279,8 @@ module.exports.commands = {
     description:
       'Starts an interactive game. Exit with the "stop" command. For a list of games use the "gamelist" command',
     onCall: function(msg, args) {
-      games.init(args, msg.channel);
-      main.gameRunning = true;
+      init(args, msg.channel);
+      gameRunning = true;
     }
   },
 
@@ -273,13 +292,7 @@ module.exports.commands = {
     usage: "sub [Name of subreddit] [Number of posts]",
     description: "Fetch the top posts of a specific subreddit",
     onCall: function(msg, args) {
-      var content = "";
-      fetchSubreddit(args[0].toLowerCase())
-        .then(function(urls) {
-          content = jsonhandler.RedditJSON(urls[0], args[1]); //We use "urls[0]" because fetchSubreddit returns the JSON object within an 1-element-array
-          msg.channel.send(content);
-        })
-        .catch(err => console.error(err));
+      msg.channel.send("Reddit commands are currently being reworked and will be back soon.");
     }
   },
   rsub: {
@@ -287,25 +300,7 @@ module.exports.commands = {
     usage: "rsub [Number of posts]",
     description: "Fetch the top posts of a random subreddit",
     onCall: function(msg, args) {
-      var subnamestr;
-      var subname = "";
-      var content = "";
-      fetchRandomSubredditName(1)
-        .then(function(subreddits) {
-          subnamestr = JSON.stringify(subreddits, null, 2);
-          subnamestr = subnamestr.split('"name": "');
-          subnamestr = subnamestr[1].split("/");
-          subname = subnamestr[0];
-        })
-        .then(function() {
-          fetchSubreddit(subname.toLowerCase())
-            .then(function(urls) {
-              content = jsonhandler.RedditJSON(urls[0], args[0]); //We use "urls[0]" because fetchSubreddit returns the JSON object within an 1-element-array
-              msg.channel.send(embeds.RedditEmbed(subname, content, args[0]));
-            })
-            .catch(err => console.error(err))
-            .catch(err => console.error(err));
-        });
+      msg.channel.send("Reddit commands are currently being reworked and will be back soon.");
     }
   },
   githubrepos: {
@@ -313,7 +308,20 @@ module.exports.commands = {
     usage: "githubrepos [username]",
     description: "List all GitHub Repos a user has",
     onCall: function(msg, args) {
-      jsonhandler.getGitHubRepos(msg.channel, main.sendMsg, args[0]);
+      getRequest(`https://api.github.com/users/${args[0]}/repos`)
+        .then((json) => {
+          console.log(json)
+          repolist = ""
+          for (var i = 0; i < json.length; i++) {
+            repolist = repolist + json[i].full_name + "\n";
+          }
+
+          let embed = embeds.githubEmbed;
+          embed.setAuthor(args[0], json[0].owner.avatar_url)
+          embed.setDescription(repolist)
+          msg.channel.send(embed);
+        })
+        .catch((error) => {console.error(error)})
     }
   },
 
@@ -326,7 +334,7 @@ module.exports.commands = {
     description:
       "You literally just used this command... What more do you want?",
     onCall: function(msg, args) {
-      help.help(msg, args); //Code cant be executed here because we need access to all commands
+      _help(msg, args); //Code cant be executed here because we need access to all commands
     }
   },
 
