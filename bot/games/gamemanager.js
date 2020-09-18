@@ -1,6 +1,6 @@
 const labyrinth = require('./labyrinth.js')
 
-var gameID = 0;
+let gameID = 0;
 const gamesTable = ["None", "labyrinth"]
 /**
 0 = No Game
@@ -8,7 +8,7 @@ const gamesTable = ["None", "labyrinth"]
 **/
 
 module.exports.init = function(args, channel) {
-  var game = args[0];
+  let game = args[0];
   switch(game.toLowerCase()) {
     case "labyrinth":
       gameID = 1;

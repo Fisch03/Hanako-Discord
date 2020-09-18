@@ -19,7 +19,7 @@ module.exports.embeds = {
 export function RedditEmbed(subname, content) {
   {
     //Embed for Subreddit listings
-    var contentstring = "";
+    let contentstring = "";
     content.forEach(function(link, index) {
       contentstring += `${index + 1}: `;
       contentstring += `[${link.substring(0, 36)}...](${link})`;

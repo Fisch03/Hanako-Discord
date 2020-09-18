@@ -1,6 +1,6 @@
 const gamelib = require('./gamelib.js');
 const main = require('../../index.js');
-const jsonhandler = require('../json-handler.js');
+const webhandler = require('../web-handler.js');
 
 const skin = [":white_large_square:", ":black_large_square:", ":red_circle:", ":blue_circle:", ":cat:", ":large_blue_diamond:"];
 const levels = [
@@ -65,18 +65,18 @@ const levels = [
     ],  [4,0, 0,4]
   ]
 ];
-var level;
-var excludedlvls = [];
+let level;
+let excludedlvls = [];
 
-var running = false;
-var gMatrix;
-var gType = 0;
+let running = false;
+let gMatrix;
+let gType = 0;
 
-var pX = 2;
-var pY = 2;
+let pX = 2;
+let pY = 2;
 
-var cX = 2;
-var cY = 2;
+let cX = 2;
+let cY = 2;
 
 module.exports.init = function(channel, type, excluded) {
 
@@ -106,7 +106,7 @@ module.exports.init = function(channel, type, excluded) {
 function reinit() {
   running = true;
 
-  var found = false;
+  let found = false;
 
   while (!found) {
     level = Math.floor(Math.random() * levels.length);
@@ -170,7 +170,13 @@ function loop() {
     if(gType == 0) {
       gMatrix.channel.send("You Won!");
     } else if(gType == 1) {
-      jsonhandler.getCatgirl(gMatrix.channel);
+      getRequest("https://nekos.life/api/neko")
+        .then((json) => {
+          let embed = embeds.catgirlEmbed;
+          embed.setImage(json.neko);
+          gMatrix.channel.send(embed);
+        })
+        .catch((error) => {console.error(error)})
     } else {
       excludedlvls.push(level);
       if(excludedlvls.length >= levels.length) {

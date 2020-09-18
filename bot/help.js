@@ -4,9 +4,9 @@ const { MessageEmbed } = require('discord.js');
 
 module.exports.help = function(msg, args) {
   if(args[0] != undefined) {
-    var command = commands.commands[args[0]];
+    let command = commands.commands[args[0]];
     if(command != undefined) {
-      var embed = new RichEmbed()
+      let embed = new MessageEmbed()
         .setTitle("__Help__")
         .setColor(0x7289DA)
         .setDescription(`**Help for the ${args[0]} command**`)
@@ -19,23 +19,23 @@ module.exports.help = function(msg, args) {
     }
   } else {
     const cmdarray = Object.values(commands.commands)
-    var allcommands = {}
+    let allcommands = {}
 
-    for(var cmd of cmdarray) {
+    for(let cmd of cmdarray) {
       if(!allcommands[cmd.type])
         allcommands[cmd.type] = [];
       allcommands[cmd.type].push(cmd.usage);
     }
 
     allcategories = Object.keys(allcommands)
-    var embed = new MessageEmbed()
+    let embed = new MessageEmbed()
       .setTitle("__Help__")
       .setColor(0x7289DA)
       .setDescription(`**A list of all the commands**`)
       .setFooter("Text in brackets has to be replaced with additional parameters.");
 
-    for(var category of allcategories) {
-      var text = ""
+    for(let category of allcategories) {
+      let text = ""
       allcommands[category].forEach(function(cmd, index) {
         text += cmd
         if(index != allcommands[category].length-1)

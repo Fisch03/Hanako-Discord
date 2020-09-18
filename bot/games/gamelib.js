@@ -22,7 +22,7 @@ module.exports.Matrix = function(channel, skin) {
   }
 
   this.update = function() {
-    var content = "";
+    let content = "";
     for (row in this.pixels) {
       for (pixel in this.pixels[row]) {
         content += skin[this.pixels[row][pixel]];

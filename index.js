@@ -8,7 +8,7 @@ const express = require("express");
 
 const app = express();
 
-var secrets;
+let secrets;
 
 try {
   secrets = require("./secrets.js");
@@ -28,9 +28,9 @@ self.on("message", message => {
   if (message.author.bot) return;
 
   if (message.content.startsWith(prefix)) {
-    var msg = message.content.substring(1);
-    var args = msg.split(" ");
-    var cmd = args.shift();
+    let msg = message.content.substring(1);
+    let args = msg.split(" ");
+    let cmd = args.shift();
 
     if (!this.gameRunning) {
       if (commands.commands[cmd]) {

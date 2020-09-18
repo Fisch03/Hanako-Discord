@@ -8,7 +8,7 @@ const { getRequest, getJSON } = require("./web-handler.js");
 const ytdl = require("ytdl-core");
 
 
-var playing = false;
+let playing = false;
 
 module.exports.commands = {
   /**
@@ -27,8 +27,8 @@ module.exports.commands = {
     usage: "howgay [name]",
     description: "Get a random percentage for how Gay the User is",
     onCall: function(msg, args) {
-      var value = Math.floor(Math.random() * 101);
-      var name = args[0];
+      let value = Math.floor(Math.random() * 101);
+      let name = args[0];
       msg.channel.send(`${name} is ${value}% gay :gay_pride_flag:`);
     }
   },
@@ -37,8 +37,8 @@ module.exports.commands = {
     usage:"ratewaifu [name]",
     description:"Get a random rating for how much of a Waifu the User is",
     onCall: function(msg, args) {
-      var value = Math.floor(Math.random() * 11);
-      var name = args[0];
+      let value = Math.floor(Math.random() * 11);
+      let name = args[0];
       msg.channel.send(`${name} is a ${value}/10 Waifu`);
     }
   },
@@ -82,7 +82,7 @@ module.exports.commands = {
       "Play a song in the voice channel you are currently in. (HIGHLY EXPERIMENTAL!)",
     onCall: function(msg, args) {
       /*const streamOptions = { seek: 0, volume: 1 };
-      var voiceChannel = msg.member.voiceChannel;
+      let voiceChannel = msg.member.voiceChannel;
       voiceChannel
         .join()
         .then(connection => {
@@ -97,7 +97,7 @@ module.exports.commands = {
           });
         })
         .catch(err => msg.channel.send(err));*/
-              var chan = msg.channel;
+              let chan = msg.channel;
 
       if (!playing) {
         playing = true;
@@ -166,7 +166,7 @@ module.exports.commands = {
     usage: "rlenny",
     description: "Send a random Lenny Face / Kaomoji back",
     onCall: function(msg) {
-      var lennyarr = [
+      let lennyarr = [
         "( ͡° ͜ʖ ͡°)",
         "(づ ◔ ͜ʖ ◔ )づ",
         "(╭☞ ・ ͜つ ・ )╭☞",
@@ -195,7 +195,7 @@ module.exports.commands = {
         "(☭ ͜ʖ ☭)",
         "(=^-ω-^=)"
       ];
-      var value = Math.floor(Math.random() * (lennyarr.length + 1));
+      let value = Math.floor(Math.random() * (lennyarr.length + 1));
       msg.channel.send(lennyarr[value]);
     }
   },
@@ -207,7 +207,7 @@ module.exports.commands = {
       if (!args[0] || args[0] == "") {
         msg.channel.send("You have to ask something!");
       } else {
-        var responses = [
+        let responses = [
           "Yes",
           "No",
           "Why?",
@@ -217,7 +217,7 @@ module.exports.commands = {
           "You are funny",
           "Shut up!"
         ];
-        var value = Math.floor(Math.random() * responses.length);
+        let value = Math.floor(Math.random() * responses.length);
         if (args[0] == "ban" && args[1] == "fisch03") {
           msg.channel.send("Yes");
         } else if (args[0] == "ban" && args[1] == "@everyone") {
@@ -250,12 +250,12 @@ module.exports.commands = {
     usage: "rps [Rock/Paper/Scissors]",
     description: "Play Rock-Paper-Scissors against the bot",
     onCall: function(msg, args) {
-      var answers = ["rock", "paper", "scissors"];
-      var value = Math.floor(Math.random() * 3);
-      var bchoice = answers[value].toLowerCase();
-      var pchoice = args[0].toLowerCase();
+      let answers = ["rock", "paper", "scissors"];
+      let value = Math.floor(Math.random() * 3);
+      let bchoice = answers[value].toLowerCase();
+      let pchoice = args[0].toLowerCase();
 
-      var result = `Your choice: ${args[0]}, my choice: ${answers[value]} \n`;
+      let result = `Your choice: ${args[0]}, my choice: ${answers[value]} \n`;
 
       if (bchoice === pchoice) result += "Draw!";
 
@@ -273,14 +273,14 @@ module.exports.commands = {
       msg.channel.send(result);
     }
   },
-  gamestart: {
+  startgame: {
     type: "Games",
     usage: "startgame [Name of game] [Additional options]",
     description:
       'Starts an interactive game. Exit with the "stop" command. For a list of games use the "gamelist" command',
     onCall: function(msg, args) {
-      init(args, msg.channel);
-      gameRunning = true;
+      games.init(args, msg.channel);
+      main.gameRunning = true;
     }
   },
 
@@ -312,7 +312,7 @@ module.exports.commands = {
         .then((json) => {
           console.log(json)
           repolist = ""
-          for (var i = 0; i < json.length; i++) {
+          for (let i = 0; i < json.length; i++) {
             repolist = repolist + json[i].full_name + "\n";
           }
 
@@ -334,7 +334,7 @@ module.exports.commands = {
     description:
       "You literally just used this command... What more do you want?",
     onCall: function(msg, args) {
-      _help(msg, args); //Code cant be executed here because we need access to all commands
+      help.help(msg, args); //Code cant be executed here because we need access to all commands
     }
   },
 
