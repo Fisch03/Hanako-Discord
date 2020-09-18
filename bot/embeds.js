@@ -3,10 +3,13 @@ const { MessageEmbed } = require("discord.js");
 module.exports.embeds = {
   catgirlEmbed: new MessageEmbed()
     .setColor(0xff00e5)
-    .setDescription("Random catgirl from [Nekos.Life](https://nekos.life/)"),
+    .setDescription("Random catgirl from [nekos.life](https://nekos.life/)"),
   catEmbed: new MessageEmbed()
     .setColor(0x4c4cad)
     .setDescription("Random cat from [random.cat](https://random.cat)"),
+  dogEmbed: new MessageEmbed()
+    .setColor(0xa3480f)
+    .setDescription("Random dog from [dog.ceo](https://dog.ceo)"),
   quoteEmbed: new MessageEmbed()
     .setDescription("Inspirational Quote from [Inspirobot](https://inspirobot.me/)")
     .setColor(0x000000),

@@ -144,6 +144,20 @@ module.exports.commands = {
         .catch((error) => {console.error(error)})
     }
   },
+  dog: {
+    type: "Fun",
+    usage: "dog",
+    description: "Fetch a random Dog Image from dog.ceo",
+    onCall: function(msg) {
+      getRequest("https://dog.ceo/api/breeds/image/random")
+        .then((json) => {
+          let embed = embeds.dogEmbed;
+          embed.setImage(json.message);
+          msg.channel.send(embed);
+        })
+        .catch((error) => {console.error(error)})
+    }
+  },
   lenny: {
     type: "Fun",
     usage: "lenny",
