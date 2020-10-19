@@ -177,6 +177,20 @@ module.exports.commands = {
 		  .catch((error) => {console.error(error)})
     }
   },
+  fox: {
+	type: "Fun",
+	usage: "fox",
+	description: "Fetch a random fox from randomfox.ca",
+	onCall: function(msg) {
+		getRequest("https://randomfox.ca/floof/")
+		  .then((json) => {
+			let embed = embeds.foxEmbed;
+			embed.setImage(json.image);
+			msg.channel.send(embed);
+		  })
+		  .catch((error) => {console.error(error)})
+	}
+  },
   echo: {
 	type: "Fun",
 	usage: "echo [message]",
