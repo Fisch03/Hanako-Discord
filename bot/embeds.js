@@ -15,7 +15,10 @@ module.exports.embeds = {
     .setColor(0x000000),
   githubEmbed: new MessageEmbed()
     .setThumbnail("https://octodex.github.com/images/original.png")
+    .setColor(0x000000),
+  jokeEmbed: new MessageEmbed()
     .setColor(0x000000)
+	.setFooter("Random joke from sv443.net")
 }
 
 /* DEPRECATED! FOR REFERENCE USE ONLY
