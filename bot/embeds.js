@@ -18,7 +18,10 @@ module.exports.embeds = {
     .setColor(0x000000),
   jokeEmbed: new MessageEmbed()
     .setColor(0x000000)
-	.setFooter("Random joke from sv443.net")
+	.setFooter("Random joke from sv443.net"),
+  foxEmbed: new MessageEmbed()
+	.setColor(0xcc8400)
+	.setDescription("Random fox from [randomfox.ca](https://randomfox.ca)")
 }
 
 /* DEPRECATED! FOR REFERENCE USE ONLY
