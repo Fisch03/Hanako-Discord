@@ -4,6 +4,7 @@ const help = require("./help.js");
 const { embeds } = require("./embeds.js");
 const games = require("./games/gamemanager.js");
 const { getRequest, getJSON } = require("./web-handler.js");
+const ikea = require("ikea-name-generator");
 
 const ytdl = require("ytdl-core");
 
@@ -189,6 +190,16 @@ module.exports.commands = {
 			msg.channel.send(embed);
 		  })
 		  .catch((error) => {console.error(error)})
+	}
+  },
+  ikea: {
+	type: "Fun",
+	usage: "ikea",
+	description: "Return a randomly generated IKEA furniture name",
+	onCall: function(msg) {
+		let embed = embeds.ikeaEmbed;
+		embed.setDescription(ikea.getName());
+		msg.channel.send(embed);
 	}
   },
   echo: {
