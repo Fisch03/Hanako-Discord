@@ -158,6 +158,36 @@ module.exports.commands = {
         .catch((error) => {console.error(error)})
     }
   },
+  joke: {
+	type: "Fun",
+	usage: "joke",
+	description: "Fetch a random joke from sv443.net/jokeapi",
+	onCall: function(msg) {
+		getRequest("https://sv443.net/jokeapi/v2/joke/Any")
+		  .then((json) => {
+			  let embed = embeds.jokeEmbed;
+			  if (json.type == "twopart"){
+				embed.setDescription(json.setup + "\n" + json.delivery);
+				msg.channel.send(embed);
+			  } else {
+				embed.setDescription(json.joke);
+				msg.channel.send(embed);
+			  }
+		  })
+		  .catch((error) => {console.error(error)})
+    }
+  },
+  echo: {
+	type: "Fun",
+	usage: "echo [message]",
+	description: "Sends the message you entered back.",
+	onCall: function(msg, args) {
+	  if(!msg.guild.member(msg.author).hasPermission('MANAGE_MESSAGES')) {
+	    return msg.channel.send("You don't have permissions to do that here!"); 
+      }
+	  msg.channel.send(args.join(" "));
+	}
+  },
   lenny: {
     type: "Fun",
     usage: "lenny",
