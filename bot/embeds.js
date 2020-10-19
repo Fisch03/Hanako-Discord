@@ -21,7 +21,10 @@ module.exports.embeds = {
 	.setFooter("Random joke from sv443.net"),
   foxEmbed: new MessageEmbed()
 	.setColor(0xcc8400)
-	.setDescription("Random fox from [randomfox.ca](https://randomfox.ca)")
+	.setDescription("Random fox from [randomfox.ca](https://randomfox.ca)"),
+  ikeaEmbed: new MessageEmbed()
+    .setColor(0x0051ba)
+	.setFooter("Random IKEA furniture name from the npm package ikea-name-generator")
 }
 
 /* DEPRECATED! FOR REFERENCE USE ONLY
