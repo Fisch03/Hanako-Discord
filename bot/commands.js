@@ -207,9 +207,6 @@ module.exports.commands = {
 	usage: "echo [message]",
 	description: "Sends the message you entered back.",
 	onCall: function(msg, args) {
-	  if(!msg.guild.member(msg.author).hasPermission('MANAGE_MESSAGES')) {
-	    return msg.channel.send("You don't have permissions to do that here!"); 
-      }
 	  msg.channel.send(args.join(" "));
 	}
   },
