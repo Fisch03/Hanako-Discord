@@ -1,5 +1,5 @@
 const { Client, RichEmbed } = require("discord.js");
-const self = new Client();
+const self = new Client({disableMentions: "everyone"});
 
 const commands = require("./bot/commands.js");
 const gmanager = require("./bot/games/gamemanager.js");
