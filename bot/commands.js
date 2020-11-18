@@ -28,8 +28,7 @@ module.exports.commands = {
     description: "Get a random percentage for how Gay the User is",
     onCall: function(msg, args) {
       let value = Math.floor(Math.random() * 101);
-      let name = args[0];
-      msg.channel.send(`${name} is ${value}% gay :gay_pride_flag:`);
+      msg.channel.send(`${args[0]} is ${value}% gay :gay_pride_flag:`);
     }
   },
   ratewaifu: {
@@ -38,8 +37,41 @@ module.exports.commands = {
     description:"Get a random rating for how much of a Waifu the User is",
     onCall: function(msg, args) {
       let value = Math.floor(Math.random() * 11);
-      let name = args[0];
-      msg.channel.send(`${name} is a ${value}/10 Waifu`);
+      msg.channel.send(`${args[0]} is a ${value}/10 Waifu`);
+    }
+  },
+  kiss: {
+    type:"Fun",
+    usage:"kiss [name]",
+    description:"Kiss somebody",
+    onCall: function(msg, args) {
+      let value = Math.floor(Math.random() * 11);
+      msg.channel.send(`${msg.author} kisses ${args[0]}. Chu~`);
+    }
+  },
+  poggers: {
+    type:"Fun",
+    usage:"poggers",
+    description:"unfunny feature",
+    onCall: function(msg) {
+      gifs = [
+        "https://tenor.com/view/poggers-anime-anime-poggers-poggers-anime-touhou-project-gif-18386346",
+        "https://tenor.com/view/anime-poggers-anime-anime-poggers-kiss-gif-18304456",
+        "https://tenor.com/view/poggers-kissing-anime-gif-18302048",
+        "https://tenor.com/view/poggers-anime-gif-18290438",
+        "https://tenor.com/view/poggers-pogger-anime-poggers-gif-18420590",
+        "https://tenor.com/view/poggers-gif-18334779",
+        "https://tenor.com/view/anime-poggers-anime-poggers-anime-gif-18290513",
+        "https://tenor.com/view/poggers-anime-girls-mako-anime-girls-kiss-kiss-gif-17206802",
+        "https://tenor.com/view/sound-of-poggers-poggers-anime-anime-poggers-charr-gif-18348699",
+        "https://tenor.com/view/poggers-anime-girls-kissing-pog-gif-18050577",
+        "https://tenor.com/view/poggers-kiss-anime-kiss-honey-gif-18097318",
+        "https://tenor.com/view/anime-poggers-anime-poggers-anime-gif-18290518",
+        "https://tenor.com/view/poggers-gif-18334778",
+        "https://tenor.com/view/anime-poggers-sound-of-poggers-poggers-anime-yuru-yuri-gif-18409324",
+        "https://tenor.com/view/anime-poggers-anime-poggers-anime-gif-18290521"
+      ]
+      msg.channel.send(`${gifs[Math.floor(Math.random() * gifs.length)]}`);
     }
   },
   catgirl: {
@@ -198,7 +230,7 @@ module.exports.commands = {
 	description: "Return a randomly generated IKEA furniture name",
 	onCall: function(msg) {
 		let embed = embeds.ikeaEmbed;
-		embed.setDescription(ikea.getName());
+		embed.setTitle(ikea.getName());
 		msg.channel.send(embed);
 	}
   },
