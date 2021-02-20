@@ -5,7 +5,7 @@ const { embeds } = require("./embeds.js");
 const games = require("./games/gamemanager.js");
 const { getRequest, getJSON } = require("./web-handler.js");
 const ikea = require("ikea-name-generator");
-const { Uwuifier } = require("Uwuifier");
+const { Uwuifier } = require("uwuifier");
 const uwuifier = new Uwuifier();
 
 const ytdl = require("ytdl-core");
