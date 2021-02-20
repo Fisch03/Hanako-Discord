@@ -50,7 +50,7 @@ self.on("messageReactionAdd", (reaction, user) => {
   }
 });
 
-// module.exports.sendMsg = function(content, channel) {gi
+module.exports.sendMsg = function(content, channel) {
   channel.send(content);
 };
 
