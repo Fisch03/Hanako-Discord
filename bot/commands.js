@@ -5,6 +5,8 @@ const { embeds } = require("./embeds.js");
 const games = require("./games/gamemanager.js");
 const { getRequest, getJSON } = require("./web-handler.js");
 const ikea = require("ikea-name-generator");
+const { Uwuifier } = require("Uwuifier");
+const uwuifier = new Uwuifier();
 
 const ytdl = require("ytdl-core");
 
@@ -47,6 +49,24 @@ module.exports.commands = {
     onCall: function(msg, args) {
       let value = Math.floor(Math.random() * 11);
       msg.channel.send(`${msg.author} kisses ${args[0]}. Chu~`);
+    }
+  },
+  uwu: {
+    type: "Fun",
+    usage: "uwu [Text]",
+    description: "uwuifies text",
+    onCall: function(msg, args){
+      if (args.length == 0){
+        msg.channel.messages.fetch({limit: 2})
+          .then(messageMappings => {
+            let messages = Array.from(messageMappings.values());
+            let previousMessage = messages[1];
+            msg.channel.send(uwuifier.uwuifySentence(previousMessage.content));
+          })
+          .catch(error => console.log(error))
+      } else {
+        msg.channel.send(uwuifier.uwuifySentence(args.join(" ")));
+      }
     }
   },
   poggers: {
