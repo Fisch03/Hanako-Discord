@@ -60,6 +60,7 @@ if (process.env.TOKEN) {
   self.login(secrets.getToken());
 }
 
+
 //Actually show the Webpage
 app.use(express.static("public"));
 app.get("/", function(request, response) {
