@@ -1,6 +1,6 @@
 {
   "name": "hanako-discord",
-  "version": "0.9.0",
+  "version": "0.9.1",
   "description": "A small Discord Bot using Node and the Discord.js library.",
   "main": "index.js",
   "scripts": {
