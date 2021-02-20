@@ -50,16 +50,15 @@ self.on("messageReactionAdd", (reaction, user) => {
   }
 });
 
-module.exports.sendMsg = function(content, channel) {
+// module.exports.sendMsg = function(content, channel) {gi
   channel.send(content);
 };
 
-/*if (process.env.TOKEN) {
+if (process.env.TOKEN) {
   self.login(process.env.TOKEN);
 } else {
   self.login(secrets.getToken());
-}*/
-self.login("NjU5OTA1MjQ1MzIwODM5MTY5.XgVGpg.jKpm61_SyTUbJPuz2JcxQzOTTxc");
+}
 
 //Actually show the Webpage
 app.use(express.static("public"));
