@@ -331,16 +331,31 @@ module.exports.commands = {
           "I'm not sure",
           "Please ask me later",
           "That's  it, I'm shutting down.",
-          "Haha, you're funny",
+          "Haha, that's funny",
           "I hate you, shut up!"
         ];
+        let uwu_responses = [
+          "Yes, of couwse",
+          "Nyo, definyitwy not",
+          "W-W-Why did you ask?",
+          "I'm nyot suwe",
+          "Pwease ask me watew",
+          "That's  it, I'm shutting down *runs away*",
+          "Haha, that's funny uwu",
+          "I hate you, shut up!!11"
+        ]
         let value = Math.floor(Math.random() * responses.length);
-        if (args[0] == "ban" && args[1] == "fisch03") {
-          msg.channel.send("Yes");
-        } else if (args[0] == "ban" && args[1] == "@everyone") {
+        if (args[0] == "ban") {
           msg.channel.send("Yes");
         } else {
-          msg.channel.send(responses[value]);
+          let last_arg = args.length-1;
+          while(last_arg > 0 && args[last_arg] == "") last_arg--;
+
+          if(args[last_arg].toLowerCase == "uwu" || args[last_arg].toLowerCase == "uwu?" || (args[last_arg] == "?" && args[last_arg-1].toLowerCase == "uwu")) {
+            msg.channel.send(uwu_responses[value]);
+          } else {
+            msg.channel.send(responses[value]);
+          }
         }
       }
     }
