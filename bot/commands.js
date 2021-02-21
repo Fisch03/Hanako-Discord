@@ -325,14 +325,14 @@ module.exports.commands = {
         msg.channel.send("You have to ask something!");
       } else {
         let responses = [
-          "Yes",
-          "No",
-          "Why?",
-          "Not sure",
-          "Ask me later",
-          "Shutting down",
-          "You are funny",
-          "Shut up!"
+          "Yes, of course",
+          "No, definitly not",
+          "Why did you ask?",
+          "I'm not sure",
+          "Please ask me later",
+          "That's  it, I'm shutting down.",
+          "Haha, you're funny",
+          "I hate you, shut up!"
         ];
         let value = Math.floor(Math.random() * responses.length);
         if (args[0] == "ban" && args[1] == "fisch03") {
