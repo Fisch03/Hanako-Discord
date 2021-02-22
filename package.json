@@ -7,20 +7,21 @@
     "start": "node index.js"
   },
   "dependencies": {
-    "@discordjs/opus": "^0.3.2",
+    "@discordjs/opus": "^0.3.3",
     "asynckit": "^0.4.0",
     "axios": "^0.21.1",
     "combined-stream": "^1.0.8",
     "discord.js": "^12.5.1",
     "enmap": "^5.2.4",
     "express": "^4.17.1",
+    "ffmpeg-static": "^4.2.7",
     "ikea-name-generator": "^1.0.3",
     "mime-types": "^2.1.29",
     "moment": "^2.25.3",
     "moment-duration-format": "^2.2.2",
     "setimmediate": "^1.0.5",
     "uwuifier": "^2.0.4",
-    "ytdl-core": "^2.1.1"
+    "ytdl-core": "^4.5.0"
   },
   "engines": {
     "node": "^12.0.0"

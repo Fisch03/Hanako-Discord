@@ -2,15 +2,12 @@
 
 const help = require("./help.js");
 const { embeds } = require("./embeds.js");
+const music  = require("./music.js");
 const games = require("./games/gamemanager.js");
 const { getRequest, getJSON } = require("./web-handler.js");
 const ikea = require("ikea-name-generator");
 const { Uwuifier } = require("uwuifier");
 const uwuifier = new Uwuifier();
-
-const ytdl = require("ytdl-core");
-
-let playing = false;
 
 module.exports.commands = {
   /**
@@ -127,60 +124,32 @@ module.exports.commands = {
       }
     }
   },
-  playsong: {
+  play: {
     type: "Music",
-    usage: "playsong [youtube url]",
+    usage: "play [youtube url]",
     description:
-      "Play a song in the voice channel you are currently in. (HIGHLY EXPERIMENTAL!)",
+      "Play a song in the voice channel you are currently in. HIGHLY EXPERIMENTAL! Music sometimes stops whilst playing back for example",
     onCall: function(msg, args) {
-      /*const streamOptions = { seek: 0, volume: 1 };
-      let voiceChannel = msg.member.voiceChannel;
-      voiceChannel
-        .join()
-        .then(connection => {
-          msg.channel.send("OK");
-          const stream = ytdl("https://www.youtube.com/watch?v=dwDns8x3Jb4", {
-            filter: "audioonly"
-          });
-          const dispatcher = connection.playStream(stream, streamOptions);
-          dispatcher.on("end", end => {
-            msg.channel.send("Song ended");
-            voiceChannel.leave();
-          });
-        })
-        .catch(err => msg.channel.send(err));*/
-              let chan = msg.channel;
-
-      if (!playing) {
-        playing = true;
-
-        msg.member.voice.channel.join().then(connection => {
-          chan.send("Playing song now! *UwU*");
-
-          connection
-            .play(ytdl(args[0], { quality: "highestaudio", volume: 600 }))
-            // When no packets left to send, leave the channel.
-            .on("end", () => {
-              playing = false;
-              chan.send("song ended *sad UwU*");
-              connection.channel.leave();
-            });
-          // Handle error without crashing the app.
-          //.catch(console.error);
-        });
-        //.catch(console.error);
-      } else {
-        chan.send("Sorry, I can only play in one channel at a time!");
-      }
+      const serverQueue = music.queue.get(msg.guild.id);
+      music.execute(msg, serverQueue);
     }
   },
-  leavechannel: {
+  stop: {
     type: "Music",
-    usage: "leavechannel",
-    description: "LEAVE THE FUCKING VOICE CHANNEL HANAKO",
+    usage: "stop",
+    description: "Stops the currently playing song and leaves the voice channel.",
     onCall: function(msg) {
-      msg.member.voice.channel.leave();
-      playing = false;
+      const serverQueue = music.queue.get(msg.guild.id);
+      music.stop(msg, serverQueue);
+    }
+  },
+  skip: {
+    type: "Music",
+    usage: "skip",
+    description: "Skips the currently playing song",
+    onCall: function(msg) {
+      const serverQueue = music.queue.get(msg.guild.id);
+      music.skip(msg, serverQueue);
     }
   },
   cat: {
