@@ -390,18 +390,72 @@ module.exports.commands = {
   **/
   sub: {
     type: "Social",
-    usage: "sub [Name of subreddit] [Number of posts]",
-    description: "Fetch the top posts of a specific subreddit",
+    usage: "sub [Name of subreddit]",
+    description: "Fetch the hottest posts of a specific subreddit",
     onCall: function(msg, args) {
-      msg.channel.send("Reddit commands are currently being reworked and will be back soon.");
+      var subreddit = args[0].toLowerCase();
+      if (subreddit.startsWith("r/")){
+        subreddit = subreddit.replace("r/", "");
+      }
+      getRequest('https://www.reddit.com/r/' + subreddit + '/hot.json').then(body => {
+        var json = body;
+        var posts = json.data.children;
+        var stylizedSubredditName = posts[0].data.subreddit_name_prefixed
+        var arr0 = [];
+        var arr1 = [];
+        var i = 0;
+        posts.forEach(data => {
+          if (i != 10){
+            arr0.push("[" + data.data.title + "](https://reddit.com" + data.data.permalink + ")");
+            i++;
+          }
+        })
+        var embed = embeds.redditEmbed;
+        embed.setTitle(stylizedSubredditName);
+        embed.setDescription("The 10 hottest posts from " + stylizedSubredditName);
+        var finalContent = "";
+        arr0.forEach(content => {
+          finalContent = finalContent + content + "\n";
+        })
+        embed.setDescription("The 10 hottest posts from " + stylizedSubredditName + "\n\n" + finalContent);
+        embed.addField("More info", "[Go to this subreddit](https://reddit.com/" + stylizedSubredditName + ")");
+        msg.channel.send(embed);
+      })
     }
   },
   rsub: {
     type: "Social",
-    usage: "rsub [Number of posts]",
-    description: "Fetch the top posts of a random subreddit",
+    usage: "rsub",
+    description: "Fetch the hottest posts of a random subreddit",
     onCall: function(msg, args) {
-      msg.channel.send("Reddit commands are currently being reworked and will be back soon.");
+      var subreddits = ["dankmemes", "dogecoin", "okbuddyretard", "askreddit", "all", "discord", "osugame"];
+      var subreddit = subreddits[Math.floor(subreddits.length * Math.random())];
+      getRequest('https://www.reddit.com/r/' + subreddit + '/hot.json').then(body => {
+        var json = body;
+        var posts = json.data.children;
+        var stylizedSubredditName = posts[0].data.subreddit_name_prefixed
+        var arr0 = [];
+        var arr1 = [];
+        var i = 0;
+        posts.forEach(data => {
+          if (i != 10){
+            arr0.push("[" + data.data.title + "](https://reddit.com" + data.data.permalink + ")");
+            i++;
+          }
+        })
+        var embed = embeds.redditEmbed;
+        embed.setTitle(stylizedSubredditName);
+        embed.setDescription("The 10 hottest posts from " + stylizedSubredditName);
+        var finalContent = "";
+        arr0.forEach(content => {
+          finalContent = finalContent + content + "\n";
+        })
+        embed.setDescription("The 10 hottest posts from " + stylizedSubredditName + "\n\n" + finalContent);
+        // really dumb way of fixing that weird error where there would be a new more info field every execution
+        embed.spliceFields(0, 25);
+        embed.addField("More info", "[Go to this subreddit](https://reddit.com/" + stylizedSubredditName + ")");
+        msg.channel.send(embed);
+      })
     }
   },
   githubrepos: {
