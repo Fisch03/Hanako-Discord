@@ -54,12 +54,11 @@ module.exports.sendMsg = function(content, channel) {
   channel.send(content);
 };
 
-/*if (process.env.TOKEN) {
+if (process.env.TOKEN) {
   self.login(process.env.TOKEN);
 } else {
   self.login(secrets.getToken());
-}*/
-self.login("NjU5OTA1MjQ1MzIwODM5MTY5.XgVGpg.mAFiZg7ESaToHSjYzqYFhrd1gyc");
+}
 //Actually show the Webpage
 app.use(express.static("public"));
 app.get("/", function(request, response) {
