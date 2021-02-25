@@ -24,35 +24,11 @@ module.exports.embeds = {
 	.setDescription("Random fox from [randomfox.ca](https://randomfox.ca)"),
   ikeaEmbed: new MessageEmbed()
     .setColor(0x0051ba)
-	.setFooter("Random IKEA furniture name from the npm package ikea-name-generator")
+	.setFooter("Random IKEA furniture name from the npm package ikea-name-generator"),
+  redditEmbed: new MessageEmbed()
+  .setColor(0xff4500)
+  .setTitle("reddit")
+  .setDescription("Hottest posts")
+  .setTimestamp()
+  .setFooter("Data recieved")
 }
-
-/* DEPRECATED! FOR REFERENCE USE ONLY
-export function RedditEmbed(subname, content) {
-  {
-    //Embed for Subreddit listings
-    let contentstring = "";
-    content.forEach(function(link, index) {
-      contentstring += `${index + 1}: `;
-      contentstring += `[${link.substring(0, 36)}...](${link})`;
-      if (index != content.length - 1) contentstring += "\n";
-    });
-    const embed = new MessageEmbed()
-      .setTitle("r/" + subname)
-      .setThumbnail(
-        "https://images-eu.ssl-images-amazon.com/images/I/418PuxYS63L.png"
-      )
-      .setColor(0xff4500)
-      .setDescription(
-        `Here are the hottest ${content.length} posts from r/${subname}: \n ${contentstring}`
-      )
-      .addField(
-        "More info:",
-        `[Subreddit Homepage](https://www.reddit.com/r/${subname})`
-      )
-      .setTimestamp()
-      .setFooter("Data recieved:");
-    return embed;
-  }
-}
-*/
