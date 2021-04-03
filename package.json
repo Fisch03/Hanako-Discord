@@ -1,6 +1,6 @@
 {
   "name": "hanako-discord",
-  "version": "0.9.1",
+  "version": "1.0.0",
   "description": "A small Discord Bot using Node and the Discord.js library.",
   "main": "index.js",
   "scripts": {
@@ -12,19 +12,15 @@
     "axios": "^0.21.1",
     "combined-stream": "^1.0.8",
     "discord.js": "^12.5.1",
-    "enmap": "^5.2.4",
     "express": "^4.17.1",
     "ffmpeg-static": "^4.2.7",
+    "html-entities": "^2.3.2",
     "ikea-name-generator": "^1.0.3",
-    "mime-types": "^2.1.29",
-    "moment": "^2.25.3",
-    "moment-duration-format": "^2.2.2",
-    "setimmediate": "^1.0.5",
     "uwuifier": "^2.0.4",
     "ytdl-core": "^4.5.0"
   },
   "engines": {
-    "node": "^12.0.0"
+    "node": "^15.0.0"
   },
   "repository": {
     "url": "https://github.com/Fisch03/Hanako-Discord"
@@ -32,7 +28,6 @@
   "license": "wtfpl",
   "keywords": [
     "node",
-    "glitch",
     "discord",
     "bot"
   ]
