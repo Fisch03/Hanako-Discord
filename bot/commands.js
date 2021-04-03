@@ -1,13 +1,16 @@
 ﻿const main = require("../index.js");
 
 const help = require("./help.js");
-const { embeds } = require("./embeds.js");
 const music  = require("./music.js");
 const games = require("./games/gamemanager.js");
 const { getRequest, getJSON } = require("./web-handler.js");
+
 const ikea = require("ikea-name-generator");
+
 const { Uwuifier } = require("uwuifier");
 const uwuifier = new Uwuifier();
+
+const { MessageEmbed } = require("discord.js");
 
 module.exports.commands = {
   /**
@@ -91,6 +94,42 @@ module.exports.commands = {
       msg.channel.send(`${gifs[Math.floor(Math.random() * gifs.length)]}`);
     }
   },
+  waifu: {
+    type: "Fun",
+    usage: "waifu [optional category]",
+    description: "Fetch a random waifu image, optionally you can specify a category ([full list here](https://waifu.pics/more))",
+    onCall: function(msg, args) {
+      getRequest(`https://waifu.pics/api/sfw/${args[0]?args[0]:"waifu"}`)
+        .then((json) => {
+          let embed = new MessageEmbed()
+            .setColor(0xff00e5)
+            .setDescription("Random waifu from [waifu.pics](https://waifu.pics/)");
+          embed.setImage(json.url);
+          msg.channel.send(embed);
+        })
+        .catch(() => {msg.channel.send("Oops! Something went wrong. Make sure the category you specified exists.");})
+    }
+  },
+  lewdwaifu: {
+    type: "NSFW",
+    usage: "lewdwaifu [optional category]",
+    description: "Fetch a random lewd waifu image, optionally you can specify a category ([full list here](https://waifu.pics/more))",
+    onCall: function(msg, args) {
+      if (msg.channel.nsfw) {
+        getRequest(`https://waifu.pics/api/nsfw/${args[0]?args[0]:"waifu"}`)
+          .then((json) => {
+            let embed = new MessageEmbed()
+              .setColor(0xff00e5)
+              .setDescription("Random waifu from [waifu.pics](https://waifu.pics/)");
+            embed.setImage(json.url);
+            msg.channel.send(embed);
+          })
+          .catch(() => {msg.channel.send("Oops! Something went wrong. Make sure the category you specified exists.");})
+      } else {
+        msg.channel.send(":warning: Channel must be marked as NSFW");
+      }
+    }
+  },
   catgirl: {
     type: "Fun",
     usage: "catgirl",
@@ -98,7 +137,9 @@ module.exports.commands = {
     onCall: function(msg) {
       getRequest("https://nekos.life/api/neko")
         .then((json) => {
-          let embed = embeds.catgirlEmbed;
+          let embed = new MessageEmbed()
+            .setColor(0xff00e5)
+            .setDescription("Random catgirl from [nekos.life](https://nekos.life/)");
           embed.setImage(json.neko);
           msg.channel.send(embed);
         })
@@ -106,15 +147,17 @@ module.exports.commands = {
     }
   },
   lewdcatgirl: {
-    type: "Fun",
+    type: "NSFW",
     usage: "lewdcatgirl",
     description:
-      "Fetch a random LewdCatgirl Image from nekos.life (NSFW, obviously)",
+      "Fetch a random Lewd Catgirl Image from nekos.life (NSFW, obviously)",
     onCall: function(msg) {
       if (msg.channel.nsfw) {
         getRequest("https://nekos.life/api/lewd/neko")
         .then((json) => {
-          let embed = embeds.catgirlEmbed;
+          let embed = new MessageEmbed()
+            .setColor(0xff00e5)
+            .setDescription("Random catgirl from [nekos.life](https://nekos.life/)");
           embed.setImage(json.neko);
           msg.channel.send(embed);
         })
@@ -159,7 +202,9 @@ module.exports.commands = {
     onCall: function(msg) {
       getRequest("http://aws.random.cat/meow")
         .then((json) => {
-          let embed = embeds.catEmbed;
+          let embed = new MessageEmbed()
+            .setColor(0x4c4cad)
+            .setDescription("Random cat from [random.cat](https://random.cat)");
           embed.setImage(json.file.replace(/\\/g, ""));
           msg.channel.send(embed);
         })
@@ -173,7 +218,9 @@ module.exports.commands = {
     onCall: function(msg) {
       getRequest("https://dog.ceo/api/breeds/image/random")
         .then((json) => {
-          let embed = embeds.dogEmbed;
+          let embed = new MessageEmbed()
+            .setColor(0xa3480f)
+            .setDescription("Random dog from [dog.ceo](https://dog.ceo)");
           embed.setImage(json.message);
           msg.channel.send(embed);
         })
@@ -187,7 +234,9 @@ module.exports.commands = {
 	onCall: function(msg) {
 		getRequest("https://sv443.net/jokeapi/v2/joke/Any")
 		  .then((json) => {
-			  let embed = embeds.jokeEmbed;
+			  let embed = new MessageEmbed()
+          .setColor(0x000000)
+          .setFooter("Random joke from sv443.net");
 			  if (json.type == "twopart"){
 				embed.setDescription(json.setup + "\n" + json.delivery);
 				msg.channel.send(embed);
@@ -206,7 +255,9 @@ module.exports.commands = {
 	onCall: function(msg) {
 		getRequest("https://randomfox.ca/floof/")
 		  .then((json) => {
-			let embed = embeds.foxEmbed;
+			let embed = new MessageEmbed()
+        .setColor(0xcc8400)
+        .setDescription("Random fox from [randomfox.ca](https://randomfox.ca)");
 			embed.setImage(json.image);
 			msg.channel.send(embed);
 		  })
@@ -218,7 +269,9 @@ module.exports.commands = {
 	usage: "ikea",
 	description: "Return a randomly generated IKEA furniture name",
 	onCall: function(msg) {
-		let embed = embeds.ikeaEmbed;
+		let embed = new MessageEmbed()
+      .setColor(0x0051ba)
+	    .setFooter("Random IKEA furniture name from the npm package ikea-name-generator");
 		embed.setTitle(ikea.getName());
 		msg.channel.send(embed);
 	}
@@ -336,7 +389,9 @@ module.exports.commands = {
     onCall: function(msg, args) {
       getRequest("https://inspirobot.me/api?generate=true")
         .then((body) => {
-          let embed = embeds.quoteEmbed;
+          let embed = new MessageEmbed()
+            .setDescription('"Inspirational" Quote from [Inspirobot](https://inspirobot.me/)')
+            .setColor(0x000000);
           embed.setImage(body);
           msg.channel.send(embed);
         })
@@ -410,7 +465,12 @@ module.exports.commands = {
             i++;
           }
         })
-        var embed = embeds.redditEmbed;
+        var embed = new MessageEmbed()
+          .setColor(0xff4500)
+          .setTitle("reddit")
+          .setDescription("Hottest posts")
+          .setTimestamp()
+          .setFooter("Data recieved");
         embed.setTitle(stylizedSubredditName);
         embed.setDescription("The 10 hottest posts from " + stylizedSubredditName);
         var finalContent = "";
@@ -443,7 +503,12 @@ module.exports.commands = {
             i++;
           }
         })
-        var embed = embeds.redditEmbed;
+        var embed = new MessageEmbed()
+          .setColor(0xff4500)
+          .setTitle("reddit")
+          .setDescription("Hottest posts")
+          .setTimestamp()
+          .setFooter("Data recieved");
         embed.setTitle(stylizedSubredditName);
         embed.setDescription("The 10 hottest posts from " + stylizedSubredditName);
         var finalContent = "";
@@ -471,7 +536,9 @@ module.exports.commands = {
             repolist = repolist + json[i].full_name + "\n";
           }
 
-          let embed = embeds.githubEmbed;
+          let embed = new MessageEmbed()
+            .setThumbnail("https://octodex.github.com/images/original.png")
+            .setColor(0x000000)
           embed.setAuthor(args[0], json[0].owner.avatar_url)
           embed.setDescription(repolist)
           msg.channel.send(embed);

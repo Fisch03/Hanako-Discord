@@ -1,7 +1,6 @@
 const gamelib = require('./gamelib.js');
 const main = require('../../index.js');
 const webhandler = require('../web-handler.js');
-const { embeds } = require("../embeds.js");
 
 const skin = [":white_large_square:", ":black_large_square:", ":red_circle:", ":blue_circle:", ":cat:", ":large_blue_diamond:"];
 const levels = [
@@ -173,7 +172,9 @@ function loop() {
     } else if(gType == 1) {
       webhandler.getRequest("https://nekos.life/api/neko")
         .then((json) => {
-          let embed = embeds.catgirlEmbed;
+          let embed = new MessageEmbed()
+            .setColor(0xff00e5)
+            .setDescription("Random catgirl from [nekos.life](https://nekos.life/)");
           embed.setImage(json.neko);
           gMatrix.channel.send(embed);
         })
