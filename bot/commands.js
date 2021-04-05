@@ -281,25 +281,73 @@ module.exports.commands = {
         .catch((error) => {console.error(error)})
     }
   },
+  trace: {
+    type: "Fun",
+    usage: "trace [optional image url]",
+    description: "Traces back the anime episode from the last image sent or from an image URL specified",
+    onCall: function(msg, args){
+      if (args.length == 0){
+        msg.channel.messages.fetch({limit: 100})
+        .then(messageMappings => {
+          let messages = Array.from(messageMappings.values());
+          for(let message of messages){
+            if (message.attachments.array().length > 0){
+              console.log("poggers?");
+              console.log(message.attachments.first().url);
+              getRequest("https://trace.moe/api/search?url=" + message.attachments.first().url)
+              .then((json) => {
+                let embed = new MessageEmbed()
+                  .setColor(0x000000)
+                  .setTitle("Found it!")
+                  .addField("Anime name", json.docs[0].title_english)
+                  .addField("Anime episode", json.docs[0].episode)
+                  .addField("Hentai", json.docs[0].is_adult)
+                  .addField("Timestamp", (Math.floor(json.docs[0].at / 60) + ":" + (parseInt(json.docs[0].at)%60)))
+                  .setFooter("Keep in mind that this data is not always accurate!");
+                msg.channel.send(embed);
+              })
+              .catch((error) => {msg.channel.send("Could not find anime from given screenshot.")})
+              break;
+            }
+            
+          }
+          })
+      } else {
+        getRequest("https://trace.moe/api/search?url=" + args[0])
+        .then((json) => {
+          let embed = new MessageEmbed()
+            .setColor(0x000000)
+            .setTitle("Found it!")
+            .addField("Anime name", json.docs[0].title_english)
+            .addField("Anime episode", json.docs[0].episode)
+            .addField("Hentai", json.docs[0].is_adult)
+            .addField("Timestamp", (Math.floor(json.docs[0].at / 60) + ":" + (parseInt(json.docs[0].at)%60)))
+            .setFooter("Keep in mind that this data is not always accurate!");
+          msg.channel.send(embed);
+        })
+        .catch((error) => {msg.channel.send("Could not find anime from given screenshot.")})
+      }
+    }
+  },
   joke: {
-	type: "Fun",
-	usage: "joke",
-	description: "Fetch a random joke from sv443.net/jokeapi",
-	onCall: function(msg) {
-		getRequest("https://sv443.net/jokeapi/v2/joke/Any")
-		  .then((json) => {
-			  let embed = new MessageEmbed()
-          .setColor(0x000000)
-          .setFooter("Random joke from sv443.net");
-			  if (json.type == "twopart"){
-				embed.setDescription(json.setup + "\n" + json.delivery);
-				msg.channel.send(embed);
-			  } else {
-				embed.setDescription(json.joke);
-				msg.channel.send(embed);
-			  }
-		  })
-		  .catch((error) => {console.error(error)})
+    type: "Fun",
+    usage: "joke",
+    description: "Fetch a random joke from sv443.net/jokeapi",
+    onCall: function(msg) {
+      getRequest("https://sv443.net/jokeapi/v2/joke/Any")
+        .then((json) => {
+          let embed = new MessageEmbed()
+            .setColor(0x000000)
+            .setFooter("Random joke from sv443.net");
+          if (json.type == "twopart"){
+          embed.setDescription(json.setup + "\n" + json.delivery);
+          msg.channel.send(embed);
+          } else {
+          embed.setDescription(json.joke);
+          msg.channel.send(embed);
+          }
+        })
+        .catch((error) => {console.error(error)})
     }
   },
   fox: {
