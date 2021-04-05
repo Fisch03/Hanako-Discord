@@ -373,7 +373,7 @@ module.exports.commands = {
           let last_arg = args.length-1;
           while(last_arg > 0 && args[last_arg] == "") last_arg--;
 
-          if(args[last_arg].toLowerCase == "uwu" || args[last_arg].toLowerCase == "uwu?" || (args[last_arg] == "?" && args[last_arg-1].toLowerCase == "uwu")) {
+          if(args[last_arg].toLowerCase() === "uwu" || args[last_arg].toLowerCase() === "uwu?" || (args[last_arg] === "?" && args[last_arg-1].toLowerCase() === "uwu")) {
             msg.channel.send(uwu_responses[value]);
           } else {
             msg.channel.send(responses[value]);
