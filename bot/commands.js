@@ -265,6 +265,22 @@ module.exports.commands = {
         .catch((error) => {console.error(error)})
     }
   },
+  shibainu: {
+    type: "Fun",
+    usage: "shibainu",
+    description: "Fetch a random Shiba Inu image from shibe.online",
+    onCall: function(msg) {
+      getRequest("https://shibe.online/api/shibes?count=1")
+        .then((json) => {
+          let embed = new MessageEmbed()
+            .setColor(0xbd9c5a)
+            .setDescription("Random Shiba Inu image from [shibe.online](https://shibe.online)")
+          embed.setImage(json[0])
+          msg.channel.send(embed);
+        })
+        .catch((error) => {console.error(error)})
+    }
+  },
   joke: {
 	type: "Fun",
 	usage: "joke",
