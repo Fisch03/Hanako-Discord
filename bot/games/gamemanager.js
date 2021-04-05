@@ -1,7 +1,7 @@
 const labyrinth = require('./labyrinth.js')
 
 let gameID = 0;
-const gamesTable = ["None", "labyrinth"]
+const gamesTable = ["none", "labyrinth"]
 /**
 0 = No Game
 1 = Labyrinth

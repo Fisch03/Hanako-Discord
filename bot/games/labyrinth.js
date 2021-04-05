@@ -75,8 +75,10 @@ let gType = 0;
 let pX = 2;
 let pY = 2;
 
+
 let cX = 2;
 let cY = 2;
+
 
 module.exports.init = function(channel, type, excluded) {
 
@@ -139,6 +141,7 @@ function start() {
     });
 }
 
+
 module.exports.react = function(reaction) {
   if(reaction.emoji.name == "⏫" && pY > 0 && levels[level][0][pY-1][pX] != 1) {
     pY--;
@@ -156,6 +159,7 @@ module.exports.react = function(reaction) {
     pX--;
   }
 }
+
 
 function loop() {
   for (row in levels[level][0]) {
