@@ -130,6 +130,44 @@ module.exports.commands = {
       }
     }
   },
+  rule34: {
+    type: "NSFW",
+    usage: "rule34 [tags]",
+    description: "Fetch the first post with these tags from rule34",
+    onCall: function(msg, args){
+      if (msg.channel.nsfw) {
+        getRequest('https://r34-json-api.herokuapp.com/posts?tags=' + args.join('+'))
+        .then((json) => {
+          let embed = new MessageEmbed()
+            .setColor(0xff00e5)
+            .setDescription("rule34 image from rule34");
+          embed.setImage(json[0].file_url);
+          msg.channel.send(embed);
+        });
+      } else {
+        msg.channel.send(":warning: Channel must be marked as NSFW");
+      }
+    }
+  },
+  e621: {
+    type: "NSFW",
+    usage: "e621 [tags]",
+    description: "Fetch the first post with these tags from e621",
+    onCall: function(msg, args){
+      if (msg.channel.nsfw) {
+        getRequest('https://e621.net/posts.json?tags=' + args.join('+'))
+        .then((json) => {
+          let embed = new MessageEmbed()
+            .setColor(0x2f64b4)
+            .setDescription("Image from e621.net");
+          embed.setImage(json.posts[0].file.url);
+          msg.channel.send(embed);
+        });
+      } else {
+        msg.channel.send(":warning: Channel must be marked as NSFW");
+      }
+    }
+  },
   catgirl: {
     type: "Fun",
     usage: "catgirl",
