@@ -292,8 +292,6 @@ module.exports.commands = {
           let messages = Array.from(messageMappings.values());
           for(let message of messages){
             if (message.attachments.array().length > 0){
-              console.log("poggers?");
-              console.log(message.attachments.first().url);
               getRequest("https://trace.moe/api/search?url=" + message.attachments.first().url)
               .then((json) => {
                 let embed = new MessageEmbed()
@@ -327,6 +325,22 @@ module.exports.commands = {
         })
         .catch((error) => {msg.channel.send("Could not find anime from given screenshot.")})
       }
+    }
+  },
+  dogecoin: {
+    type: "Fun",
+    usage: "dogecoin",
+    description: "Get the current dogecoin price",
+    onCall: function(msg){
+      getRequest("https://api.cryptonator.com/api/ticker/doge-eur")
+      .then((json) => {
+        let embed = new MessageEmbed()
+          .setColor(0xbd9c5a)
+          .setDescription("1 Doge is currently worth " + json.ticker.price + "€")
+          .setFooter("Data fetched")
+          .setTimestamp(Date.now())
+        msg.channel.send(embed);
+      })
     }
   },
   joke: {
