@@ -459,7 +459,7 @@ module.exports.commands = {
     usage: "ask [yes/no question]",
     description: "Get an answer to your question",
     onCall: function(msg, args) {
-      if (!args[0] || args[0] == "") {
+      if (!args[0] || args[0] === "") {
         msg.channel.send("You have to ask something!");
       } else {
         let responses = [
@@ -492,7 +492,7 @@ module.exports.commands = {
             if((arg.toLowerCase().includes("uwu") || arg.toLowerCase().includes("owo")) && arg.match(/[a-zA-Z]/g).length <= 3) {
               uwu_mode = true;
             }
-          }); 
+          });
 
           if(uwu_mode) {
             channel.message.send(uwu_responses[index]);
