@@ -307,7 +307,7 @@ module.exports.commands = {
               .catch((error) => {msg.channel.send("Could not find anime from given screenshot.")})
               break;
             }
-            
+
           }
           })
       } else {
@@ -482,17 +482,22 @@ module.exports.commands = {
           "Haha, that's funny uwu",
           "I hate you, shut up!!11"
         ]
-        let value = Math.floor(Math.random() * responses.length);
-        if (args[0] == "ban") {
+        let index = Math.floor(Math.random() * responses.length);
+        if (args[0].toLowerCase() == "ban") {
           msg.channel.send("Yes");
         } else {
-          let last_arg = args.length-1;
-          while(last_arg > 0 && args[last_arg] == "") last_arg--;
+          let uwu_mode = false;
 
-          if(args[last_arg].toLowerCase() === "uwu" || args[last_arg].toLowerCase() === "uwu?" || (args[last_arg] === "?" && args[last_arg-1].toLowerCase() === "uwu")) {
-            msg.channel.send(uwu_responses[value]);
+          args.forEach(arg => {
+            if((arg.toLowerCase().includes("uwu") || arg.toLowerCase().includes("owo")) && arg.match(/[a-zA-Z]/g).length <= 3) {
+              uwu_mode = true;
+            }
+          }); 
+
+          if(uwu_mode) {
+            channel.message.send(uwu_responses[index]);
           } else {
-            msg.channel.send(responses[value]);
+            channel.message.send(responses[index]);
           }
         }
       }
