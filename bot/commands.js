@@ -495,9 +495,9 @@ module.exports.commands = {
           });
 
           if(uwu_mode) {
-            channel.message.send(uwu_responses[index]);
+            msg.channel.send(uwu_responses[index]);
           } else {
-            channel.message.send(responses[index]);
+            msg.channel.send(responses[index]);
           }
         }
       }
