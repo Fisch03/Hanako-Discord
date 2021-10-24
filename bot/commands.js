@@ -288,6 +288,26 @@ module.exports.commands = {
         .catch((error) => {console.error(error)})
     }
   },
+  xkcd: {
+    type: "Fun",
+    usage: "xkcd [Number]",
+    description: "Shows the specified XKCD comic",
+    onCall: function (msg, args){
+      if (args.length == 0){
+        msg.channel.send("Please specify a XKCD.");
+      } else {
+        getRequest("https://xkcd.com/" + args[0] + "/info.0.json")
+        .then((json) => {
+          let embed = new MessageEmbed()
+            .setColor(0xFFFFFF)
+            .setTitle(json.title)
+            .setDescription(json.alt)
+            .setImage(json.img)
+          msg.channel.send(embed);
+        }).catch((error) => {msg.channel.send("This XKCD does not exist.")})
+      }
+    }
+  },
   shibainu: {
     type: "Fun",
     usage: "shibainu",
