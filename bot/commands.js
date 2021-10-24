@@ -233,6 +233,29 @@ module.exports.commands = {
       music.skip(msg, serverQueue);
     }
   },
+  queue: {
+    type: "Music",
+    usage: "queue",
+    description: "Outputs the current queue (max. 10 songs)",
+    onCall: function(msg) {
+      const serverQueue = music.queue.get(msg.guild.id);
+      let embed = new MessageEmbed()
+        .setColor(0x000000);
+      if (serverQueue == null || serverQueue.songs.length == 0){
+        embed.setDescription("Your queue is currently empty.");
+      } else {
+        let queueMsg = "This is your current server queue! (Note: This only shows 10 songs max.)\n";
+        for (var i=0;i<10;i++){
+          if (serverQueue.songs[i] == null){
+            break;
+          }
+          queueMsg += "[" + serverQueue.songs[i].title + "](" + serverQueue.songs[i].url + ")\n";
+        }
+        embed.setDescription(queueMsg);
+      }
+      msg.channel.send(embed);
+    }
+  },
   cat: {
     type: "Fun",
     usage: "cat",
