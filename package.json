@@ -9,7 +9,7 @@
   "dependencies": {
     "@discordjs/opus": "^0.3.3",
     "asynckit": "^0.4.0",
-    "axios": "^0.21.1",
+    "axios": "^0.21.2",
     "combined-stream": "^1.0.8",
     "discord.js": "^12.5.1",
     "express": "^4.17.1",
