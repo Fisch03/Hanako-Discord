@@ -308,6 +308,17 @@ module.exports.commands = {
       }
     }
   },
+  insult: {
+    type: "Fun",
+    usage: "insult",
+    description: "Insults you",
+    onCall: function(msg) {
+      getRequest("https://evilinsult.com/generate_insult.php?lang=en&type=json")
+        .then((json) => {
+          msg.channel.send(msg.member.user.toString() + ", " + json.insult);
+        });
+    }
+  },
   shibainu: {
     type: "Fun",
     usage: "shibainu",
