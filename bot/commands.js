@@ -10,7 +10,7 @@ const ikea = require("ikea-name-generator");
 const { Uwuifier } = require("uwuifier");
 const uwuifier = new Uwuifier();
 
-const { MessageEmbed } = require("discord.js");
+const { MessageEmbed, Message } = require("discord.js");
 
 module.exports.commands = {
   /**
@@ -92,6 +92,21 @@ module.exports.commands = {
         "https://tenor.com/view/anime-poggers-anime-poggers-anime-gif-18290521"
       ]
       msg.channel.send(`${gifs[Math.floor(Math.random() * gifs.length)]}`);
+    }
+  },
+  fumo: {
+    type:"Fun",
+    usage:"fumo",
+    description: "FUMO FUMO FUMO TOUHOU FUNNY",
+    onCall: function(msg) {
+      getRequest("https://fumoapi.herokuapp.com/random")
+        .then((json) => {
+          let embed = new MessageEmbed()
+            .setColor(0x8f0b16)
+            .setDescription("Random fumo image from [FumoAPI](https://fumoapi.herokuapp.com)")
+          embed.setImage(json.URL)
+          msg.channel.send(embed);
+        })
     }
   },
   waifu: {
