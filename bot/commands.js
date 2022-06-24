@@ -51,6 +51,28 @@ module.exports.commands = {
       msg.channel.send(`${msg.author} kisses ${args[0]}. Chu~`);
     }
   },
+  jojo: {
+    type:"Fun",
+    usage:"jojo",
+    description:"Get a jojo",
+    onCall: function(msg) {
+      gifs = [
+        "https://tenor.com/view/cherry-tongue-lickit-licking-pussy-gif-15152591",
+        "https://tenor.com/view/kirari-gif-23030580",
+        "https://tenor.com/view/jojo-yes-gif-14878013",
+        "https://tenor.com/view/jojo-anime-i-refuse-jojos-bizarre-adventures-jjba-gif-15677150",
+        "https://tenor.com/view/jojos-bizarre-adventures-caesar-crying-tears-anime-gif-15566901",
+        "https://tenor.com/view/jojo-dance-cute-dance-move-gif-15890231",
+        "https://tenor.com/view/jojo-weather-report-join-vc-join-stone-ocean-gif-24039690",
+        "https://tenor.com/view/jojo-jjba-gif-19539293",
+        "https://tenor.com/view/giorno-gif-26016523",
+        "https://tenor.com/view/jojos-bizarre-echoes-pose-gif-14181254",
+        "https://tenor.com/view/jojo-jojos-bizarre-adventure-good-grief-anime-gif-16726675"
+        
+      ]
+      msg.channel.send(`${gifs[Math.floor(Math.random() * gifs.length)]}`);
+    }
+  },
   uwu: {
     type: "Fun",
     usage: "uwu [Text]",
