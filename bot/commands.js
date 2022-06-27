@@ -141,7 +141,7 @@ module.exports.commands = {
           let embed = new MessageEmbed()
             .setColor(0xff00e5)
             .setDescription("Random waifu from [waifu.pics](https://waifu.pics/)");
-          embed.setImage(json.url);
+          embed.setImage(json.URL);
           msg.channel.send(embed);
         })
         .catch(() => {msg.channel.send("Oops! Something went wrong. Make sure the category you specified exists.");})
