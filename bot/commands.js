@@ -311,10 +311,10 @@ module.exports.commands = {
     type: "Fun",
     usage: "insult",
     description: "Insults you",
-    onCall: function(msg) {
+    onCall: function(msg, args) {
       getRequest(`https://evilinsult.com/generate_insult.php?lang=en&type=json&a=${Math.random()*1000}`) //API is somewhat broken and always returns the same thing for the same arguments
         .then((json) => {
-          msg.channel.send(msg.member.user.toString() + ", " + json.insult);
+          msg.channel.send(args.join(" ") + ", " + json.insult);
         });
     }
   },
