@@ -312,7 +312,7 @@ module.exports.commands = {
     usage: "insult",
     description: "Insults you",
     onCall: function(msg) {
-      getRequest(`https://evilinsult.com/generate_insult.php?lang=en&type=json${Math.random()*1000}`) //API is somewhat broken and always returns the same thing for the same arguments
+      getRequest(`https://evilinsult.com/generate_insult.php?lang=en&type=json&a=${Math.random()*1000}`) //API is somewhat broken and always returns the same thing for the same arguments
         .then((json) => {
           msg.channel.send(msg.member.user.toString() + ", " + json.insult);
         });
