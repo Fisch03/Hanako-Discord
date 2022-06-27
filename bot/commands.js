@@ -121,11 +121,11 @@ module.exports.commands = {
     usage:"fumo",
     description: "FUMO FUMO FUMO TOUHOU FUNNY",
     onCall: function(msg) {
-      getRequest("https://fumoapi.herokuapp.com/random")
+      getRequest("https://fumoapi.nosesisaid.me/random")
         .then((json) => {
           let embed = new MessageEmbed()
             .setColor(0x8f0b16)
-            .setDescription("Random fumo image from [FumoAPI](https://fumoapi.herokuapp.com)")
+            .setDescription("Random fumo image from [FumoAPI](https://fumoapi.nosesisaid.me/random)")
           embed.setImage(json.URL)
           msg.channel.send(embed);
         })
