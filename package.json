@@ -7,6 +7,8 @@
     "start": "node index.js"
   },
   "dependencies": {
+    "@discordjs/voice": "^0.10.0",
+    "@discordjs/opus": "^0.3.3",
     "asynckit": "^0.4.0",
     "axios": "^0.21.2",
     "combined-stream": "^1.0.8",
