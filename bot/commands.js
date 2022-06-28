@@ -193,11 +193,11 @@ module.exports.commands = {
     usage:"fumo",
     description: "FUMO FUMO FUMO TOUHOU FUNNY",
     onCall: function(msg) {
-      getRequest("https://fumoapi.herokuapp.com/random")
+      getRequest("https://fumoapi.nosesisaid.me/random")
         .then((json) => {
           let embed = new MessageEmbed()
             .setColor(0x8f0b16)
-            .setDescription("Random fumo image from [FumoAPI](https://fumoapi.herokuapp.com)")
+            .setDescription("Random fumo image from [FumoAPI](https://fumoapi.nosesisaid.me/random)")
           embed.setImage(json.URL)
           msg.channel.send(embed);
         })
@@ -213,7 +213,7 @@ module.exports.commands = {
           let embed = new MessageEmbed()
             .setColor(0xff00e5)
             .setDescription("Random waifu from [waifu.pics](https://waifu.pics/)");
-          embed.setImage(json.url);
+          embed.setImage(json.URL);
           msg.channel.send(embed);
         })
         .catch(() => {msg.channel.send("Oops! Something went wrong. Make sure the category you specified exists.");})
@@ -234,44 +234,6 @@ module.exports.commands = {
             msg.channel.send(embed);
           })
           .catch(() => {msg.channel.send("Oops! Something went wrong. Make sure the category you specified exists.");})
-      } else {
-        msg.channel.send(":warning: Channel must be marked as NSFW");
-      }
-    }
-  },
-  rule34: {
-    type: "NSFW",
-    usage: "rule34 [tags]",
-    description: "Fetch the first post with these tags from rule34",
-    onCall: function(msg, args){
-      if (msg.channel.nsfw) {
-        getRequest('https://r34-json-api.herokuapp.com/posts?tags=' + args.join('+'))
-        .then((json) => {
-          let embed = new MessageEmbed()
-            .setColor(0xff00e5)
-            .setDescription("rule34 image from rule34");
-          embed.setImage(json[0].file_url);
-          msg.channel.send(embed);
-        });
-      } else {
-        msg.channel.send(":warning: Channel must be marked as NSFW");
-      }
-    }
-  },
-  e621: {
-    type: "NSFW",
-    usage: "e621 [tags]",
-    description: "Fetch the first post with these tags from e621",
-    onCall: function(msg, args){
-      if (msg.channel.nsfw) {
-        getRequest('https://e621.net/posts.json?tags=' + args.join('+'))
-        .then((json) => {
-          let embed = new MessageEmbed()
-            .setColor(0x2f64b4)
-            .setDescription("Image from e621.net");
-          embed.setImage(json.posts[0].file.url);
-          msg.channel.send(embed);
-        });
       } else {
         msg.channel.send(":warning: Channel must be marked as NSFW");
       }
@@ -421,10 +383,10 @@ module.exports.commands = {
     type: "Fun",
     usage: "insult",
     description: "Insults you",
-    onCall: function(msg) {
-      getRequest("https://evilinsult.com/generate_insult.php?lang=en&type=json")
+    onCall: function(msg, args) {
+      getRequest(`https://evilinsult.com/generate_insult.php?lang=en&type=json&a=${Math.random()*1000}`) //API is somewhat broken and always returns the same thing for the same arguments
         .then((json) => {
-          msg.channel.send(msg.member.user.toString() + ", " + json.insult);
+          msg.channel.send(args.join(" ") + ", " + json.insult);
         });
     }
   },
@@ -488,22 +450,6 @@ module.exports.commands = {
         })
         .catch((error) => {msg.channel.send("Could not find anime from given screenshot.")})
       }
-    }
-  },
-  dogecoin: {
-    type: "Fun",
-    usage: "dogecoin",
-    description: "Get the current dogecoin price",
-    onCall: function(msg){
-      getRequest("https://api.cryptonator.com/api/ticker/doge-eur")
-      .then((json) => {
-        let embed = new MessageEmbed()
-          .setColor(0xbd9c5a)
-          .setDescription("1 Doge is currently worth " + json.ticker.price + "€")
-          .setFooter("Data fetched")
-          .setTimestamp(Date.now())
-        msg.channel.send(embed);
-      })
     }
   },
   joke: {
