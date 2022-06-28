@@ -16,14 +16,86 @@ module.exports.commands = {
   /**
   FUN
   **/
-  ping: {
+
+  rand: {
     type: "Fun",
-    usage: "ping",
-    description: "Do you really need an explanation for this one?",
-    onCall: function(msg) {
-      msg.channel.send("Pong!");
+    usage: "rand [number1] [number2]",
+    description: "Get a random number between 1 and 100, or between the bounds of your choice",
+    onCall: function(msg, args) {
+      //Math.random ergibt eine Zahl zwischen 0 (inklusiv) und 1 (exklusiv), worum auch bei case 1 und 2 eine eins dazugerechnet wird
+      switch(args.length){
+        case 0:
+          msg.channel.send(Math.floor(Math.random()*100));
+
+          break;
+        case 1:
+          msg.channel.send(Math.floor(Math.random()*args[0]+1));
+          break;
+
+        case 2:
+          msg.channel.send(Math.floor(Math.random()*(max-min+1))+ min)
+          
+
+
+      
+      
+      }
     }
   },
+
+  ping: {
+
+   
+      type: "Fun",
+      usage: "ping",
+      description: "Do you really need an explanation for this one?",
+      onCall: function(msg) {
+        msg.channel.send("Pong!");
+      }
+    
+  },
+
+  
+
+  guessthenumber: {
+    type: "Fun",
+    usage: "gtn [number]",
+    description: "Guess a number between 1-10",
+    onCall: function(msg, args) {
+      let value = Math.floor(Math.random()*11) + 1;
+      if(args[0] == value){
+        msg.channel.send("Great job : ) ! Number was indeed " + value + "!");
+      } else {
+        msg.channel.send("Too bad. The number was " + value+ " : (");
+      }
+
+      
+    }
+  },
+
+
+  profile: {
+    type: "Fun",
+    usage: "profile [member]",
+    description: "gets profile",
+    onCall: function(msg, args) {
+      var member = "";
+      if(args.length == 0){
+        member = msg.author;
+
+      } else {
+        member = msg.mentions.members[0].catch(err => {
+          msg.channel.send("Some error occured");
+          return;
+
+        })
+      }
+
+
+      msg.channel.send(member.avatar_url());
+     
+  }
+},
   howgay: {
     type: "Fun",
     usage: "howgay [name]",
