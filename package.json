@@ -22,7 +22,7 @@
     "ytdl-core": "^4.11.0"
   },
   "engines": {
-    "node": "^15.0.0"
+    "node": "^16.6.0"
   },
   "repository": {
     "url": "https://github.com/Fisch03/Hanako-Discord"
