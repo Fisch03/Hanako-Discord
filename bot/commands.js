@@ -24,16 +24,19 @@ module.exports.commands = {
     onCall: function(msg, args) {
       //Math.random ergibt eine Zahl zwischen 0 (inklusiv) und 1 (exklusiv), worum auch bei case 1 und 2 eine eins dazugerechnet wird
       switch(args.length){
+        
         case 0:
-          msg.channel.send(Math.floor(Math.random()*100));
+          msg.channel.send((Math.floor(Math.random()*100)).toString());
 
           break;
         case 1:
-          msg.channel.send(Math.floor(Math.random()*args[0]+1));
+          msg.channel.send((Math.floor(Math.random()*args[0]+1)).toString());
           break;
 
         case 2:
-          msg.channel.send(Math.floor(Math.random()*(max-min+1))+ min)
+            console.log((Math.random()*(args[1]-args[0]+1)));
+            let erg = (Math.floor(Math.random()*(args[1]-args[0]+1))+ parseInt(args[0]));
+          msg.channel.send((erg).toString());
           
 
 
@@ -84,15 +87,11 @@ module.exports.commands = {
         member = msg.author;
 
       } else {
-        member = msg.mentions.members[0].catch(err => {
-          msg.channel.send("Some error occured");
-          return;
-
-        })
+        member = message.mentions.members.first().user;
       }
 
 
-      msg.channel.send(member.avatar_url());
+      msg.channel.send(member.avatarURL());
      
   }
 },
