@@ -87,7 +87,7 @@ module.exports.commands = {
         member = msg.author;
 
       } else {
-        member = message.mentions.members.first().user;
+        member = msg.mentions.members.first().user;
       }
 
 
