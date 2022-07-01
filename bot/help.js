@@ -13,7 +13,7 @@ module.exports.help = function(msg, args) {
         .addField("Category:", command.type)
         .addField("Usage:", command.usage)
         .addField("Description:", command.description);
-      msg.channel.send(embed);
+      msg.channel.send({embeds: [embed]});
     } else {
       msg.channel.send("That command does not exist.")
     }
@@ -44,6 +44,6 @@ module.exports.help = function(msg, args) {
       embed.addField(category, text);
     }
 
-    msg.channel.send(embed);
+    msg.channel.send({embeds: [embed]});
   }
 }

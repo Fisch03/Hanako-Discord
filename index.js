@@ -34,7 +34,12 @@ self.on("message", message => {
 
     if (!this.gameRunning) {
       if (commands.commands[cmd]) {
-        commands.commands[cmd].onCall(message, args);
+        try {
+          commands.commands[cmd].onCall(message, args);
+        } catch {
+          message.channel.send("An error occured while executing that command.");
+        }
+        
       }
     } else if (cmd === "stop") {
       this.gameRunning = false;

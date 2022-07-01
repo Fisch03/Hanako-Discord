@@ -34,21 +34,12 @@ module.exports.commands = {
           break;
 
         case 2:
-            console.log((Math.random()*(args[1]-args[0]+1)));
-            let erg = (Math.floor(Math.random()*(args[1]-args[0]+1))+ parseInt(args[0]));
+          let erg = (Math.floor(Math.random()*(args[1]-args[0]+1))+ parseInt(args[0]));
           msg.channel.send((erg).toString());
-          
-
-
-      
-      
       }
     }
   },
-
   ping: {
-
-   
       type: "Fun",
       usage: "ping",
       description: "Do you really need an explanation for this one?",
@@ -57,9 +48,6 @@ module.exports.commands = {
       }
     
   },
-
-  
-
   guessthenumber: {
     type: "Fun",
     usage: "gtn [number]",
@@ -75,8 +63,6 @@ module.exports.commands = {
       
     }
   },
-
-
   profile: {
     type: "Fun",
     usage: "profile [member]",
@@ -90,9 +76,7 @@ module.exports.commands = {
         member = msg.mentions.members.first().user;
       }
 
-
       msg.channel.send(member.avatarURL());
-     
   }
 },
   howgay: {
@@ -198,7 +182,7 @@ module.exports.commands = {
             .setColor(0x8f0b16)
             .setDescription("Random fumo image from [FumoAPI](https://fumoapi.nosesisaid.me/random)")
           embed.setImage(json.URL)
-          msg.channel.send(embed);
+          msg.channel.send({embeds: [embed]});
         })
     }
   },
@@ -213,7 +197,7 @@ module.exports.commands = {
             .setColor(0xff00e5)
             .setDescription("Random waifu from [waifu.pics](https://waifu.pics/)");
           embed.setImage(json.URL);
-          msg.channel.send(embed);
+          msg.channel.send({embeds: [embed]});
         })
         .catch(() => {msg.channel.send("Oops! Something went wrong. Make sure the category you specified exists.");})
     }
@@ -230,7 +214,7 @@ module.exports.commands = {
               .setColor(0xff00e5)
               .setDescription("Random waifu from [waifu.pics](https://waifu.pics/)");
             embed.setImage(json.url);
-            msg.channel.send(embed);
+            msg.channel.send({embeds: [embed]});
           })
           .catch(() => {msg.channel.send("Oops! Something went wrong. Make sure the category you specified exists.");})
       } else {
@@ -249,7 +233,7 @@ module.exports.commands = {
             .setColor(0xff00e5)
             .setDescription("Random catgirl from [nekos.life](https://nekos.life/)");
           embed.setImage(json.neko);
-          msg.channel.send(embed);
+          msg.channel.send({embeds: [embed]});
         })
         .catch((error) => {console.error(error)})
     }
@@ -267,7 +251,7 @@ module.exports.commands = {
             .setColor(0xff00e5)
             .setDescription("Random catgirl from [nekos.life](https://nekos.life/)");
           embed.setImage(json.neko);
-          msg.channel.send(embed);
+          msg.channel.send({embeds: [embed]});
         })
         .catch((error) => {console.error(error)})
       } else {
@@ -323,7 +307,7 @@ module.exports.commands = {
         }
         embed.setDescription(queueMsg);
       }
-      msg.channel.send(embed);
+      msg.channel.send({embeds: [embed]});
     }
   },
   cat: {
@@ -337,7 +321,7 @@ module.exports.commands = {
             .setColor(0x4c4cad)
             .setDescription("Random cat from [random.cat](https://random.cat)");
           embed.setImage(json.file.replace(/\\/g, ""));
-          msg.channel.send(embed);
+          msg.channel.send({embeds: [embed]});
         })
         .catch((error) => {console.error(error)})
     }
@@ -353,7 +337,7 @@ module.exports.commands = {
             .setColor(0xa3480f)
             .setDescription("Random dog from [dog.ceo](https://dog.ceo)");
           embed.setImage(json.message);
-          msg.channel.send(embed);
+          msg.channel.send({embeds: [embed]});
         })
         .catch((error) => {console.error(error)})
     }
@@ -373,7 +357,7 @@ module.exports.commands = {
             .setTitle(json.title)
             .setDescription(json.alt)
             .setImage(json.img)
-          msg.channel.send(embed);
+          msg.channel.send({embeds: [embed]});
         }).catch((error) => {msg.channel.send("This XKCD does not exist.")})
       }
     }
@@ -400,7 +384,7 @@ module.exports.commands = {
             .setColor(0xbd9c5a)
             .setDescription("Random Shiba Inu image from [shibe.online](https://shibe.online)")
           embed.setImage(json[0])
-          msg.channel.send(embed);
+          msg.channel.send({embeds: [embed]});
         })
         .catch((error) => {console.error(error)})
     }
@@ -426,7 +410,7 @@ module.exports.commands = {
                   .addField("Hentai", json.docs[0].is_adult)
                   .addField("Timestamp", (Math.floor(json.docs[0].at / 60) + ":" + (parseInt(json.docs[0].at)%60)))
                   .setFooter("Keep in mind that this data is not always accurate!");
-                msg.channel.send(embed);
+                msg.channel.send({embeds: [embed]});
               })
               .catch((error) => {msg.channel.send("Could not find anime from given screenshot.")})
               break;
@@ -445,7 +429,7 @@ module.exports.commands = {
             .addField("Hentai", json.docs[0].is_adult)
             .addField("Timestamp", (Math.floor(json.docs[0].at / 60) + ":" + (parseInt(json.docs[0].at)%60)))
             .setFooter("Keep in mind that this data is not always accurate!");
-          msg.channel.send(embed);
+          msg.channel.send({embeds: [embed]});
         })
         .catch((error) => {msg.channel.send("Could not find anime from given screenshot.")})
       }
@@ -466,7 +450,7 @@ module.exports.commands = {
           msg.channel.send(embed);
           } else {
           embed.setDescription(json.joke);
-          msg.channel.send(embed);
+          msg.channel.send({embeds: [embed]});
           }
         })
         .catch((error) => {console.error(error)})
@@ -483,7 +467,7 @@ module.exports.commands = {
         .setColor(0xcc8400)
         .setDescription("Random fox from [randomfox.ca](https://randomfox.ca)");
 			embed.setImage(json.image);
-			msg.channel.send(embed);
+			msg.channel.send({embeds: [embed]});
 		  })
 		  .catch((error) => {console.error(error)})
 	}
@@ -497,7 +481,7 @@ module.exports.commands = {
       .setColor(0x0051ba)
 	    .setFooter("Random IKEA furniture name from the npm package ikea-name-generator");
 		embed.setTitle(ikea.getName());
-		msg.channel.send(embed);
+		msg.channel.send({embeds: [embed]});
 	}
   },
   echo: {
@@ -622,7 +606,7 @@ module.exports.commands = {
             .setDescription('"Inspirational" Quote from [Inspirobot](https://inspirobot.me/)')
             .setColor(0x000000);
           embed.setImage(body);
-          msg.channel.send(embed);
+          msg.channel.send({embeds: [embed]});
         })
     }
   },
@@ -708,7 +692,7 @@ module.exports.commands = {
         })
         embed.setDescription("The 10 hottest posts from " + stylizedSubredditName + "\n\n" + finalContent);
         embed.addField("More info", "[Go to this subreddit](https://reddit.com/" + stylizedSubredditName + ")");
-        msg.channel.send(embed);
+        msg.channel.send({embeds: [embed]});
       })
     }
   },
@@ -748,7 +732,7 @@ module.exports.commands = {
         // really dumb way of fixing that weird error where there would be a new more info field every execution
         embed.spliceFields(0, 25);
         embed.addField("More info", "[Go to this subreddit](https://reddit.com/" + stylizedSubredditName + ")");
-        msg.channel.send(embed);
+        msg.channel.send({embeds: [embed]});
       })
     }
   },
